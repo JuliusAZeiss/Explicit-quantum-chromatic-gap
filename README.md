@@ -22,7 +22,10 @@ they take a few seconds.
 | `verify_graph_219.py` | Checks the graph F on 219 vertices: its 1353 edges, a proper 5-coloring, the quantum 3-coloring in dimension four with commuting measurements on edges, and the mod 2 chain certificate that excludes a 4-coloring. |
 | `graph_219_certificate.json.gz` | Vertices, edges, 5-coloring and chains for F. |
 | `verify_small_graphs.py` | Rebuilds the graphs on 28, 29, 32 and 165 vertices from the Mermin–Peres square, checks their vertex and edge counts, chromatic numbers and vertex-criticality, the parity rule for the 39-vertex gadget, the lemmas on four-colorings of grids and triples, and the counts for the first-level graph on 597 vertices. |
+| `verification_notes.pdf`, `verification_notes.tex` | Description of the checks and of the chain certificate. |
 | `small_graphs_data.json.gz` | The 5-coloring of the 165-vertex graph and a 4-coloring of each of its vertex-deleted subgraphs. |
 
-The programs and their output are described in the appendix "A topological
-certificate and computer checks" of the paper.
+`verification_notes.pdf` (source: `verification_notes.tex`) describes what the
+programs verify, states and proves the lemma behind the chain certificate,
+and lists the numbers the programs report. Statement numbers in it refer to
+the paper.
