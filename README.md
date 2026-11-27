@@ -89,7 +89,7 @@ python3 -B run_all.py
 
 ## Earlier version of this repository
 
-Until 27 November 2026 this repository held the verification programs for the version of 19 November 2026 of the paper (the graph on 219 vertices and the small graphs on 28, 29, 32 and 165 vertices). The present paper is organized around the square substitution and has its own programs. The earlier files are kept under the tag [`programs-2026-11-19`](https://github.com/JuliusAZeiss/explicit-quantum-chromatic-gap/tree/programs-2026-11-19).
+Until 27 November 2026 this repository held the verification programs for the version of 19 November 2026 of the paper (the graph on 219 vertices and the small graphs on 28, 29, 32 and 165 vertices). The present paper is organized around the square substitution and has its own programs. The earlier files are kept under the tag [`programs-2026-11-19`](https://github.com/JuliusAZeiss/Explicit-quantum-chromatic-gap/tree/programs-2026-11-19).
 
 ## License
 
