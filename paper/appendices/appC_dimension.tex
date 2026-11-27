@@ -1,0 +1,89 @@
+\section{Algebraic local-dimension proofs}\label{app:dimension}
+
+This appendix supplies the proofs of the coordinate decomposition for quantum $3$-colorings of $K_3^{\times m}$ (Lemma~\ref{lem:k3-powers}, used in Section~\ref{sec:rigidity}) and of local-dimension divisibility for the $22$-vertex graph $F_{22}$ (Proposition~\ref{prop:small-dimension}, used in Section~\ref{sec:f22}).
+
+\subsection{Coordinate decomposition for powers of the triangle}\label{app:k3-powers}
+
+\begin{proof}[Proof of Lemma~\ref{lem:k3-powers}]
+We prove commutation for $m=2$, lift commutation to arbitrary $m$ by embedding $K_3^{\times2}$, and classify all joint classical $3$-colorings of $K_3^{\times m}$ by Fourier analysis on $(\mathbb Z/3)^m$.
+
+\emph{Step 1: Two coordinates ($m=2$).} The linear map $(s,t)\mapsto(s+t,s-t)$ is a bijection on $(\mathbb Z/3)^2$, with inverse $(r,c)\mapsto(2(r+c),2(r-c))$. For any two words $(s,t)$ and $(s',t')$, the differences of their images are $(s-s')+(t-t')$ and $(s-s')-(t-t')$. When $s-s'\in\{\pm1\}$ and $t-t'\in\{\pm1\}$ modulo $3$, exactly one of this sum and difference vanishes, and conversely if exactly one vanishes then both $s-s'$ and $t-t'$ are nonzero. Thus two vertices are adjacent in $K_3^{\times2}$ precisely when their images agree in exactly one coordinate.
+
+Arrange the nine vertices of $K_3^{\times2}$ in a $3\times3$ array indexed by $(r,c)\in(\mathbb Z/3)^2$. Every row and every column of the array is then a triangle of $K_3^{\times2}$. On any triangle, the three projectors for a fixed color are pairwise orthogonal, so their sum is at most $I$; summing over all three colors yields $3I\le 3I$, forcing each triangle sum to equal $I$. Fix one color and denote its projector at cell $(r,c)$ by $p_{rc}$. Then each row and each column of $(p_{rc})$ consists of three pairwise orthogonal projections summing to $I$.
+
+We show that all $p_{rc}$ commute. Using the column sum $p_{22}=I-p_{12}-p_{32}$ (with $p_{11}p_{12}=0$ and $p_{12}p_{13}=0$) and the row sum $p_{32}=I-p_{31}-p_{33}$ (with $p_{11}p_{31}=0$ and $p_{33}p_{13}=0$), we obtain
+\[
+ p_{11}p_{22}p_{13}=-p_{11}p_{32}p_{13}=p_{11}(p_{31}+p_{33})p_{13}=0,
+ \qquad
+ p_{11}p_{22}p_{12}=0.
+\]
+Hence $p_{11}p_{22}=p_{11}p_{22}(p_{11}+p_{12}+p_{13})=p_{11}p_{22}p_{11}$, which is self-adjoint; therefore $p_{11}$ commutes with $p_{22}$. Permuting rows and columns shows that all projectors of the same color commute.
+
+Now take any two vertices $u,v\in V(K_3^{\times2})$ and distinct colors $a,b$, letting $c$ be the third color. Because same-color projectors commute and distinct outcomes at $u$ are orthogonal, we have $P_{u,a}P_{v,b}P_{u,b}=P_{u,a}P_{u,b}P_{v,b}=0$ and
+\[
+ P_{u,a}P_{v,b}P_{u,c}=P_{u,a}(I-P_{v,a}-P_{v,c})P_{u,c}=0.
+\]
+Hence $P_{u,a}P_{v,b}=P_{u,a}P_{v,b}(P_{u,a}+P_{u,b}+P_{u,c})=P_{u,a}P_{v,b}P_{u,a}$ is self-adjoint, so $P_{u,a}$ commutes with $P_{v,b}$. Thus all projectors of the coloring commute for $m=2$.
+
+\emph{Step 2: Arbitrary $m\ge1$.} Let $u,v\in(\mathbb Z/3)^m$ be any two vertices. Define $\phi:K_3^{\times2}\to K_3^{\times m}$ coordinatewise: for each $i$ with $u_i=v_i$, set $\phi(s,t)_i=s+u_i$; for each $i$ with $u_i\ne v_i$, choose a permutation $\pi_i$ of $\mathbb Z/3$ satisfying $\pi_i(0)=u_i$ and $\pi_i(1)=v_i$ and set $\phi(s,t)_i=\pi_i(t)$. If $(s,t)\sim(s',t')$ in $K_3^{\times2}$, then $s\ne s'$ and $t\ne t'$, so $s+u_i\ne s'+u_i$ and $\pi_i(t)\ne\pi_i(t')$ for every $i$; thus $\phi$ is a graph homomorphism with $\phi(0,0)=u$ and $\phi(0,1)=v$. Pulling back the quantum $3$-coloring along $\phi$ and applying Step 1 shows that all projectors at $u$ and $v$ commute.
+
+\emph{Step 3: Joint eigenvectors and classical $3$-colorings.} Because all projectors $P_{u,a}$ commute, $\C^d$ has an orthonormal basis of joint eigenvectors. Each joint eigenvector selects one color per vertex and therefore defines a proper classical $3$-coloring $f:(\mathbb Z/3)^m\to\mathbb Z/3$ of $K_3^{\times m}$. We prove that $f(u)=\pi(u_i)$ for some coordinate $i\in\{1,\ldots,m\}$ and some permutation $\pi$ of $\mathbb Z/3$.
+
+Let $g:(\mathbb Z/3)^m\to\{0,1\}$ be the indicator function of one color class of $f$. For every $u\in(\mathbb Z/3)^m$ and every $h\in\{1,-1\}^m$, the three words $u,u+h,u+2h$ differ pairwise in every coordinate and therefore form a triangle in $K_3^{\times m}$, giving
+\[
+ g(u)+g(u+h)+g(u+2h)=1.
+\]
+Expand $g(u)=\sum_{k\in(\mathbb Z/3)^m}\hat g(k)\,\omega^{k\cdot u}$ in the characters of $(\mathbb Z/3)^m$, where $\omega=e^{2\pi i/3}$. Summing over $u,u+h,u+2h$ multiplies $\hat g(k)$ by $1+\omega^{k\cdot h}+\omega^{2k\cdot h}$, which equals $3$ if $k\cdot h=0\pmod3$ and $0$ otherwise. Thus $\hat g(0)=1/3$, and $\hat g(k)=0$ whenever there exists $h\in\{1,-1\}^m$ with $k\cdot h=0\pmod3$.
+
+Suppose $k\in(\mathbb Z/3)^m$ has $r\ge2$ nonzero coordinates. We can choose $h\in\{1,-1\}^m$ so that $k\cdot h=0\pmod3$. If $r$ is even, pick the signs $h_i\in\{1,-1\}$ on the support of $k$ so that half of the products $k_ih_i$ equal $+1$ and half equal $-1$. If $r\ge3$ is odd, make three of the products equal to $+1$, which sum to $0\pmod3$, and split the remaining even number equally between $+1$ and $-1$. Consequently $\hat g(k)=0$ for every $k$ of weight at least $2$, so $g$ is a sum of univariate real functions:
+\[
+ g(u)=\frac13+\sum_{i=1}^m g_i(u_i).
+\]
+If at least two functions $g_i$ were nonconstant, combining their minima and maxima would yield at least three distinct values for $g$, contradicting $g(u)\in\{0,1\}$. Hence $g$ depends on a single coordinate $i$. Because $g$ takes values in $\{0,1\}$ and has average $1/3$, its support must be $\{u:u_i=x\}$ for a unique $x\in\mathbb Z/3$. Any two such slabs depending on different coordinates intersect, so all three color classes of $f$ must read the same coordinate $i$, giving $f(u)=\pi(u_i)$.
+
+\emph{Step 4: Orthogonal decomposition.} For each $i\in\{1,\ldots,m\}$, let $V_i$ be the span of all joint eigenvectors whose induced classical $3$-coloring reads coordinate $i$. The subspaces $V_1,\ldots,V_m$ are pairwise orthogonal, span $\C^d$, and reduce every projector $P_{u,a}$. On $V_i$, the eigenvalue of $P_{u,a}$ on every spanning eigenvector depends only on $u_i$, so $P_{u,a}|_{V_i}$ depends only on $u_i$. Finally, for any distinct $x,y\in\mathbb Z/3$, pick words $u,v\in(\mathbb Z/3)^m$ differing in every coordinate with $u_i=x$ and $v_i=y$; the edge rule $P_{u,a}P_{v,a}=0$ restricts to $V_i$ to give the edge rule of $K_3$.
+\end{proof}
+
+\subsection{Local-dimension divisibility for the \texorpdfstring{$22$}{22}-vertex graph}\label{app:small-dimension}
+
+\begin{proposition}\label{prop:small-dimension}
+Every finite-dimensional quantum $3$-coloring of the graph $F_{22}$ of Proposition~\ref{prop:twentytwo} has local dimension divisible by four.
+\end{proposition}
+\begin{proof}
+Let $(P_{v,c})$ be an arbitrary quantum $3$-coloring of $F_{22}$ on $\C^d$. Fix any color $a$ with $P_{o,a}\ne0$, and denote the other two colors by $b$ and $c$. Set $\mathcal H_a=P_{o,a}\C^d$. Because every terminal $s\in\{A,\bar A,B,\bar B,C,\bar C,X,Y,Z\}$ is adjacent to the center $o$, its measurement commutes with $P_{o,a}$ by~\cite[Lemma~2]{Ji} and satisfies $P_{s,a}P_{o,a}=0$. On $\mathcal H_a$, encode the remaining two outcomes of each terminal $s$ by the self-adjoint involution
+\[
+ U_s=(P_{s,b}-P_{s,c})|_{\mathcal H_a}.
+\]
+For each barred pair $s,\bar s$, the vertices $o,s,\bar s$ form a triangle; by the triangle identity (Fact~6 of Section~\ref{sec:coord-proj}), $P_{o,b}+P_{s,b}+P_{\bar s,b}=I$ and $P_{o,c}+P_{s,c}+P_{\bar s,c}=I$. Restricting to $\mathcal H_a$ (where $P_{o,b}$ and $P_{o,c}$ vanish) gives $P_{\bar s,b}|_{\mathcal H_a}=P_{s,c}|_{\mathcal H_a}$ and $P_{\bar s,c}|_{\mathcal H_a}=P_{s,b}|_{\mathcal H_a}$, hence $U_{\bar s}=-U_s$.
+
+Now consider any endpoint $u$ of a private edge joined to two terminals $s,t$. On $\mathcal H_a$, since $P_{s,b}+P_{s,c}=I_{\mathcal H_a}=P_{t,b}+P_{t,c}$, we have
+\[
+ \frac{U_s-U_t}{2}=(P_{s,b}-P_{t,b})|_{\mathcal H_a}=-(P_{s,c}-P_{t,c})|_{\mathcal H_a}.
+\]
+By the edge rule on edges $us$ and $ut$, both $P_{u,b}$ and $P_{u,c}$ annihilate this difference. Since $P_{u,a}+P_{u,b}+P_{u,c}=I$, the subspace $\operatorname{ran}(U_s-U_t)\subseteq\mathcal H_a$ lies inside $\operatorname{ran} P_{u,a}$ in $\C^d$. Because opposite endpoints $u,v$ of a private edge satisfy $P_{u,a}P_{v,a}=0$, their attached terminal pairs have orthogonal difference ranges in $\mathcal H_a$.
+
+We extract an algebraic identity from this orthogonality. Let $U,V,U',V'$ be four self-adjoint involutions on $\mathcal H_a$ satisfying
+\[
+ \operatorname{ran}(U-V)\perp\operatorname{ran}(U'+V'),\qquad
+ \operatorname{ran}(U+V)\perp\operatorname{ran}(U'-V').
+\]
+Because $U'+V'$ and $U'-V'$ are self-adjoint, the two orthogonality relations mean $\operatorname{ran}(U-V)\subseteq\ker(U'+V')$ and $\operatorname{ran}(U+V)\subseteq\ker(U'-V')$. Since $U'$ and $V'$ are involutions, $\ker(U'+V')$ and $\ker(U'-V')$ are respectively the $-1$ and $+1$ eigenspaces of the unitary operator $U'V'$, so they are orthogonal. On the other hand, $(U-V)+(U+V)=2U$ is invertible, so $\operatorname{ran}(U-V)$ and $\operatorname{ran}(U+V)$ span $\mathcal H_a$. It follows that $\mathcal H_a=\operatorname{ran}(U-V)\oplus\operatorname{ran}(U+V)=\ker(U'+V')\oplus\ker(U'-V')$, with equality in both inclusions:
+\[
+ \operatorname{ran}(U-V)=\ker(U'+V'),\qquad \operatorname{ran}(U+V)=\ker(U'-V').
+\]
+In particular, $\operatorname{ran}(U-V)\perp\operatorname{ran}(U+V)$ gives $(U-V)(U+V)=0$, i.e., $UV=VU$. Similarly, the unitary $U'V'$ has eigenvalues only in $\{-1,+1\}$, so $U'V'$ is self-adjoint and hence $U'V'=V'U'$. Finally, both $UV$ and $U'V'$ act as $-I$ on $\operatorname{ran}(U-V)=\ker(U'+V')$ and as $+I$ on $\operatorname{ran}(U+V)=\ker(U'-V')$, proving $UV=U'V'$.
+
+We now write $s$ for the involution $U_s$ of an unbarred terminal $s\in\{A,B,C,X,Y,Z\}$, so that $U_{\bar s}=-s$. Reading the three column pairs of the table in Proposition~\ref{prop:twentytwo} gives the orthogonality hypotheses above for $(U,V;U',V')=(A,X;C,Z)$, for $(X,B;Y,C)$, and for $(A,Y;-B,Z)$ (in the third pair, $\operatorname{ran}(A-Y)\perp\operatorname{ran}(B-Z)=\operatorname{ran}((-B)+Z)$ and $\operatorname{ran}(A+Y)\perp\operatorname{ran}((-B)-Z)$). We obtain three self-adjoint involutions, each a product of two commuting ones:
+\[
+ M=AX=CZ,\qquad N=XB=YC,\qquad W=AY=-BZ.
+\]
+Arrange these nine self-adjoint involutions in the $3\times3$ array
+\[
+ \begin{pmatrix}
+ X&M&A\\
+ -B&-Z&-W\\
+ N&C&Y
+ \end{pmatrix}.
+\]
+The entries commute within each row and each column (using $M=AX=CZ$, $N=XB=YC$, $W=AY=-BZ$), all three row products equal $+I_{\mathcal H_a}$, and all three column products equal $-I_{\mathcal H_a}$. By Lemma~\ref{lem:square-rank}, the four joint eigenspaces of any two entries in a row have equal dimension, so $4\mid\dim\mathcal H_a$. Summing over all colors $a$ with $P_{o,a}\ne0$ yields $4\mid d$.
+\end{proof}

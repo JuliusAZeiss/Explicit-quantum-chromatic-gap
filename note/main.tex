@@ -1,0 +1,75 @@
+\documentclass[a4paper,11pt]{article}
+\pdfoutput=1
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Further results on the square substitution: complete graphs, maps from spheres, and small graphs},
+  pdfauthor={Julius A. Zeiss}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Ftwo}{\mathbb F_2}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\cq}{\chi_{\mathrm q}}
+\newcommand{\B}{\operatorname{Box}}
+\newcommand{\qto}{\xrightarrow{\mathrm q}}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\tr}{tr}
+\numberwithin{equation}{section}
+
+\allowdisplaybreaks[2]
+\setlength{\emergencystretch}{2em}
+
+\title{Further results on the square substitution:\\ complete graphs, maps from spheres, and small graphs}
+\author{Julius A. Zeiss\thanks{Institute for Quantum Information, RWTH Aachen University, Otto-Blumenthal-Stra\ss e 20, 52074 Aachen, Germany. \texttt{jzeiss@physik.rwth-aachen.de}}}
+\date{27 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The article \emph{Explicit graphs with quantum chromatic number three and large chromatic number} builds its graphs by iterating one operation, the square substitution, on the triangle. This note collects results of the same project that the article does not contain. For every $n\ge3$, one square substitution over the complete graph $K_n$ has quantum chromatic number $n$ and chromatic number exactly $2n-1$. If the box complex of a graph receives an equivariant map from a sphere of dimension $2h+1$, the first substitution raises the length of the tower that certifies the chromatic number from $h$ to $2h+1$; for complete graphs this gives $\chi\ge2n-3+2j$ after $j$ substitutions for odd $n$ and $\chi\ge2n-4+2j$ for even $n$, and for even $n$ we show that at the first level the certificate cannot reach the exact value when the wires have at least two interior layers. The box complex of a graph with a quantum $3$-coloring receives no equivariant map from the two-sphere. We also describe further small graphs with quantum chromatic number three: graphs with chromatic number four and a quantum $3$-coloring whose measurements commute up to a prescribed distance, on $22+69\lceil(R-1)/2\rceil$ vertices; a graph on $165$ measurements with chromatic number five and only $678$ edges; graphs with chromatic number five on $234+54(R-2)$ vertices with a quantum $3$-coloring whose compatibility radius is exactly $R\ge2$; and a family of graphs of measurements with chromatic number at least $2j+3$ whose first level has $165$ vertices. A last section lists facts that are known only by computation, with the programs that verify them.
+\end{abstract}
+
+\input{sections/sec1_introduction}
+\input{sections/sec2_background}
+\input{sections/sec3_complete_graphs}
+\input{sections/sec4_two_sphere}
+\input{sections/sec5_small_graphs}
+\input{sections/sec6_computed}
+
+\section*{Acknowledgements}
+The author acknowledges support from the European Research Council (ERC Grant Agreement No.~948139) and the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany's Excellence Strategy -- EXC 2004/2 -- 390534769 (ML4Q-2). The funders had no role in the research or in the preparation of this note.
+
+\section*{Author contributions and use of AI}
+Julius A. Zeiss initiated and directed the research and takes responsibility for this note. The AI systems Claude Fable~5.2 (Anthropic), ChatGPT Astra~6.2 (OpenAI), and Gemini Neon (Google) were used to assist with mathematical exploration, the development and review of arguments, literature searches, the writing of the accompanying programs, and the preparation of the note.
+
+\section*{Data and code availability}
+The folder \texttt{note/checks/} of the repository of~\cite{Z} contains the programs named in this note. The repository is available at \url{https://github.com/JuliusAZeiss/explicit-quantum-chromatic-gap}. The program \texttt{check\_note.py} replays finite facts that are proved in Sections~\ref{sec:complete}--\ref{sec:small}; no statement of those sections depends on it. The programs and certificates in \texttt{computed/} establish the facts of Section~\ref{sec:computed}, which have no other proof.
+
+\begingroup\small
+\bibliographystyle{plainnat}
+\bibliography{references}
+\endgroup
+
+\end{document}

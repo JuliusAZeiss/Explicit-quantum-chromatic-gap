@@ -1,0 +1,87 @@
+\section{Summary of the graphs and open problems}\label{sec:discussion}
+
+Table~\ref{tab:graphs} collects the graphs constructed in this paper. All of them have $\cq=3$, except those of the last row, which have $\cq(G)=\cq(H)$ for a nonbipartite graph $H$. In the columns for the compatibility radius and the minimum local dimension, ``exact'' means that no quantum $3$-coloring of the graph has a larger compatibility radius or a smaller local dimension. In these two columns, an entry with $\ge$ or $\le$ gives the value attained by the coloring displayed in this paper, or by the displayed quantum homomorphism in the last row; recall that $1$-compatibility is automatic for three colors~\cite{Ji}. For $Q_R$, the displayed coloring has compatibility radius exactly $\max\{R,2\}$. In the row for $Q_R$, $\lambda=\max\{R-2,0\}$. The upper bound $Kj$ on $\chi(G_{j,R})$ holds for $R\ge3$; for $R\le2$ see Corollary~\ref{cor:linear-growth}.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lllll>{\raggedright\arraybackslash}p{2.55cm}@{}}
+\toprule
+Graph & Order & $\chi$ & Comp.\ radius & Min.\ dim. & Reference \\
+\midrule
+$S_\lambda(K_3)$ & $342+81\lambda$ & $5$ & $\lambda+2$ (exact) & $4$ (exact) & Thms.~\ref{thm:one-level}, \ref{thm:dimension}; Prop.~\ref{prop:largest-compatible-radius} \\
+$S^j_\lambda(K_3)$ & doubly exp.\ in $j$ & $\in[2j+3,2^{j+1}+1]$ & $\lambda+2$ (exact) & $4^j$ (exact) & Thms.~\ref{thm:gap}, \ref{thm:dimension}; Props.~\ref{prop:largest-compatible-radius}, \ref{prop:physical-upper} \\
+$G_{j,R}$ & $|V|+|E|\le[C(1+R)]^j$ & $\in[2j+3,Kj]$ & $\max\{R,2\}$ (exact) & $4^j$ (exact) & Thms.~\ref{thm:sparse}, \ref{thm:dimension}; Prop.~\ref{prop:largest-compatible-radius}; Cor.~\ref{cor:linear-growth} \\
+$M_j$ & $\le6^{(4^j-1)/3}3^{4^j}$ & $\ge2j+3$ & $\ge1$ & $\le4^j$ & Rem.~\ref{rem:tables} \\
+$F_{22}$ & $22$ ($42$ edges) & $4$ & $\ge1$ & $4$ (exact) & Props.~\ref{prop:twentytwo}, \ref{prop:small-dimension} \\
+$F_{\rm phys}$ & $165$ ($843$ edges) & $5$ & $\ge1$ & $4$ (exact) & Thm.~\ref{thm:finite-square} \\
+$S^{j-1}_\lambda(F_{\rm phys})$ & iterated from $F_{\rm phys}$ & $\ge2j+3$ & $\ge1$ & $\le4^j$ & Cor.~\ref{cor:seed} \\
+$Q_R$ & $1080+567\lambda$ & $5$ & $\ge\max\{R,2\}$ & $3$ (exact) & Thm.~\ref{thm:qutrit} \\
+$W_\lambda(\mathcal D)$ & depends on $\mathcal D$ & $\ge5$ (no 1-in-3) & $\ge\lambda+2$ & $\le d$ & Prop.~\ref{prop:one-in-three} \\
+$G_{j,R}(H)$ & $|V|+|E|\le[C_H(1+R)]^j$ & $\ge2j+3$ & $\ge R$ & $\le4^j$ & Thm.~\ref{thm:fixed-target} \\
+\bottomrule
+\end{tabular}
+\caption{The graphs constructed in this paper. ``Min.\ dim.'' is the minimum local dimension of a quantum $3$-coloring, or of a quantum homomorphism to $H$ in the last row. The entries are explained in the text.}
+\label{tab:graphs}
+\end{table}
+
+Several sharp quantitative gaps remain open, together with structural questions about non-topological certificates and alternative parity configurations.
+
+\begin{problem}[Growth of the classical chromatic number]\label{prob:growth}
+How does $\chi(S^j_\lambda(K_3))$ grow as a function of the level $j$, and what is the exact value of $\chi(G_{j,R})$?
+\end{problem}
+
+For the sparse family the order of growth is known: Theorem~\ref{thm:sparse} and Corollary~\ref{cor:linear-growth} give $2j+3\le\chi(G_{j,R})\le Kj$ for $R\ge3$ and $\chi(G_{j,R})=O(j^{1+\beta})$ with $\beta<0.083$ for $R\le2$. For the full iterates, Theorem~\ref{thm:gap} and the bound in Proposition~\ref{prop:physical-upper} leave everything between linear and exponential growth:
+\[
+ 2j+3\ \le\ \chi(S^j_\lambda(K_3))\ \le\ 2^{j+1}+1.
+\]
+The random descents of Appendix~\ref{app:readings} do not help here, because they rely on the scalar backgrounds and on the singly exponential order of the sparse graphs. At $j=1$, all bounds agree and equal $5$ (Theorem~\ref{thm:one-level}). Already at $j=2$, the exact values of $\chi(G_{2,R})$ and $\chi(S^2_\lambda(K_3))$ remain open among $\{7,8,9\}$.
+
+\begin{problem}[Order at a fixed compatibility radius]\label{prob:fixed-radius}
+Fix $R\ge1$. Does there exist a family of graphs admitting $R$-compatible quantum $3$-colorings with $\chi\ge t$ whose order is $\exp(o(t))$, or even polynomial in $t$, as $t\to\infty$?
+\end{problem}
+
+For fixed $t\ge4$ and growing $R$, Corollary~\ref{cor:radius} pins down the exact power $N_3(t,R)=\Theta_t((1+R)^{\lceil(t-3)/2\rceil})$, with implicit constants depending on $t$. At fixed $R=1$ and growing $t$, however, Proposition~\ref{prop:unrestricted-order} and Theorem~\ref{thm:sparse} leave a wide gap:
+\[
+ t^{\,3+\sqrt6-o(1)}\ \le\ N_3(t,1)\ \le\ \exp(O(t))\qquad (t\to\infty).
+\]
+By Proposition~\ref{prop:box-barrier}, any subexponential family of graphs with quantum $3$-colorings must rely on a lower-bound mechanism that does not pass through an obstruction to an equivariant map from the box complex to a sphere. Both $F_{22}$ (Proposition~\ref{prop:no-seed}) and $Q_R$ (Proposition~\ref{prop:height-dimension}, in local dimension three) prove that non-topological obstructions exist for $t=4$ and $t=5$: in each case, the box complex maps equivariantly to $S^1$ and certifies only three colors.
+
+\begin{problem}[Compatibility radius growing with the classical target]\label{prob:radius-growing}
+For $R$ proportional to $t$ (with fixed ratio $\alpha>0$), do there exist graphs with $\chi\ge t$ and an $R$-compatible quantum $3$-coloring on $\exp(O_\alpha(t))$ vertices?
+\end{problem}
+
+When $R=\Theta_\alpha(t)$ for fixed $\alpha>0$, Theorem~\ref{thm:sparse} gives $\log N_3(t,R)=O_\alpha(t\log t)$, whereas Proposition~\ref{prop:unrestricted-order} gives $\log N_3(t,R)=\Omega_\alpha(t)$, leaving a logarithmic factor in the exponent.
+
+\begin{problem}[Minimum local dimension]\label{prob:dimension}
+Does there exist a graph with $\chi=6$ that admits a quantum $3$-coloring in local dimension four? More generally, can $D_3(t,R)$ grow polynomially in $t$?
+\end{problem}
+
+The known bounds on $D_3(t,R)$ are as follows; they hold for every $R\ge1$.
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+$t$ & Lower bound & Upper bound & Source \\
+\midrule
+$4$, $5$ & $3$ & $3$ & Theorem~\ref{thm:qutrit} \\
+$6$ & $4$ & $16$ & Theorems~\ref{thm:qutrit} and~\ref{thm:sparse} \\
+$7$ & $5$ & $16$ & Proposition~\ref{prop:dim-four} and Theorem~\ref{thm:sparse} \\
+$t\to\infty$ & $(12.23\ldots-o(1))\log_2 t$ & $4^{\lceil(t-3)/2\rceil}$ & \eqref{eq:dimension-lower} and Theorem~\ref{thm:sparse} \\
+\bottomrule
+\end{tabular}
+\end{center}
+Since $D_3(t,R)$ is nondecreasing in $t$ by its definition, the rows for $t=6$ and $t=7$ give $4\le D_3(6,R)\le D_3(7,R)\le16$. Theorem~\ref{thm:qutrit} settles quantum $3$-colorings up to local dimension three, and Proposition~\ref{prop:dim-four} forces $\chi\le6$ in local dimension four. Whether $\chi=6$ is attained in local dimension four remains open. By Proposition~\ref{prop:height-dimension}, for any graph with a quantum $3$-coloring whose bound $\chi\ge t$ is certified by $w^{t-2}\ne0$, a power of two strictly greater than $(t-2)/2$ must divide the local dimension. For such graphs this excludes sublinear growth of the local dimension in $t$, though not polynomial growth. On $G_{j,R}$ itself, Theorem~\ref{thm:dimension} forces $4^j\mid d$.
+
+\begin{problem}[Smallest finite witnesses and smallest tower of length one]\label{prob:finite}
+What are the exact values of $N_3(4,1)$ and $N_3(5,1)$? What is the minimum order of a graph with a quantum $3$-coloring that carries a tower of length one---in particular, can fewer than $165$ measurements support a filling of the orbit?
+\end{problem}
+
+Proposition~\ref{prop:order-lower} establishes $15\le N_3(4,1)\le22$ and $21\le N_3(5,1)\le165$, where $15$ comes from Lalonde's computer-assisted classification~\cite{La}, $21$ is lifted analytically from it in Proposition~\ref{prop:order-lower}, and the upper endpoints come from $F_{22}$ (Proposition~\ref{prop:twentytwo}) and $F_{\rm phys}$ (Theorem~\ref{thm:finite-square}). Any graph with a quantum $3$-coloring carrying a tower of length one satisfies $\chi\ge5$ by Proposition~\ref{prop:tower-bound} and therefore has at least $21$ vertices by Proposition~\ref{prop:order-lower}. As $F_{22}$ demonstrates (Proposition~\ref{prop:no-seed}), minimizing the order of a chromatic witness and minimizing the order of a starting graph for topological iteration are distinct problems.
+
+\begin{problem}[Substitutions from other parity arrangements]\label{prob:pentagram}
+Is there an analogous substitution built on the Mermin pentagram, and does it improve the constants in Theorem~\ref{thm:sparse}?
+\end{problem}
+
+Our substitution uses the Mermin--Peres square solely through its intersection graph $K_{3,3}$: bases at the vertices, shared planes on the edges, and one complemented edge of $K_{3,3}$ (Section~\ref{sec:square}). By Arkhipov's theorem~\cite[Theorem~21]{Arkhipov}, an arrangement of observables in which every observable belongs to two contexts exhibits parity pseudo-telepathy precisely when its intersection graph is nonplanar. By Kuratowski's theorem, every nonplanar graph contains a subdivision of $K_{3,3}$ or of $K_5$~\cite[Theorem~27]{Arkhipov}, and $K_5$ is the intersection graph of the three-qubit pentagram~\cite[Example~20]{Arkhipov}; whether a substitution built on the pentagram yields tighter size or local-dimension constants remains to be explored.

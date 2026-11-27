@@ -1,0 +1,96 @@
+\section{Definitions and statements used from the article}\label{sec:background}
+
+This section fixes the notation and restates what is used from~\cite{Z}. All graphs are finite, simple and loopless. We write $u\sim v$ for adjacency, $N(v)$ for the set of neighbors of $v$, and $[n]=\{1,\ldots,n\}$.
+
+\subsection{Quantum colorings}\label{sec:quantum}
+
+A \emph{quantum $c$-coloring} of a graph $G$ in \emph{local dimension} $d$ assigns to every vertex $v$ a projective measurement $(P_{v,a})_{a\in[c]}$ on $\C^d$, that is, orthogonal projections with $\sum_aP_{v,a}=I$, such that $P_{u,a}P_{v,a}=0$ for every edge $uv$ and every color $a$ (the \emph{edge rule}). The \emph{quantum chromatic number} $\cq(G)$ is the least $c$ for which $G$ has a quantum $c$-coloring in some local dimension. A quantum coloring is \emph{$R$-compatible} if all projectors at $u$ commute with all projectors at $v$ whenever $\dist_G(u,v)\le R$, and its \emph{compatibility radius} is the largest such $R$. More generally, a \emph{quantum homomorphism} $G\qto H$ assigns to every vertex $v$ of $G$ a projective measurement $(P_{v,a})_{a\in V(H)}$ such that $P_{u,a}P_{v,b}=0$ whenever $u\sim_Gv$ and $a\not\sim_Hb$; a quantum $c$-coloring is a quantum homomorphism to $K_c$. We use four standard facts.
+\begin{itemize}
+\item[(Q1)] In a quantum $3$-coloring, all projectors at two adjacent vertices commute~\cite[Lemma~2]{Ji}.
+\item[(Q2)] On a triangle $u,v,w$ of a graph with a quantum $3$-coloring, $P_{u,a}+P_{v,a}+P_{w,a}=I$ for every color $a$. Indeed, the three projections are pairwise orthogonal, so their sum is at most $I$, and summing over the three colors gives $3I$ on both sides.
+\item[(Q3)] A graph with a quantum $2$-coloring is bipartite~\cite[Proposition~3]{CMNSW}. Hence a graph that contains a triangle and has a quantum $3$-coloring has quantum chromatic number three.
+\item[(Q4)] A graph that contains a clique on $n$ vertices has $\cq\ge n$: in a quantum $c$-coloring in local dimension $d$ the projectors of one color at the vertices of the clique are pairwise orthogonal, so their ranks sum to at most $d$, and summing over the colors gives $nd\le cd$.
+\end{itemize}
+
+\subsection{The six bases}\label{sec:square}
+
+Each entry of the following table lists the coordinates of an unnormalized vector of $\C^4$, with $+$ and $-$ for $1$ and $-1$. Row $i$ is an orthogonal basis, called \emph{basis $i$}, and $Q^i_s$ denotes the projection onto the ray of the vector in column $s$. The index $s\in\{0,1,2,3\}$ is called a \emph{position}.
+\[
+\begin{array}{c|cccc}
+ i\backslash s&0&1&2&3\\ \hline
+ 1& ++++ & +-+- & ++-- & +--+\\
+ 2& +000 & 0+00 & 00+0 & 000+\\
+ 3& +++- & ++-+ & +-++ & -+++\\
+ 4& +0+0 & +0-0 & 0+0+ & 0+0-\\
+ 5& ++00 & +-00 & 00++ & 00+-\\
+ 6& +00+ & +00- & 0++0 & 0+-0
+\end{array}
+\]
+For $r\in\{1,2,3\}$ put $A_r=\{0,r\}$ and $P^i_r=Q^i_0+Q^i_r$. These projections satisfy the nine identities
+\begin{equation}\label{eq:planes}
+\begin{array}{ccc}
+ P^1_1=P^4_2,&P^1_2=P^5_2,&P^1_3=P^6_2,\\
+ P^2_1=P^5_1,&P^2_2=P^4_1,&P^2_3=P^6_1,\\
+ P^3_1=P^5_3,&P^3_2=P^4_3,&P^3_3=I-P^6_3 .
+\end{array}
+\end{equation}
+The six bases are the joint eigenbases of the rows and columns of the Mermin--Peres square, and the identities express that each of bases $1,2,3$ shares one decomposition of $\C^4$ into two planes with each of bases $4,5,6$. The bases are thus the vertices of a complete bipartite graph $K_{3,3}$ with sides $\{1,2,3\}$ and $\{4,5,6\}$. For an edge $e=ik$ of this $K_{3,3}$, always written with $i\le3<k$, let $P_e$ be the projection on the left of its identity in~\eqref{eq:planes}; its range is the \emph{plane} of $e$. For $b\in\{i,k\}$ let $A_{b,e}$ be the set of the two positions of basis $b$ whose rays span the plane of $e$. Then $A_{b,e}$ is one of $A_1,A_2,A_3$, except at the \emph{complemented edge} $e=36$, where $A_{3,36}=A_3$ and $A_{6,36}=A_3^c=\{1,2\}$. The three edges at a basis $b\le5$ use $A_1,A_2,A_3$ once each, and the three edges at basis $6$ use $A_1,A_2,A_3^c$. The nine planes are pairwise distinct and no two of them are complementary, and the $24$ rays of the six bases are pairwise distinct.
+
+For $\{r,s,t\}=\{1,2,3\}$ the partition $\{A_r,\{s\},\{t\}\}$ of the set of positions, taken at a basis $i$, is a \emph{ternary template}, and the partition $\{A_3,A_3^c\}$ at basis $6$ is the \emph{binary template}. There are eighteen ternary templates, hence nineteen templates. The sets of a template are its \emph{parts}.
+
+\subsection{The square substitution}\label{sec:substitution}
+
+Let $H$ be a graph and $\lambda\ge0$ an integer. The graph $S_\lambda(H)$ is defined as follows~\cite[Section~2.3]{Z}. For each basis $i$ take a copy of the set of \emph{words} $g=(g_0,g_1,g_2,g_3)\in V(H)^4$ with $g_0=g_r$ for some $r\in\{1,2,3\}$, the \emph{basis chart} at $i$; two words of one chart are adjacent when their entries are adjacent in $H$ at all four positions. Along each edge $e=ik$ of $K_{3,3}$ place a \emph{wire} with \emph{layers} $0,\ldots,\lambda+1$, each a copy of $V(H)^2$. The pair $(x,y)$ of layer $0$ is identified with the word of chart $i$ that takes $x$ on $A_{i,e}$ and $y$ on $A_{i,e}^c$, and the pair $(x,y)$ of layer $\lambda+1$ with the word of chart $k$ that takes $x$ on $A_{k,e}$ and $y$ on $A_{k,e}^c$. The vertices of the $\lambda$ \emph{interior} layers are written $(e,\ell,x,y)$. Within a wire, $(x,y)$ and $(x',y')$ in equal or consecutive layers are adjacent when $x\sim x'$ and $y\sim y'$. The $j$-fold iterate is $S^j_\lambda(H)$, and its vertices are said to be at \emph{level} $j$. We call the $|V(H)|^2$ words of a chart that are identified with a layer of a wire the \emph{end grid} of that wire in that chart.
+
+Given a quantum homomorphism from $H$ to some graph with projectors $P_{g,a}$ on $\C^d$, put
+\begin{equation}\label{eq:strategy}
+ P'_{(i,g),a}=\sum_{s=0}^3Q^i_s\otimes P_{g_s,a},\qquad
+ P'_{(e,\ell,x,y),a}=P_e\otimes P_{x,a}+(I-P_e)\otimes P_{y,a}
+\end{equation}
+on $\C^4\otimes\C^d$. By~\eqref{eq:planes} the two formulas agree on the identified vertices, and they define a quantum homomorphism from $S_\lambda(H)$ to the same graph. If the given homomorphism is $R$-compatible and $R\le\lambda+2$, the new one is $R$-compatible~\cite[Lemma~2.2]{Z}. Starting from the measurements on $\C^1$ that return the vertex itself and applying~\eqref{eq:strategy} $j$ times gives a $(\lambda+2)$-compatible quantum homomorphism $S^j_\lambda(H)\qto H$ in local dimension $4^j$. For $H=K_n$ and $j=1$ the \emph{measurement} of the word $(i,g)$ assigns the label $g_s$ to the ray at position $s$ of basis $i$, and the measurement of $(e,\ell,x,y)$ assigns $x$ to the plane of $e$ and $y$ to its complement.
+
+A graph whose vertices are distinct projective measurements and whose edges are the pairs of measurements that are orthogonal at every outcome is called \emph{physical}. In contrast, $S_\lambda(H)$ is \emph{tagged}: distinct vertices may carry the same measurement.
+
+\paragraph{Presentations.}
+A \emph{presentation} of a vertex of $S^g_\lambda(H)$ is a rooted tree~\cite[Sections~3.1 and~7]{Z}. A \emph{leaf} carries a vertex $a$ of $H$; at level $0$ it evaluates to $a$, and at level $g\ge1$ to the constant word in basis $6$ on its value at level $g-1$ (the vertex $a$ is \emph{padded}). An \emph{internal node} at level $g\ge1$ is either a \emph{basis node}, which specifies a template, has one child for each part, and evaluates to the word that repeats the value of each child at level $g-1$ on its part, or a \emph{wire node}, which specifies an edge $e$ of $K_{3,3}$ and a layer $\ell$, has a first child that is any presentation and a second child, its \emph{background}, that is a leaf, and evaluates to the pair of their values in layer $\ell$ of the wire of $e$. For integers $j,s\ge1$ we write
+\[
+ G^{(s)}_{j,\lambda}(H)
+\]
+for the subgraph of $S^j_\lambda(H)$ induced by the vertices that admit a presentation with at most $2s-1$ internal nodes and at most $s$ wire nodes. The sparse family of~\cite{Z} is $G_{j,R}=G^{(j)}_{j,\lambda}(K_3)$ with $\lambda=\max\{R-2,0\}$, and the graph $G_{j,R}(H)$ in the proof of~\cite[Theorem~7.1]{Z} is $G^{(j)}_{j,\lambda}(H)$.
+
+\subsection{The box complex and towers}\label{sec:box}
+
+The \emph{box complex} $\B(H)$ is the space of pairs $(\mu,\nu)$ of probability measures on $V(H)$ such that every vertex of $\supp\mu$ is adjacent to every vertex of $\supp\nu$. The two supports are the \emph{shores} of the point. Exchanging $\mu$ and $\nu$ is a free involution, a map between spaces with involutions is \emph{equivariant} if it commutes with them, and a graph homomorphism induces an equivariant map of box complexes. For a pair $(A,B)$ of nonempty sets of vertices with every vertex of $A$ adjacent to every vertex of $B$, the points with $\supp\mu\subseteq A$ and $\supp\nu\subseteq B$ form a product of two simplices; these \emph{cells} make $\B(H)$ a regular cell complex. The complex $\B(K_p)$ is equivariantly homeomorphic to the sphere $S^{p-2}$ with the antipodal involution, by $(\mu,\nu)\mapsto\mu-\nu$.
+
+A free involution $T$ on a compact polyhedron $Z$ defines a double cover $Z\to Z/T$ and with it a class $w_Z\in H^1(Z/T;\Ftwo)$, its first Stiefel--Whitney class, which is pulled back by equivariant maps. If $Z$ maps equivariantly to $\B(H)$ and $w_Z^k\ne0$, then
+\begin{equation}\label{eq:obstruction}
+ \chi(H)\ge k+2 ,
+\end{equation}
+because a proper $p$-coloring gives an equivariant map $\B(H)\to S^{p-2}$ and $H^k(\RP^{p-2};\Ftwo)=0$ for $k>p-2$. We write $w$ for $w_{\B(H)}$ and call the largest $k$ with $w^k\ne0$ the \emph{height} of $w$.
+
+\paragraph{The substitution on spaces.}
+For a compact polyhedron $X$, the space $S(X)$ consists of six \emph{basis blocks}, the block of basis $i$ being a copy of the set of tuples $(x_0,x_1,x_2,x_3)\in X^4$ with $x_0=x_r$ for some $r\in\{1,2,3\}$, and of nine cylinders $X^2\times[0,1]$, one for each edge $e=ik$ of $K_{3,3}$, where $(x,y,0)$ is identified with the tuple of block $i$ that has $x$ on $A_{i,e}$ and $y$ on $A_{i,e}^c$, and $(x,y,1)$ with the tuple of block $k$ that has $x$ on $A_{k,e}$ and $y$ on $A_{k,e}^c$. This is the definition of~\cite[Section~3.3]{Z}, which is stated there for spaces with a circle action; it uses no action. A continuous map $X\to X'$ induces a map $S(X)\to S(X')$, and an action of a group on $X$ induces one on $S(X)$, which is free if the given action is free. Each template gives a \emph{template map} $X^3\to S(X)$ or $X^2\to S(X)$ that repeats its arguments on the parts.
+
+A \emph{circle space} is a compact polyhedron with a free action of the circle group $S^1\subset\C$; its \emph{half-turn} is the action of $-1$. If $X$ is a circle space, so is $S(X)$. On a circle space, chains are normalized singular chains with coefficients in $\Ftwo$, and $Bc$ denotes the chain swept out by a chain $c$ under one full rotation; one has $\partial B=B\partial$ and $B^2=0$~\cite[Appendix~B.1]{Z}. A \emph{tower of length $h$} on a circle space $Z$ is a point $x_0$, regarded as a $0$-chain, with chains $x_1,\ldots,x_h$, $x_m$ of dimension $2m$, such that
+\begin{equation}\label{eq:tower}
+ \partial x_m=Bx_{m-1}\qquad(1\le m\le h).
+\end{equation}
+A \emph{tower of length $h$ over a graph $G$} is a tower of length $h$ on a circle space $Z$ together with a map $Z\to\B(G)$ that is equivariant for the half-turn. The article proves the following.
+\begin{itemize}
+\item[(T1)] \cite[Lemma~B.2]{Z}. If a circle space $Z$ carries a tower of length $h$, then $w_Z^{2h+1}\ne0$. Hence a tower of length $h$ over $G$ gives $w^{2h+1}\ne0$ on $\B(G)$ and $\chi(G)\ge2h+3$~\cite[Proposition~3.2]{Z}.
+\item[(T2)] \cite[Lemma~B.1(a)]{Z}. If a circle space $X$ carries a tower $x_0,\ldots,x_h$, then $S(X)$ carries a tower $y_0,\ldots,y_{h+1}$ whose point $y_0$ is the constant tuple on $x_0$ in the block of basis $6$.
+\item[(T3)] \cite[Lemma~B.3]{Z}. An equivariant map $\phi:X\to\B(H)$ induces an equivariant map $S(X)\to\B(S_\lambda(H))$. Its proof uses only the involution of $X$, so the statement holds for every compact polyhedron $X$ with a free involution. The induced map has the following property. Write $\phi(x)=(\mu_x,\nu_x)$. At a point $(x_0,x_1,x_2,x_3)$ of the block of basis $i$, every word in the first shore of the image has its entry at position $s$ in $\supp\mu_{x_s}$, with equal entries at positions where the points $x_s$ are equal, and likewise for the second shore with $\nu$. At a point $(x,y,t)$ of the cylinder of $e$, every vertex in the first shore is a pair in $\supp\mu_x\times\supp\mu_y$ in one of the at most two layers nearest to $(\lambda+1)t$, and likewise for the second shore.
+\item[(T4)] \cite[Theorem~3.3]{Z}. By (T2) and (T3), a tower of length $h$ over $H$ on $X$ gives a tower of length $h+1$ over $S_\lambda(H)$ on $S(X)$.
+\end{itemize}
+
+\subsection{Further statements of the article}\label{sec:imports}
+
+\begin{itemize}
+\item[(Z1)] \cite[Proposition~A.1]{Z}. Let $n\ge3$ and let $\mathcal P_n$ be the physical graph on all measurements that assign labels in $[n]$ to the four rays of one of the six bases. Then $\chi(\mathcal P_n)\le2n-1$. Consequently $\chi(S_\lambda(H))\le2\chi(H)-1$ for every graph $H$ with $\chi(H)\ge3$.
+\item[(Z2)] \cite[Lemma~4.2 and Facts~3 and~4 of Section~4.1]{Z}. Let $(P_{u,a})$ be a quantum $3$-coloring of the categorical power $K_3^{\times m}$ on $\C^d$. Then all its projectors commute, and there is an orthogonal decomposition $\C^d=V_1\oplus\cdots\oplus V_m$ that reduces every projector, such that on $V_i$ the measurement at $u$ depends only on $u_i$ and satisfies the edge rule of $K_3$ as a function of $u_i$. For a set $B$ of coordinates and any two words $u,u'$ that agree on $B$ and differ at every coordinate outside $B$, the operator $\sum_aP_{u,a}P_{u',a}$ is the projection onto $\bigoplus_{i\in B}V_i$, the \emph{coordinate projection} of $B$.
+\item[(Z3)] \cite[Lemma~4.3]{Z}. Let $U$ be a $3\times3$ array of self-adjoint involutions on a finite-dimensional space such that the entries of each row and of each column commute, all row products are $+I$ and all column products are $-I$. Then for two distinct entries in a common row or column, the four joint eigenspaces have equal dimension.
+\item[(Z4)] \cite[Theorem~5.5(a)]{Z}. Every graph with a quantum $3$-coloring in local dimension one or two is classically $3$-colorable.
+\item[(Z5)] \cite[Proposition~5.8]{Z}. If $G$ has a quantum $3$-coloring in local dimension $d=2^\nu m$ with $m$ odd, then $w^{2^{\nu+1}}=0$ on $\B(G)$. In particular, $w^2\ne0$ forces every quantum $3$-coloring of $G$ to have even local dimension.
+\item[(Z6)] \cite[Proposition~6.1 and Proposition~C.1]{Z}. The graph $F_{22}$, recalled in Section~\ref{sec:stretch}, has $22$ vertices, $42$ edges, $\cq=3$ and $\chi=4$, and every quantum $3$-coloring of it has local dimension divisible by four.
+\item[(Z7)] \cite[Theorem~6.2 and Appendix~E]{Z}. The graph $F_{\rm phys}$ on $165$ measurements, recalled in Section~\ref{sec:165}, has $(\cq,\chi)=(3,5)$ and carries a tower of length one.
+\end{itemize}

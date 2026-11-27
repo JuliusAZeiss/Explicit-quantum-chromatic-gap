@@ -1,0 +1,104 @@
+\section{Introduction}\label{sec:introduction}
+
+In the coloring game for a finite simple graph $G$, two players who cannot communicate each receive a vertex and answer with a color. They must answer with the same color if they receive the same vertex, and with different colors if they receive adjacent vertices. To win with certainty, classical players need $\chi(G)$ colors. Players who share an entangled state need $\cq(G)$ colors, the \emph{quantum chromatic number} of $G$~\cite{GW,CMNSW}.
+
+A \emph{quantum $c$-coloring} of $G$ in \emph{local dimension} $d$ assigns to each vertex $v$ a projective measurement $(P_{v,a})_{a=1}^c$ on $\C^d$, in which some projectors may be zero. It must obey the \emph{edge rule}: $P_{u,a}P_{v,a}=0$ for every edge $uv$ and every color $a$. This characterizes the perfect strategies on a maximally entangled state of local dimension $d$~\cite[Corollary~2.2]{MR}.
+
+Following Ciardo~\cite[Section~3]{C26} and Ciardo and Mottet~\cite[Section~4.1]{CM}, a quantum coloring is \emph{$R$-compatible} if $[P_{u,a},P_{v,b}]=0$ for all colors $a,b$ whenever $\dist_G(u,v)\le R$. The largest such $R$ is its \emph{compatibility radius}. Three colors force $1$-compatibility~\cite[Lemma~2]{Ji}. Compatibility is a locality condition. On every set of vertices of diameter at most $R$, the measurements of an $R$-compatible coloring commute, so they can be performed jointly, and the strategy reduces to a probability distribution over proper classical colorings of that set (Section~\ref{sec:compatibility}). The larger $R$ is, the more global the quantum advantage must be.
+
+Ciardo~\cite[Conjecture~2 and Theorem~7]{C26} showed that graphs with $\cq=3$ and arbitrarily large chromatic number exist if a pseudo-telepathic version of Khot's $d$-to-$1$ conjecture holds for some $d\ge2$. That conjecture asks, for every $\varepsilon>0$ and every $k$, for a $d$-to-$1$ label cover instance of classical value below $\varepsilon$ that has a perfect $k$-compatible quantum assignment. Ciardo and Mottet~\cite[Theorem~1.3]{CM} proved it for every $d\ge4$, building on the reduction to $4$-to-$1$ label cover of Fei, Minzer, and Wang~\cite{FMW}. Consequently, for all $t$ and $R$ there are graphs with $\chi\ge t$ that have an $R$-compatible quantum $3$-coloring~\cite[Theorem~1.4 and Remark~2.5]{CM}. These graphs arise from the Mermin--Peres square through seven reductions from the theory of hardness of approximation, which we list in Section~\ref{sec:comparison}. They are not described explicitly, and both the graphs and the local dimensions are enormous. Ciardo and Mottet expect that a direct proof exists, and they pose the problem of ``finding families of small or explicit graphs witnessing the unbounded $\cq$ vs.\ $\chi$ gap''~\cite[Section~3]{CM}.
+
+We solve this problem with a single graph operation, the \emph{square substitution} $S_\lambda$ (Section~\ref{sec:substitution}), applied repeatedly to the triangle $K_3$. A vertex of $S_\lambda(H)$ prescribes a measurement of two qubits in one of six bases taken from the Mermin--Peres square, followed by the measurement that one of four vertices of $H$ prescribes. The integer $\lambda\ge0$ sets the distance up to which these measurements commute.
+
+\begin{theorem}\label{thm:main}
+Let $j,R\ge1$ and $\lambda=\max\{R-2,0\}$, and let $G=S^j_\lambda(K_3)$ be the $j$th iterate of the square substitution on the triangle. Then $\cq(G)=3$ and $\chi(G)\ge2j+3$. Moreover:
+\begin{enumerate}
+\setlength{\itemsep}{3pt}\setlength{\topsep}{4pt}\setlength{\parsep}{0pt}
+\item[\textup{(i)}] $G$ has an explicit $R$-compatible quantum $3$-coloring in local dimension $4^j$, by adaptive Pauli measurements on $2j$ EPR pairs;
+\item[\textup{(ii)}] every quantum $3$-coloring of $G$, with no compatibility assumed beyond the edge rule, has local dimension divisible by $4^j$;
+\item[\textup{(iii)}] none is $k$-compatible for any $k>\max\{R,2\}$;
+\item[\textup{(iv)}] all of this holds for an explicit induced subgraph $G_{j,R}$ of $G$ with $|V(G_{j,R})|+|E(G_{j,R})|\le[C(1+R)]^j$, where $C$ is an absolute constant.
+\end{enumerate}
+\end{theorem}
+
+Theorem~\ref{thm:main} is assembled in Section~\ref{sec:largest-radius} from Theorems~\ref{thm:gap}, \ref{thm:sparse}, \ref{thm:dimension} and Proposition~\ref{prop:largest-compatible-radius}. Write $N_3(t,R)$ and $D_3(t,R)$ for the minimum order and local dimension over \emph{all} graphs with $\chi\ge t$ and \emph{all} $R$-compatible quantum $3$-colorings. Table~\ref{tab:costs} contrasts these universal bounds with our strategies ($j=\lceil(t-3)/2\rceil$ in $G_{j,R}$), separating fixed-$t$ from fixed-$R$.
+
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Cost of $\chi\ge t$ at $\cq=3$ & Every graph needs & Constructed graphs give & Reference \\
+\midrule
+Order, fixed $t\ge4$, $R\to\infty$ & $\Omega_t(R^{\lceil(t-3)/2\rceil})$ & $O_t(R^{\lceil(t-3)/2\rceil})$ & Cor.~\ref{cor:radius} \\
+Order, fixed $R=1$, $t\to\infty$ & $t^{3+\sqrt6-o(1)}$ & $\exp(O(t))$ & Prop.~\ref{prop:unrestricted-order}, Thm.~\ref{thm:sparse} \\
+Edges, box-complex certified & $(2/\sqrt3)^{t-2}$ & $\exp(O(t))$ & Prop.~\ref{prop:box-barrier}, Thm.~\ref{thm:sparse} \\
+Local dim., $t\to\infty$ & $(12.23\ldots-o(1))\log_2 t$ & $4^{\lceil(t-3)/2\rceil}$ & Thm.~\ref{thm:rank-rounding}, \eqref{eq:dimension-lower}, Thm.~\ref{thm:sparse} \\
+Local dim., $t=4,5$ & $3$ & $3$ & Thm.~\ref{thm:qutrit} \\
+Vertices, $t=4$ and $5$ ($R=1$) & $15$ and $21$ \emph{(via~\cite{La})} & $22$ and $165$ & Props.~\ref{prop:order-lower}, \ref{prop:twentytwo}; Thm.~\ref{thm:finite-square} \\
+\bottomrule
+\end{tabular}
+\caption{The cost of chromatic number at least $t$ at quantum chromatic number three: lower bounds that hold for every graph, and the values attained by the graphs of this paper ($G_{j,R}$ of Theorem~\ref{thm:main}, and $Q_R$, $F_{22}$, $F_{\rm phys}$ of Sections~\ref{sec:universal} and~\ref{sec:finite}). The bound in the third row holds for every graph $G$ whose box complex $\B(G)$ admits no equivariant map to the sphere $S^{t-3}$, which is the obstruction behind the lower bounds on $\chi$ in Sections~\ref{sec:iteration} and~\ref{sec:targets}. In the last row, the numbers $15$ and $21$ depend on the computer-assisted classification of Lalonde~\cite{La}.}
+\label{tab:costs}
+\end{table}
+
+\paragraph{The construction.}
+The Mermin--Peres square is a $3\times3$ array of two-qubit Pauli observables in which the three observables of each row and of each column commute. Each row and each column therefore has a common eigenbasis of $\C^4$, which gives six bases. A row and a column have exactly one observable in common, so their two bases share its two eigenspaces, a decomposition of $\C^4$ into two planes. The product of the three observables is $+I$ in every row and in two of the columns, and $-I$ in the third column. Because of this sign, no assignment of values $\pm1$ to the nine observables respects all six products (Lemma~\ref{lem:parity}). The lower bound on the chromatic number, the bound on the local dimension and the bound on the compatibility radius all come from this sign.
+
+A vertex of $S_\lambda(H)$ is an instruction for a measurement: measure two fresh qubits in one of the six bases and, according to which of the four basis vectors is obtained, continue as at the vertex $g_0$, $g_1$, $g_2$ or $g_3$ of $H$. The four vertices form the \emph{word} $g_0g_1g_2g_3$ of the instruction, and only words that repeat their first letter are used. Two instructions with the same basis are adjacent if $g_s$ and $g'_s$ are adjacent in $H$ for all four~$s$. Instructions in a row basis and in a column basis are related only if both depend on nothing but the observable that the two bases share; they are then connected through a \emph{wire} of $\lambda$ intermediate layers of instructions that measure only this observable. A quantum $3$-coloring of $H$ gives one of $S_\lambda(H)$ by carrying out the instruction. The local dimension is multiplied by four, and the measurements along a path with at most $\lambda+2$ edges are diagonal in one of the six bases, so that $R$-compatibility is preserved for $R\le\lambda+2$ (Lemma~\ref{lem:radius-lift}). Substituting $j$ times, starting from the triangle, gives $G$. Its order is doubly exponential in $j$; the subgraph $G_{j,R}$ keeps the vertices whose nested instructions form a tree of bounded size, which makes the order singly exponential and loses none of the properties (Theorem~\ref{thm:sparse}).
+
+\paragraph{Why the chromatic number grows.}
+For one substitution on the triangle the lower bound is elementary. A proper $4$-coloring of $S_\lambda(K_3)$ singles out one of the four basis vectors in each basis (Lemma~\ref{lem:four-colorings}), and along each wire the vectors singled out at its two ends lie in the same one of the two shared planes. This would assign consistent values to the nine observables, so no such coloring exists and $\chi(S_\lambda(K_3))=5$ (Theorem~\ref{thm:one-level}). For $j$ substitutions we use the box complex of a graph, a space with a free involution, and the first Stiefel--Whitney class $w$ of that involution: if $w^k\ne0$, the graph needs at least $k+2$ colors (Section~\ref{sec:box}). The box complex of the triangle is a circle, on which $w\ne0$, and we show that the exponent $k$ for which $w^k\ne0$ can be certified grows by two with every substitution (Theorem~\ref{thm:step}). The proof is again a count modulo two. In a space that models the substitution, the loop traced by rotating all four entries of a constant word is, up to boundaries, a sum of other loops in nineteen ways: eighteen, one for each pair of a basis and one of its three observables, and one more that the sign $-I$ forces. When the nineteen sums are added, the other loops cancel in pairs, and since nineteen is odd, the original loop is a boundary. Fillings of this kind are what the powers of $w$ detect (Section~\ref{sec:towers}).
+
+\paragraph{Why no quantum coloring does better.}
+In the other direction we start from an arbitrary quantum $3$-coloring of $G_{j,R}$ and use only the edge rule. Its measurements on suitable copies of powers of the triangle inside the graph determine nine involutions in a $3\times3$ array in which the entries of each row and of each column commute, with product $+I$ in every row and in two of the columns and $-I$ in the third column: the relations of the square. Such involutions divide the space into four parts of equal dimension, and repeating the argument inside one of the parts, once for each of the $j$ levels, gives $4^j\mid d$ (Theorem~\ref{thm:dimension}). Two of the nine involutions anticommute, and they are determined by the measurements at four vertices that are pairwise at distance at most $\lambda+3$. Hence no quantum $3$-coloring of the graph is $(\lambda+3)$-compatible (Proposition~\ref{prop:largest-compatible-radius}).
+
+\subsection{Comparison with Ciardo and Ciardo--Mottet}\label{sec:comparison}
+
+Ciardo and Mottet~\cite[Table~1 and Section~3]{CM} obtain their graphs by composing seven reductions that start from the Mermin--Peres square. Each reduction is classically sound and quantum complete:
+\begin{list}{}{\setlength{\labelwidth}{3.6em}\setlength{\labelsep}{0.6em}\setlength{\leftmargin}{4.8em}\setlength{\itemsep}{2pt}\setlength{\parsep}{0pt}\setlength{\topsep}{4pt}}
+\item[\textup{(i)}] stretching the square by wires of $2m$ auxiliary equations, which gives a label cover with a $(4m+1)$-compatible perfect quantum assignment;
+\item[\textup{(ii)}] parallel repetition, which drives the classical soundness to zero;
+\item[\textup{(iii)}] multilayered Kneser hypergraphs;
+\item[\textup{(iv)}] the reduction of Fei, Minzer, and Wang to $4$-to-$1$ label cover~\cite{FMW};
+\item[\textup{(v)--(vi)}] the reductions of Dinur, Mossel, and Regev and of Guruswami and Sandeep~\cite{DMR,GS}, analyzed for quantum strategies in~\cite[Sections~5.1--5.2]{C26}, which produce a graph with a larger quantum palette $2d$;
+\item[\textup{(vii)}] iterated line digraphs~\cite[Sections~5.3--5.4]{C26}, which bring the quantum palette back down to $3$ and roughly halve the compatibility in each iteration.
+\end{list}
+Their Remark~2.6 gives local dimension $4^{n(\ell-1)t\kappa}$ in terms of the reduction parameters, without explicit bounds on graph order.
+
+Our construction shares two core ingredients with~\cite{C26,CM}:
+\begin{itemize}
+\item \emph{Wire stretching} (credited to Ciardo and Mottet~\cite[Section~2.2 and Proposition~2.1]{CM}): splitting each variable of the square into row and column copies joined by a wire of auxiliary constraints measured with the same binary observable controls compatibility by wire length.
+\item \emph{Words evaluated at a measured label} (from the reduction of~\cite{DMR,GS}, whose quantum completeness is proved in~\cite[Section~5.2, Theorem~27, and Proposition~28]{C26}): a level-one vertex pairs a basis with a word assigning a color to each of its four positions.
+\end{itemize}
+Three structural differences eliminate the hardness-of-approximation chain:
+\begin{enumerate}
+\item \emph{Adaptive graph recursion instead of parallel repetition:} at level $j$, each letter of a word is a vertex of level $j-1$, and the player measures only the single selected letter on the next register rather than answering every coordinate in parallel.
+\item \emph{Fixed palette of three colors:} the quantum palette stays $3$ at every level and the local dimension is multiplied by exactly $4$ per level, so that larger palettes and line digraphs are not needed.
+\item \emph{Topological soundness:} the classical lower bound $\chi\ge2j+3$ comes directly from the Stiefel--Whitney height of the box complex raised by two per level by the sign $-I$ of the square, fulfilling Ciardo and Mottet's expectation of a direct proof without complexity-theoretic reductions~\cite[Section~3]{CM}.
+\end{enumerate}
+
+\subsection{Related work}\label{sec:related}
+
+When the quantum chromatic number is allowed to grow, Hadamard graphs have long been known to give an exponential separation between $\chi$ and $\cq$~\cite{BCT,AHKS,FR}. For fixed $\cq=3$, early examples separated $\chi=4$ from $\cq=3$ using a reduction from $3$-satisfiability to $3$-coloring~\cite{FILG}. Applying that reduction to the Mermin--Peres square yields the $57$-vertex graph $G_{\rm msg}$ of Man{\v c}inska and Roberson~\cite[Theorem~2; Fact~4 in arXiv~v1]{MR2}, which has $\cq=3$ and $\chi=4$. Lalonde~\cite[Theorem~1.1 of the arXiv version]{La} showed by a computer-assisted classification that every graph with $\cq=3<\chi$ has at least $15$ vertices. That paper also notes $G_{\rm msg}$ as the only reasonably small graph previously reported to separate $\cq$ from its rank-one version, and remarks without proof that graphs from that $3$-SAT reduction are $4$-colorable. In Section~\ref{sec:finite} we exhibit the smallest known explicit witnesses for these first two gaps: the $22$-vertex graph $F_{22}$ with $(\cq,\chi)=(3,4)$ and the $165$-vertex graph $F_{\rm phys}$ with $(\cq,\chi)=(3,5)$. We also lift Lalonde's bound to a new lower bound $|V(G)|\ge21$ for graphs with a quantum $3$-coloring and $\chi\ge5$.
+
+Regarding local dimension, Ciardo~\cite[Corollary~35 and Example~36]{Ciardo24} proved existentially that graphs admitting a quantum $n$-coloring in local dimension three can require $\chi\ge2n-1$ classical colors, in particular $\chi\ge5$ at $\cq=3$. Banakh, Ciardo, Kozik, and Tu{\l}owiecki~\cite[Theorem~29]{BCKT} proved the general upper bound $\chi(G)\le3(2+o(1))^{d-1}$ for every graph $G$ admitting a quantum $3$-coloring in local dimension $d$. Section~\ref{sec:universal} provides explicit graphs $Q_R$ with quantum $3$-colorings in local dimension three and $\chi=5$ at every compatibility radius, and proves that a graph with a quantum $3$-coloring in local dimension three never needs more than five classical colors. It also lowers the base of the general exponential bound from $2$ to $2^{5/3}/3\approx1.0583$.
+
+Topological lower bounds on chromatic numbers originate with Lov{\'a}sz's proof of Kneser's conjecture~\cite{Lov78}. They were developed in equivariant form, for box complexes and Hom complexes, by Matou{\v s}ek~\cite{Mat}, Matou{\v s}ek and Ziegler~\cite{MZ}, Csorba~\cite{Csorba}, and Kozlov~\cite{Kozlov}; we use them through Stiefel--Whitney classes~\cite{MS}. Finally, the algebraic backbone of our construction is the Mermin--Peres square~\cite{Mermin,Peres,KS}, whose intersection graph is $K_{3,3}$~\cite[Example~20]{Arkhipov}; nonplanarity of the intersection graph is Arkhipov's criterion for an arrangement of observables to exhibit parity pseudo-telepathy~\cite[Theorem~21]{Arkhipov}. Our local-dimension rigidity (Theorem~\ref{thm:dimension}) parallels the self-testing of two EPR pairs by the magic square game~\cite{WBMS,CS}. Our cancellation of loops modulo $2$ is close in spirit to topological formulations of parity contextuality~\cite{ORBR}; here it operates inside the box complex and bounds classical colorings.
+
+\subsection{Organization and conventions}\label{sec:organization}
+
+The paper is organized as follows.
+\begin{itemize}
+\item Section~\ref{sec:construction} treats one substitution. It introduces the six bases of the Mermin--Peres square, works through $S_0(K_3)$ and one vertex of level two, defines $S_\lambda(H)$ with its quantum coloring, and shows that this coloring keeps its compatibility. It then proves $\chi(S_\lambda(K_3))=5$ without topology and extends the construction to arbitrary triads of projections, which gives the graphs $W_\lambda(\mathcal D)$.
+\item Section~\ref{sec:iteration} defines the full iterates $S^j_\lambda(K_3)$ and the sparse family $G_{j,R}$, introduces box complexes and towers, proves the lower bound $2j+3$ and the bound on the size, and bounds $\chi(G_{j,R})$ from above.
+\item Section~\ref{sec:rigidity} proves that neither the local dimension nor the compatibility radius can be improved on $G_{j,R}$ and $S^j_\lambda(K_3)$, and it completes the proof of Theorem~\ref{thm:main}.
+\item Section~\ref{sec:universal} proves the trade-offs between order, compatibility radius, and local dimension that hold for all graphs. They are the first five rows of Table~\ref{tab:costs}.
+\item Section~\ref{sec:finite} presents the graphs $F_{22}$ and $F_{\rm phys}$, determines which of them can start the iteration, and derives the lower bound $21$ on the order from Lalonde's bound $15$ (the last row of Table~\ref{tab:costs}).
+\item Section~\ref{sec:targets} extends the construction to every nonbipartite target graph.
+\item Section~\ref{sec:discussion} collects all graphs constructed in the paper in Table~\ref{tab:graphs} and lists open problems.
+\end{itemize}
+Technical proofs are placed in Appendices~\ref{app:four}--\ref{app:readings}.
+
+\emph{Conventions.} The projectors of a quantum coloring are always written $P_{v,a}$, with a vertex and a color as indices. The symbols $P_e$ and $P^i_r$ denote the fixed projections of the Mermin--Peres square that are introduced in Section~\ref{sec:square}. The colors of a quantum $c$-coloring are $1,\ldots,c$. For three colors we regard them as the elements of $\mathbb Z/3$, so that $0$ and $3$ denote the same color; depending on the section, they are written $0,1,2$ or $1,2,3$. Every graph with a quantum $2$-coloring is bipartite~\cite[Proposition~3]{CMNSW}. Hence a graph that contains a triangle and has a quantum $3$-coloring has quantum chromatic number exactly three; we use this fact without further reference.

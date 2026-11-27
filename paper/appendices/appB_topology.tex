@@ -1,0 +1,141 @@
+\section{Topological proofs: continuous presentations, towers, and box-complex maps}\label{app:topology}
+
+This appendix proves the three topological lemmas that support Sections~\ref{sec:iteration} and~\ref{sec:targets}. Lemma~\ref{lem:square-tower} constructs towers inductively on $S(X)$ and on the spaces $Z_{h,m}$ of bounded presentations. Lemma~\ref{lem:tower-detection} shows that a tower forces $w_Z^{2h+1}\ne0$. Lemma~\ref{lem:box-realization} provides the equivariant map to the box complex, by quantile coupling.
+
+\subsection{Continuous presentations and circle chains}\label{app:cont-pres}
+
+We first check that $S(X)$ is a circle space whenever $X$ is. Inside a basis block of $S(X)$, the three diagonals $x_0=x_r$ ($r=1,2,3$) are the images of the three ternary template maps $X^3\to X^4$; taking their union inside $X^4$ ensures that points lying in overlapping templates agree automatically. The binary template map $(x,y)\mapsto(x,y,y,x)$ in basis $6$ already takes values in the diagonal $x_0=x_3$, hence in this union. For each edge $e=ik$ of $K_{3,3}$, the two cylinder attachments send $(x,y,0)$ and $(x,y,1)$ to the tuples repeating $x$ on $A_{i,e}$ (respectively $A_{k,e}$) and $y$ on its complement, matching the graph wire attachments at all nine edges of $K_{3,3}$, including $e=36$. Because every set $A_{b,e}$ and its complement are nonempty, both attaching maps $X^2\to X^4$ are injective, so all six basis blocks embed into $S(X)$ and the diagonal $S^1$-action remains free on both the blocks and the cylinder interiors. When $X$ is a compact polyhedron, products, repeated-coordinate diagonals, and cylinder attachments admit a common piecewise linear subdivision; hence $S(X)$ is again a compact polyhedron with a free $S^1$-action, i.e., a circle space.
+
+For the sparse family $G_{j,R}$, take $X_0=S^1$ (realized as a hexagon, matching $\B(K_3)$) and set $X_{h+1}=S(X_h)$ inductively. Define the \emph{distinguished orbit} $O_h\subset X_h$ and \emph{distinguished point} $b_h\in O_h$ starting from $O_0=S^1$, $b_0=1$ by diagonal padding in basis block $6$: $b_{h+1}=(b_h,b_h,b_h,b_h)$ in block $6$, and $O_{h+1}$ is its $S^1$-orbit. A \emph{continuous presentation} of a point of $X_h$ is a presentation tree as in Section~\ref{sec:sparse}, with basis nodes for the nineteen templates and wire nodes with scalar backgrounds, in which two things are changed:
+\begin{itemize}
+\item each scalar leaf is replaced by a point of $O_0$, padded diagonally in basis block $6$ to the required level;
+\item each layer index of a wire node is replaced by a parameter $t\in[0,1]$, and the values $t\in\{0,1\}$ at the two ends of the wire are allowed.
+\end{itemize}
+Set $Z_{h,0}=O_h$, and for $m\ge1$ let $Z_{h,m}\subset X_h$ be the set of points admitting a continuous presentation with at most $2m-1$ internal nodes and at most $m$ wire nodes (where a presentation reaching a leaf at a level below $h$ is padded diagonally at its leaves). Each $Z_{h,m}$ is $S^1$-invariant and is a finite union of images of products of circles and intervals under piecewise linear presentation maps, hence a compact polyhedron and therefore a circle space.
+
+Throughout this appendix we work with normalized singular chains with coefficients in $\Ftwo$. Let $\boxtimes$ denote the Eilenberg--Zilber \emph{shuffle cross product}: on a $p$-simplex and a $q$-simplex, it sums over all $(p,q)$-shuffles of their coordinate steps. Subdivision of a product of three simplices yields associativity, permuting factors permutes the shuffles, and cancellation of internal faces yields the Leibniz boundary rule $\partial(c\boxtimes c')=(\partial c)\boxtimes c'+c\boxtimes(\partial c')$ (all signs vanish over $\Ftwo$). When $G$ is an abelian topological group, pushing $\boxtimes$ forward along group multiplication gives a commutative, associative \emph{chain product} denoted by $*$; when $G$ acts on a space $X$, pushing $\boxtimes$ forward along the action map gives a \emph{chain action} denoted by a dot, satisfying $\partial(a\cdot c)=(\partial a)\cdot c+a\cdot(\partial c)$.
+
+Let $\tau\in C_1(S^1;\Ftwo)$ be the positively oriented half-circle path from $1$ to $-1$, write $Tz=(-1)z$ for the half-turn, and define the fundamental cycle $\sigma=\tau+T_*\tau\in C_1(S^1;\Ftwo)$. For any chain $c$ in a circle space, define its \emph{swept chain} by $Bc=\sigma\cdot c$. In an abelian group, the two $(1,1)$-shuffles in the square of any singular $1$-simplex have identical images under multiplication and cancel mod $2$, and mixed terms in the square of any $1$-chain cancel in pairs. Since $T_*\tau=[-1]*\tau$ and $\partial\sigma=0$, these identities give
+\begin{equation}\label{eq:circle-chain}
+ B^2=0,\qquad \tau*\sigma=0,\qquad \partial B=B\partial,
+\end{equation}
+using the same symbol $B$ on every circle space.
+
+\begin{lemma}\label{lem:square-tower}
+\leavevmode
+\begin{enumerate}
+\item[(a)] Let $X$ be a circle space with a tower $x_0,\ldots,x_h$. Then $S(X)$ has a tower $y_0,\ldots,y_{h+1}$ whose point $y_0$ is the constant tuple on $x_0$ in the block of basis $6$.
+\item[(b)] Applied to the iterates $X_h$, starting from the point $b_0$, this construction gives at every level $h$ a tower $x_0=[b_h],x_1,\ldots,x_h$ with $x_i\in C_{2i}(Z_{h,i};\Ftwo)$ for $0\le i\le h$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+We write the tower as a single formal power series $x=\sum_{i=0}^h u^i x_i$ and use the differential $d=\partial+uB$. The proof then has four steps.
+\begin{list}{}{\setlength{\labelwidth}{3.2em}\setlength{\labelsep}{0.6em}\setlength{\leftmargin}{3.8em}\setlength{\itemsep}{2pt}\setlength{\parsep}{0pt}\setlength{\topsep}{4pt}}
+\item[Step 1.] We build a product $\diamond$ of such series that satisfies the Leibniz rule for $d$. It uses a correction series $b(u)$ on the torus.
+\item[Step 2.] We add the products of $x$ over the parts of the nineteen templates to a series $L$. Modulo $u^{h+2}$, the series $dL$ consists of insertions of $Bx_h$, and these cancel in pairs except those at the eighteen wire ends.
+\item[Step 3.] A prism operator $K$ along the nine cylinders cancels these insertions. This gives the tower on $S(X)$ and proves~(a).
+\item[Step 4.] We bound the presentations of the chains obtained, which proves~(b).
+\end{list}
+
+For~(a), let $b$ be the base point of the given tower on $X$ (so $x_0=[b]$). For~(b), the base case $h=0$ is $x_0=[b_0]=[1]\in C_0(Z_{0,0};\Ftwo)$; inductively assume $x_0,\ldots,x_h$ have been constructed on $X=X_h$ with $x_i\in C_{2i}(Z_{h,i};\Ftwo)$ and $b=b_h$. Introduce a formal indeterminate $u$ of degree $-2$, set $x=\sum_{i=0}^h u^i x_i$, and define $d=\partial+uB$. By~\eqref{eq:circle-chain}, $d^2=\partial^2+u(\partial B+B\partial)+u^2 B^2=0$, and the tower equations~\eqref{eq:tower} are equivalent to
+\[
+ dx=u^{h+1}Bx_h.
+\]
+
+\emph{Step 1: A corrected product satisfying the Leibniz rule for $d$.} On a product of two circle spaces, the diagonal $S^1$-rotation is homologous to the sum of the two factor rotations. Concretely, let $e\in C_1(S^1\times S^1;\Ftwo)$ be the sum of the three images of $\sigma$ under the diagonal map $z\mapsto(z,z)$ and the two coordinate inclusions $z\mapsto(z,1)$ and $z\mapsto(1,z)$. Both winding numbers of $e$ vanish mod $2$, so $e$ is a boundary in $S^1\times S^1$. Set $b^{(0)}=[(1,1)]$ and choose $b^{(1)}\in C_2(S^1\times S^1;\Ftwo)$ with $\partial b^{(1)}=e$. Inductively for each $r\ge2$, choose $b^{(r)}\in C_{2r}(S^1\times S^1;\Ftwo)$ with $\partial b^{(r)}=e*b^{(r-1)}$; this is possible because $e*e=0$ (as $e$ is a $1$-chain in an abelian group), so $\partial(e*b^{(r-1)})=e*e*b^{(r-2)}=0$, and $H_{2r-1}(S^1\times S^1;\Ftwo)=0$ for all $r\ge2$. Put $b(u)=\sum_{r\ge0} u^r b^{(r)}$, so that $\partial b(u)=u\,e*b(u)$.
+
+For chain series $v,w$ on two circle spaces, define
+\[
+ v\diamond w=b(u)\cdot(v\boxtimes w),
+\]
+where the two coordinates of $S^1\times S^1$ act separately on the two factors. Computing $d(v\diamond w)=(\partial+uB)(b(u)\cdot(v\boxtimes w))$, the diagonal component of $u\,e$ inside $\partial b(u)$ cancels the outer $uB$ on the product, while the two coordinate components of $u\,e$ become $uB$ acting on $v$ and on $w$ individually. Therefore
+\begin{equation}\label{eq:corrected-shuffle}
+ d(v\diamond w)=(dv)\diamond w+v\diamond(dw).
+\end{equation}
+For three inputs, iterate the product as $(v\diamond w)\diamond z$. In both the two-fold and three-fold products, the order-$0$ term in $b(u)$ is the ordinary shuffle cross product $\boxtimes$.
+
+\emph{Step 2: Template sum and boundary cancellation.} For each of the nineteen template maps $f:X^p\to S(X)$ ($p=3$ for the eighteen ternary templates and $p=2$ for the binary template in basis $6$), apply $f_*$ to the corrected $p$-fold product of $x$, and let $L$ be the sum of all nineteen resulting series. For a part $D$ of a template $f$, let $a_D:X\to S(X)$ insert its argument on $D$ and the constant point $b$ on $D^c$ inside that basis block. Because each $f$ is $S^1$-equivariant, $d$ commutes with $f_*$; applying~\eqref{eq:corrected-shuffle} and $dx=u^{h+1}Bx_h$ gives
+\[
+ dL\equiv u^{h+1}\sum_{f,D} (a_D)_* Bx_h \pmod{u^{h+2}}.
+\]
+Indeed, the single factor differentiated by $d$ already supplies $u^{h+1}$, so modulo $u^{h+2}$ every other factor contributes only its $u^0$-term $[b]$ and the correction series $b(u)$ contributes only its $u^0$-term $[(1,1)]$.
+
+Let $W$ denote the wire-endpoint insertion operator
+\[
+ W=\sum_{e}\big((a_{e,0})_*+(a_{e,1})_*\big),
+\]
+where the sum runs over the nine edges $e$ of $K_{3,3}$ and $a_{e,t}:X\to S(X)$ ($t\in\{0,1\}$) inserts its argument on the positions of $P_e$ at end $t$ of wire $e$ with fixed background $b$ on the complement. By the singleton and binary-template cancellations explained in Section~\ref{sec:towers} together with the position sets of Table~\ref{tab:edges}, every term cancels in pairs except the eighteen wire-endpoint insertions, yielding the chain-level operator identity $\sum_{f,D}(a_D)_*=W$. Hence $dL\equiv u^{h+1}WBx_h\pmod{u^{h+2}}$.
+
+\emph{Step 3: Prism correction along the nine wires.} Define a degree-$+1$ operator $K$ from chains on $X$ to chains on $S(X)$ by sending $c\boxtimes[0,1]$ along the cylinder map $(z,t)\mapsto(z,b,t)$ on each wire $e$ and summing over all nine edges $e$ of $K_{3,3}$. Because the cylinder maps fix $b$ on the second coordinate, the prism boundary formula gives $\partial K+K\partial=W$. Define
+\[
+ J=dK+Kd=(\partial K+K\partial)+u(BK+KB)=W+u(BK+KB).
+\]
+Since $d^2=0$, we have $dJ=dKd=Jd$. Setting $y=L+Jx=\sum_{m\ge0} u^m y_m$, we compute
+\[
+ dy=dL+dJx=dL+Jdx\equiv u^{h+1}WBx_h+u^{h+1}WBx_h=0 \pmod{u^{h+2}}.
+\]
+Reading off the coefficient of $u^m$ gives $\partial y_m=By_{m-1}$ for $1\le m\le h+1$. Because $u$ has degree $-2$ and $x,b(u),L,J$ all have total degree $0$, each $y_m$ has singular chain dimension $2m$. At $m=0$, the nineteen templates in $L$ contribute three copies of the constant point $(b,b,b,b)$ in each of bases $1,\ldots,5$ and four copies in basis $6$ (three ternary plus one binary), while $W[b]$ contributes three copies of $(b,b,b,b)$ in every basis (one per incident wire). Over $\Ftwo$, every copy cancels except the single constant tuple on $b$ in basis block $6$. Thus $y_0,\ldots,y_{h+1}$ is a tower of length $h+1$ on $S(X)$, proving~(a).
+
+\emph{Step 4: Presentation bounds for~(b).} Call the input factors of a template product its children. Fix $m\in\{1,\ldots,h+1\}$ and inspect every term contributing to the coefficient $y_m$ of $u^m$ in $L+Jx$. Notice first that acting by a correction chain $b^{(r)}$ (or by $\sigma$) merely rotates child points within $S^1$-invariant subspaces $Z_{h,i}$ and leaves presentation sizes unchanged.
+
+Consider first the terms of $L$ at order $u^m$ that have correction order $r=0$ and exactly one child of positive index (which must then have index $m$, while the other children are $[b_h]$). Summing these terms across all nineteen templates gives precisely $\sum_{f,D}(a_D)_* x_m=Wx_m$, which cancels the $u^0$-part $Wx_m$ of $Jx$ in $y_m$ (for $m=h+1$, both terms are absent since $x_{h+1}=0$). Every remaining contribution to $y_m$ falls into one of three cases:
+\begin{itemize}
+\item \emph{Term of $L$ with $r=0$ and $s\ge2$ children of positive indices $i_1,\ldots,i_s$ summing to $m$:} Each positive-index child lies in $Z_{h,i_k}$ and uses at most $2i_k-1$ internal nodes and at most $i_k$ wire nodes, while any index-$0$ child is a scalar leaf on $O_h$ ($0$ internal nodes, $0$ wire nodes). Together with the root basis node ($1$ internal node, $0$ wire nodes), the resulting presentation has at most
+\[
+ 1+\sum_{k=1}^s (2i_k-1)=1+2m-s\le 2m-1
+\]
+internal nodes and at most $\sum_{k=1}^s i_k=m$ wire nodes.
+\item \emph{Term of $L$ with positive correction order $r\ge1$:} The child indices sum to $m-r$. Whether $0$ or more children have positive index, the children together use at most $2(m-r)$ internal nodes and at most $m-r$ wire nodes. Adding the root basis node gives at most $1+2(m-r)\le 2m-1$ internal nodes (since $r\ge1$) and at most $m-r<m$ wire nodes.
+\item \emph{Term from $u(BK+KB)x$, namely $BKx_{m-1}+KBx_{m-1}$:} Each such term places a wire root ($1$ internal node, $1$ wire node) over a child in $Z_{h,m-1}$ and a background point on the distinguished orbit $O_h$ (a scalar leaf, preserved under rotation). If $m=1$, the child is in $Z_{h,0}=O_h$ ($0$ internal nodes), giving $1=2m-1$ internal node and $1=m$ wire node. If $m>1$, the child uses at most $2(m-1)-1=2m-3$ internal nodes and at most $m-1$ wire nodes, giving at most $2m-2<2m-1$ internal nodes and at most $m$ wire nodes.
+\end{itemize}
+In every case the level increases by at most one, so $y_m\in C_{2m}(Z_{h+1,m};\Ftwo)$. This completes the induction and proves~(b).
+\end{proof}
+
+\subsection{From a tower of chains to a power of the cover class}\label{app:tower-det}
+
+\begin{lemma}\label{lem:tower-detection}
+Let $Z$ be a circle space with a tower $x_0,\ldots,x_h$. Then $w_Z^{2h+1}\ne0$.
+\end{lemma}
+\begin{proof}
+Let $p:Z\to Q=Z/\{1,T\}$ be the quotient map by the half-turn $T$; because $T$ is a free involution, $p$ is a double cover. Interleave the even-dimensional chains $x_0,\ldots,x_h$ with odd-dimensional chains by setting
+\[
+ a_{2i}=x_i,\qquad a_{2i+1}=\tau\cdot x_i\qquad (0\le i\le h).
+\]
+We claim that
+\[
+ \partial a_n=(1+T_*)a_{n-1}\qquad (1\le n\le 2h+1).
+\]
+For even $n=2i$, this reads $\partial x_i=(1+T_*)(\tau\cdot x_{i-1})=\sigma\cdot x_{i-1}=Bx_{i-1}$, which is the tower equation~\eqref{eq:tower}. For odd $n=2i+1$, we have $\partial(\tau\cdot x_i)=(\partial\tau)\cdot x_i+\tau\cdot\partial x_i$. Since $\partial\tau=[1]+[-1]$, the first term is $(1+T_*)x_i=(1+T_*)a_{2i}$. The second term vanishes: for $i=0$ because $\partial x_0=0$, and for $i\ge1$ because $\tau\cdot\partial x_i=\tau\cdot(\sigma\cdot x_{i-1})=(\tau*\sigma)\cdot x_{i-1}=0$ by~\eqref{eq:circle-chain}. Because $p_*T_*=p_*$ over $\Ftwo$, we obtain $\partial(p_*a_n)=p_*(1+T_*)a_{n-1}=0$, so every $p_*a_n$ is a cycle in $C_n(Q;\Ftwo)$.
+
+Next we identify the connecting homomorphism of the double cover with the cap product $w_Z\cap-$. Let $\operatorname{tr}:C_*(Q;\Ftwo)\to C_*(Z;\Ftwo)$ send each singular simplex of $Q$ to the sum of its two lifts in $Z$. The two lifts give a short exact sequence of chain complexes over $\Ftwo$:
+\[
+ 0\longrightarrow C_*(Q;\Ftwo)\xrightarrow{\;\operatorname{tr}\;} C_*(Z;\Ftwo)\xrightarrow{\;p_*\;} C_*(Q;\Ftwo)\longrightarrow 0.
+\]
+Choose one lift $\tilde q\in p^{-1}(q)$ for every point $q\in Q$. Define a linear section $s:C_*(Q;\Ftwo)\to C_*(Z;\Ftwo)$ of $p_*$ by lifting each singular simplex $\Delta$ of $Q$ to the unique lift $s(\Delta)$ whose initial vertex $v_0$ lifts to $\widetilde{v_0}$. On every $1$-simplex (path) $\gamma$ of $Q$ from $v_0$ to $v_1$, let $w(\gamma)\in\Ftwo$ equal $1$ if the endpoint of $s(\gamma)$ differs from $\widetilde{v_1}$, and $0$ otherwise. Because the boundary of every singular $2$-simplex lifts to a closed loop, $w$ is a $1$-cocycle representing the first Stiefel--Whitney class $w_Z$. For any $n$-simplex $\Delta$ of $Q$ ($n\ge1$), every face $d_r\Delta$ with $r\ge1$ retains the initial vertex $v_0$, so $d_r(s(\Delta))=s(d_r\Delta)$. On the zeroth face $d_0\Delta$ (which starts at $v_1$), the lift $d_0(s(\Delta))$ starts at the endpoint of $s(\Delta|_{v_0v_1})$, which agrees with $s(d_0\Delta)$ if $w(\Delta|_{v_0v_1})=0$ and equals its $T$-translate if $w(\Delta|_{v_0v_1})=1$. Over $\Ftwo$, summing over all faces yields
+\[
+ \partial(s(\Delta))+s(\partial\Delta)=\operatorname{tr}\bigl(w(\Delta|_{v_0v_1})\,d_0\Delta\bigr)=\operatorname{tr}(w\cap\Delta).
+\]
+Consequently, for every cycle $z\in C_n(Q;\Ftwo)$, we have $\partial(s(z))=\operatorname{tr}(w\cap z)$, which identifies the homological connecting map $\partial_*:H_n(Q;\Ftwo)\to H_{n-1}(Q;\Ftwo)$ with $w_Z\cap-$.
+
+Now $a_n$ is a lift of $p_*a_n$ under $p_*$ satisfying $\partial a_n=(1+T_*)a_{n-1}=\operatorname{tr}(p_*a_{n-1})$. By definition of the connecting homomorphism, $w_Z\cap[p_*a_n]=\partial_*[p_*a_n]=[p_*a_{n-1}]$ for $1\le n\le 2h+1$. Iterating $2h+1$ times gives $w_Z^{2h+1}\cap[p_*a_{2h+1}]=[p_*a_0]=[p(x_0)]$, the homology class of a single point, whose augmentation is $1$. Therefore $\langle w_Z^{2h+1},[p_*a_{2h+1}]\rangle=1$, proving $w_Z^{2h+1}\ne0$.
+\end{proof}
+
+\subsection{From continuous presentations to the box complex}\label{app:box-real}
+
+\begin{lemma}\label{lem:box-realization}
+An equivariant map $X\to\B(H)$ for the half-turn on a circle space $X$ induces an equivariant map $S(X)\to\B(S_\lambda(H))$. Starting with $X_0=S^1=\B(K_3)$, its $j$-fold iteration restricts to $Z_{j,j}\to\B(G_{j,R})$ for $\lambda=\max\{R-2,0\}$.
+\end{lemma}
+\begin{proof}
+We first construct the single-level map $S(X)\to\B(S_\lambda(H))$ by quantile coupling, and then track presentation sizes inductively to verify that the $j$-fold iterate maps $Z_{j,j}$ into $\B(G_{j,R})$.
+
+\emph{Quantile coupling.} Fix a linear order on $V(H)$. Given any probability measure $\mu$ on $V(H)$, partition $[0,1]$ into consecutive intervals of lengths $\mu(v)$ in this order; for a uniformly random $U\in[0,1]$, let $q_\mu(U)\in\operatorname{supp}\mu$ be the vertex labeling the interval containing $U$ (fixing one convention at interval endpoints, which have measure zero). Given any finite tuple of probability measures $(\mu_1,\ldots,\mu_r)$, couple them by evaluating $(q_{\mu_1}(U),\ldots,q_{\mu_r}(U))$ at the same uniform variable $U$. The probability of any joint tuple is the length of an intersection of intervals whose endpoints are partial sums of the weights $\mu_k(v)$, so the coupled distribution varies continuously with $(\mu_1,\ldots,\mu_r)$. Moreover, identical measures always produce identical sampled vertices: if $\mu_k=\mu_{k'}$, then $q_{\mu_k}(U)=q_{\mu_{k'}}(U)$ almost surely.
+
+\emph{Single-level map $S(X)\to\B(S_\lambda(H))$.} Let $\phi:X\to\B(H)$ be equivariant, writing $\phi(x)=(\mu_x,\nu_x)$.
+\begin{itemize}
+\item On basis block $i$, a point is a tuple $(x_0,x_1,x_2,x_3)\in X^4$ with $x_0=x_r$ for some $r\in\{1,2,3\}$. Coupling $(\mu_{x_0},\mu_{x_1},\mu_{x_2},\mu_{x_3})$ produces a random word $g=(g_0,g_1,g_2,g_3)$ satisfying $g_0=g_r$ almost surely (since $\mu_{x_0}=\mu_{x_r}$), hence a probability measure on basis chart $i$ of $S_\lambda(H)$. Applying the same coupling to $(\nu_{x_0},\nu_{x_1},\nu_{x_2},\nu_{x_3})$ gives the second shore. For every word $g$ in the first support and $g'$ in the second, each position $s$ satisfies $g_s\in\operatorname{supp}\mu_{x_s}$ and $g'_s\in\operatorname{supp}\nu_{x_s}$, so $g_s\sim_H g'_s$ by the box condition for $\phi(x_s)$; hence $g\sim_{S_\lambda(H)} g'$. Because the formula depends only on the tuple $(x_0,x_1,x_2,x_3)$, it automatically agrees on overlapping ternary templates and on the binary template in basis $6$.
+\item On the cylinder $X^2\times[0,1]$ along edge $e=ik$ of $K_{3,3}$, at a point $(x,y,t)$, couple $(\mu_x,\mu_y)$ to obtain a probability distribution on pairs $(a,b)\in V(H)^2$. Distribute the mass of each pair between the two integer layers bracketing $(\lambda+1)t$ by linear interpolation; if $(\lambda+1)t$ is an integer, all mass goes to that layer. Apply the same rule to $(\nu_x,\nu_y)$ for the second shore. Every pair in the first support and every pair in the second support lie in equal or consecutive layers of wire $e$ and are coordinatewise adjacent in $H$, so they are adjacent in $S_\lambda(H)$.
+\end{itemize}
+At the cylinder endpoints $t=0$ and $t=1$ there are two ways to obtain a distribution on basis words: couple $(\mu_x,\mu_y)$ first and then repeat the two sampled vertices on $A_{b,e}$ and $A_{b,e}^c$, or repeat $\mu_x$ on $A_{b,e}$ and $\mu_y$ on $A_{b,e}^c$ before coupling. Both give the same distribution, also at the complemented end $A_{6,36}=A_3^c$, because identical measures evaluate the same quantile function at $U$. Thus the block and cylinder formulas agree on all attachments, defining a continuous map $S(X)\to\B(S_\lambda(H))$. Because the two shores use the same rule with $\mu$ and $\nu$ interchanged and $\phi$ is equivariant, the induced map is equivariant.
+
+\emph{Restriction to $Z_{j,j}\to\B(G_{j,R})$.} Start at level $0$ with the equivariant identification $X_0=S^1=\B(K_3)$ of Section~\ref{sec:box}, whose shores are supported on $V(K_3)$. By induction on level $h$, every point on the distinguished orbit $O_h$ maps to a pair of measures supported on padded scalar vertices of $S^h_\lambda(K_3)$, because all four quantile functions at a constant tuple in basis block $6$ coincide. Now let $z\in Z_{j,j}$ and fix a continuous presentation tree of $z$ having at most $2j-1$ internal nodes and at most $j$ wire nodes. Tracing the quantile coupling recursively down the tree, every vertex in either shore support of the image of $z$ arises by selecting one vertex from the corresponding shore support at each child and, at each wire node, choosing one of the at most two layers bracketing $(\lambda+1)t$. Every such sampled vertex therefore inherits the same discrete presentation tree shape (with discrete scalar leaves and discrete wire layers), which still has scalar backgrounds, at most $2j-1$ internal nodes, and at most $j$ wire nodes, hence lies in $V(G_{j,R})$ by Definition~\ref{def:sparse-graph}. Because opposite shores are completely adjacent in the full iterate $S^j_\lambda(K_3)$ and $G_{j,R}$ is an induced subgraph, the image of $z$ lies in $\B(G_{j,R})$.
+\end{proof}

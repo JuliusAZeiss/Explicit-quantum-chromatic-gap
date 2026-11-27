@@ -7,7 +7,7 @@ Run with Python 3.8 or later, from the directory of this file:
 Only the standard library is used, and all linear algebra is exact integer
 arithmetic. The adjacent file small_graphs_data.json.gz contains the
 five-coloring and all vertex-deletion witnesses for the 165-vertex graph.
-The program reconstructs the graphs, checks the hand-proof tables and
+The program reconstructs the graphs, checks the tables of the analytical proofs and
 coloring rules, and compares the 219-vertex graph with its own certificate.
 
 Conventions. The colors of the quantum coloring are 1, 2, 3, read modulo 3,
@@ -488,7 +488,7 @@ def outcome_containing(E, vector):
 
 
 def check_vector_coloring(G, palette_size):
-    """Check the hand coloring using the five pairwise nonorthogonal vectors b^i_0."""
+    """Check the explicit coloring using the five pairwise nonorthogonal vectors b^i_0."""
     colors = []
     residual = 0
     for E in G.meas:
@@ -524,7 +524,7 @@ def check_three_colors(G, expected, name):
 
 
 def check_local_tables(G, removed=()):
-    """Reconstruct the local hand-proof tables of the 28-vertex graph and its 29-vertex variant."""
+    """Reconstruct the local tables of the analytical proof for the 28-vertex graph and its 29-vertex variant."""
     live = {E: v for E, v in G.index.items() if v not in removed}
     size = len(live)
     check(size in (28, 29), "unexpected size for a parity-table check")

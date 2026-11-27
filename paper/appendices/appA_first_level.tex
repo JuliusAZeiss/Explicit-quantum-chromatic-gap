@@ -1,0 +1,125 @@
+\section{First-level colorings: powers of the triangle and the five-color upper bound}\label{app:four}
+
+This appendix supplies the combinatorial proof of Lemma~\ref{lem:four-colorings} deferred from Section~\ref{sec:five} and proves the $(2n-1)$-coloring upper bound used for Theorem~\ref{thm:one-level}, Theorem~\ref{thm:finite-square}, Section~\ref{sec:targets}, and Problem~\ref{prob:growth}.
+
+\subsection{Proper \texorpdfstring{$4$}{4}-colorings of \texorpdfstring{$K_3^{\times2}$}{K3xK3} and \texorpdfstring{$K_3^{\times3}$}{K3xK3xK3}}\label{app:k3-four}
+
+We use the terms of Section~\ref{sec:five}: the cells, rows, and columns of $K_3^{\times2}$, and the row classes and column classes of a proper coloring.
+
+\begin{proof}[Proof of Lemma~\ref{lem:four-colorings}\textup{(a)}]
+A row class lies in one row and contains at least two cells in distinct columns, whereas a column class lies in one column and contains at least two cells in distinct rows. Hence no color class is both a row class and a column class. Every remaining color class consists of a single cell, because any two cells of the same color share a coordinate.
+
+If a proper coloring reads the first coordinate, some column consists of cells in row classes; since those three cells lie in three distinct rows, the coloring has at least three row classes (one in each row). Symmetrically, if it reads the second coordinate, it has at least three column classes (one in each column). Reading both coordinates would therefore require at least six distinct color classes, impossible for a $4$-coloring.
+
+Suppose now that a proper $4$-coloring reads neither coordinate. Because it does not read the first coordinate, every column contains a cell outside all row classes; the color class of that cell is either a column class or a single-cell class contained in that column. Likewise, every row contains a row class or a single-cell class. Let $p$ be the number of rows containing no row class, and let $q$ be the number of columns containing no column class.
+\begin{itemize}
+\item If $p=0$, there are at least $3$ row classes (one per row) and at least $3$ additional non-row classes (one inside each of the three columns), giving at least $6$ classes. The case $q=0$ is symmetric.
+\item If $p,q\ge1$, every cell lying in one of these $p$ rows and one of these $q$ columns belongs to neither a row class nor a column class, so each of these $pq$ cells forms its own single-cell class. Together with the at least $3-p$ row classes and at least $3-q$ column classes, the total number of color classes is at least
+\[
+ pq+(3-p)+(3-q)=5+(p-1)(q-1)\ge5.
+\]
+\end{itemize}
+Every case contradicts the assumption of four colors. Thus the coloring reads exactly one coordinate.
+\end{proof}
+
+\begin{proof}[Proof of Lemma~\ref{lem:four-colorings}\textup{(b)}]
+By part~(a), each of $f$ and $g$ reads exactly one coordinate. By symmetry between $f$ and $g$, suppose for contradiction that $f$ reads the first coordinate and $g$ reads the second. Choose a column whose three cells lie in row classes of $f$, and for each row $a$ let $t_a$ be the color under $f$ of the cell of this column in row $a$. The three colors $t_a$ are pairwise distinct because the three row classes are disjoint.
+
+Suppose $g(v)=t_a$ for some cell $v$ outside row $a$. The row class $f^{-1}(t_a)$ contains at least two cells in row $a$ in distinct columns, so at least one of them differs from $v$ in both coordinates, contradicting the cross-edge hypothesis $f(u)\ne g(v)$. Therefore $g$ uses each color $t_a$ exclusively inside row $a$. Since every column class of $g$ contains two cells in distinct rows, none of the three colors $t_a$ can be the color of a column class of $g$. Yet $g$ reads the second coordinate and therefore has a column class in each of the three columns. Those three column classes and the three colors $t_a$ would yield six distinct colors, contradicting that $f$ and $g$ share a palette of four colors.
+\end{proof}
+
+\begin{proof}[Proof of Lemma~\ref{lem:four-colorings}\textup{(c)}]
+We classify each of the three derived colorings $f_1,f_2,f_3$ as \emph{true} or \emph{false} according to its off-diagonal cells, show that true grids read the first coordinate while false grids read the second, and then use the diagonal triples $\rho_k$ to prove that neither two grids nor zero grids can be true.
+
+\emph{Notation and adjacency rules.} Take $\{1,2,3\}$ as the vertex set of $K_3$, with arithmetic modulo three. The three constant triples $(x,x,x)$ are pairwise adjacent; rename the four colors of $f$ so that $(x,x,x)$ has color $x$ for $x\in\{1,2,3\}$, and call the fourth color $\ast$. For $m\in\{1,2,3\}$ and $x\ne y$, let $[x,y]_m$ denote the triple with $x$ in coordinate $m$ and $y$ in the other two coordinates, so that $f_m(x,y)=f([x,y]_m)$ and $f_m(x,x)=x$. Call the six triples $[x,y]_m$ for a fixed $m$ the \emph{cells of grid $m$}; they correspond to the off-diagonal cells of $K_3^{\times2}$. The two cells $[x,y]_m$ with fixed $x$ form \emph{row $x$} of grid $m$, and the two with fixed $y$ form \emph{column $y$} of grid $m$. Finally, for each $k\in\mathbb Z/3$, let $\rho_k$ be the triple whose $m$th coordinate is $m+k$ ($m=1,2,3$).
+
+For any ordering $x,y,z$ of $\{1,2,3\}$ and any distinct $m,m'\in\{1,2,3\}$, the following pairs of triples differ in all three coordinates and are therefore adjacent in $K_3^{\times3}$:
+\begin{enumerate}
+\item[(E1)] the cell $[x,y]_m$ and the constant triple $(z,z,z)$;
+\item[(E2)] two cells $[x,y]_m$ and $[x',y']_m$ of the same grid with $x\ne x'$ and $y\ne y'$;
+\item[(E3)] two cells $[x,y]_m$ and $[x,z]_{m'}$ of distinct grids with $y\ne z$;
+\item[(E4)] any two distinct triples among $\rho_0,\rho_1,\rho_2$, as well as $\rho_k$ and $[x,m+k]_m$ for every $m$ and every $x\ne m+k$.
+\end{enumerate}
+By (E1), the color of $[x,y]_m$ cannot be $z$, so $f([x,y]_m)\in\{x,y,\ast\}$. Call $[x,y]_m$ a \emph{row cell}, a \emph{column cell}, or a \emph{null cell} according as its color is $x$, $y$, or $\ast$. Adjacent cells cannot have the same color; in particular, no two null cells are adjacent, and no two row cells $[x,y]_m$ and $[x,y']_{m'}$ with the same $x$ are adjacent.
+
+\emph{Structure of one grid.} Fix $m\in\{1,2,3\}$. Let $\mathcal I$ be the set of colors $x$ whose row in grid $m$ contains a row cell, and $\mathcal J$ the set of colors $y$ whose column in grid $m$ contains a column cell. If $[a,b]_m$ is a row cell (color $a$), then by (E2) it is adjacent to both cells of column $a$, so neither can have color $a$; hence $\mathcal I\cap\mathcal J=\emptyset$. Any cell $[x,y]_m$ with $x\notin\mathcal I$ and $y\notin\mathcal J$ is neither a row cell nor a column cell, so it must be a null cell. If two distinct colors $u,v$ lay outside $\mathcal I\cup\mathcal J$, then $[u,v]_m$ and $[v,u]_m$ would be adjacent null cells by (E2), which is impossible. Thus $|\mathcal I\cup\mathcal J|\ge2$. Moreover, if $|\mathcal I|\le1$ and $|\mathcal J|\le1$, then necessarily $\mathcal I=\{u\}$ and $\mathcal J=\{v\}$ for distinct $u,v$, and for the third color $w$ the cells $[v,w]_m$ and $[w,u]_m$ would be adjacent null cells by (E2), again impossible. Therefore exactly one of $|\mathcal I|\ge2$ and $|\mathcal J|\ge2$ holds. Call grid $m$ \emph{true} when $|\mathcal I|\ge2$ and \emph{false} when $|\mathcal J|\ge2$.
+
+Suppose grid $m$ is true. If $\mathcal I=\{1,2,3\}$, then $\mathcal J=\emptyset$, so grid $m$ has no column cell. Otherwise $\mathcal I=\{1,2,3\}\setminus\{s\}$ and $\mathcal J\subseteq\{s\}$ for a unique color $s$. Then the two cells of row $s$ are neither row cells (since $s\notin\mathcal I$) nor column cells (since their columns differ from $s$), so both are null cells; every other cell of grid $m$ is adjacent to one of these two null cells by (E2) and therefore cannot be null. Summarizing, in any true grid:
+\begin{equation}\label{eq:true-grid}
+\begin{minipage}{0.86\textwidth}
+if $\mathcal I=\{1,2,3\}$, there is no column cell; if $\mathcal I=\{1,2,3\}\setminus\{s\}$, the two cells of row $s$ are the only null cells and every column cell lies in column $s$.
+\end{minipage}
+\end{equation}
+Exchanging rows and columns gives the dual statement for a false grid; in particular, in a false grid any column containing no column cell consists of two null cells.
+
+\emph{True grids read the first coordinate.} If grid $m$ is true, pick distinct $a,b\in\mathcal I$. Row $a$ contains a row cell $[a,y]_m$, giving $f_m(a,y)=a=f_m(a,a)$, so the color class of $a$ under $f_m$ is a row class; similarly, the color class of $b$ is a row class. If $f_m$ read the second coordinate, it would also have three column classes, requiring at least five colors. By part~(a), $f_m$ reads the first coordinate. Symmetrically, if grid $m$ is false then $f_m$ reads the second coordinate and therefore not the first. It remains to show that exactly one of the three grids is true.
+
+\emph{Two true grids.} Suppose distinct grids $m\ne m'$ are both true, with row-cell sets $\mathcal I$ and $\mathcal I'$. By (E3), cells $[a,b]_m$ and $[a,b']_{m'}$ with $b\ne b'$ are adjacent, so
+\begin{equation}\label{eq:cross-grids}
+\text{$[a,b]_m$ and $[a,b']_{m'}$ with $b\ne b'$ are not both row cells and not both null cells.}
+\end{equation}
+For any $a\in\mathcal I\cap\mathcal I'$, choose row cells $[a,b]_m$ and $[a,b'']_{m'}$. Then $b''=b$ by~\eqref{eq:cross-grids}. Letting $b'$ be the third color (depending on $a$) and applying~\eqref{eq:cross-grids} to $[a,b']_m,[a,b]_{m'}$ and to $[a,b]_m,[a,b']_{m'}$ shows that
+\begin{equation}\label{eq:common-row}
+\text{neither $[a,b']_m$ nor $[a,b']_{m'}$ is a row cell.}
+\end{equation}
+We analyze the three possible sizes of $\mathcal I$ and $\mathcal I'$ using~\eqref{eq:true-grid}:
+\begin{itemize}
+\item If $\mathcal I=\mathcal I'=\{1,2,3\}$, neither grid has a column cell by~\eqref{eq:true-grid}, so~\eqref{eq:common-row} yields a null cell in every row of grid $m$. Because null cells in distinct rows cannot be adjacent by (E2), all three must share a single column $y$, which is impossible because row $y$ has no cell in column $y$.
+\item If $|\mathcal I|=|\mathcal I'|=2$, let $s\notin\mathcal I$ and $s'\notin\mathcal I'$. If $s=s'$, let $x,z$ be the remaining two colors; then $[s,x]_m$ and $[s,z]_{m'}$ are both null cells by~\eqref{eq:true-grid}, violating~\eqref{eq:cross-grids}. If $s\ne s'$, let $a$ be the third color, so $a\in\mathcal I\cap\mathcal I'$. By~\eqref{eq:common-row}, $[a,b']_m$ is not a row cell; since $a\ne s$, it is not a null cell by~\eqref{eq:true-grid}, so it must be a column cell and hence $b'=s$. The same argument in grid $m'$ forces $b'=s'$, contradicting $s\ne s'$.
+\item In the remaining case, after possibly swapping $m$ and $m'$, we have $\mathcal I=\{x,z\}=\{1,2,3\}\setminus\{s\}$ and $\mathcal I'=\{1,2,3\}$. Grid $m'$ has no column cell by~\eqref{eq:true-grid}, so applying~\eqref{eq:common-row} to $a=x$ and $a=z$ yields null cells in rows $x$ and $z$ of grid $m'$. By (E2) these two null cells must lie in a common column, which can only be column $s$; thus $b'=s$ for both $a=x$ and $a=z$. Every other cell of grid $m'$ is adjacent to one of these two null cells by (E2) and cannot be null, so
+\begin{equation}\label{eq:grid-b}
+\text{$[x,s]_{m'}$ and $[z,s]_{m'}$ are null cells, and the other four cells of grid $m'$ are row cells.}
+\end{equation}
+In grid $m$, \eqref{eq:common-row} says that $[x,s]_m$ and $[z,s]_m$ are not row cells; since they lie outside row $s$, \eqref{eq:true-grid} shows that they are not null cells, so both are column cells. By~\eqref{eq:true-grid}, the two cells of row $s$ in grid $m$ are null cells, and the remaining two cells $[x,z]_m$ and $[z,x]_m$ lie outside row $s$ and column $s$, so both are row cells. Thus
+\begin{equation}\label{eq:grid-a}
+\begin{minipage}{0.86\textwidth}
+in grid $m$, the cells $[s,x]_m,[s,z]_m$ are null cells, the cells $[x,s]_m,[z,s]_m$ are column cells, and the cells $[x,z]_m,[z,x]_m$ are row cells.
+\end{minipage}
+\end{equation}
+\end{itemize}
+
+\emph{At most one grid is true.} If two grids are true, the preceding analysis shows that we may label them $m,m'$ and label the colors $s,x,z$ so that~\eqref{eq:grid-b} and~\eqref{eq:grid-a} hold. Choose the unique $k\in\mathbb Z/3$ with $m+k\ne s$ and $m'+k\ne s$, and set $c=m+k$ and $c'=m'+k$, so $\{c,c'\}=\{x,z\}$. By (E4), the triple $\rho_k$ is adjacent to all four cells
+\[
+ [s,c]_m,\qquad [c',c]_m,\qquad [s,c']_{m'},\qquad [c,c']_{m'}.
+\]
+By~\eqref{eq:grid-a} and~\eqref{eq:grid-b}, the first cell is null (color $\ast$) and the remaining three are row cells with colors $c'$, $s$, and $c$. All four colors appear among the neighbors of $\rho_k$, leaving no color for $\rho_k$.
+
+\emph{At least one grid is true.} Suppose finally that all three grids are false. Whenever $\rho_k$ receives a color $y\ne\ast$, put $m=y-k\pmod3$. By (E4), both cells of column $y$ in grid $m$ are adjacent to $\rho_k$, so neither has color $y$; hence column $y$ of grid $m$ contains no column cell and, because grid $m$ is false, both cells of column $y$ are null cells. By (E4), the three triples $\rho_0,\rho_1,\rho_2$ are pairwise adjacent, so at least two of them receive distinct colors $y,y'\in\{1,2,3\}$, giving corresponding grids $m,m'$ whose columns $y$ and $y'$ consist of null cells. If $m=m'$, then $[y',y]_m$ and $[y,y']_m$ are adjacent null cells by (E2). If $m\ne m'$, let $z$ be the third color; then $[z,y]_m$ and $[z,y']_{m'}$ are adjacent null cells by (E3). Both cases are impossible. Hence exactly one grid is true.
+\end{proof}
+
+\subsection{A \texorpdfstring{$(2n-1)$}{(2n-1)}-coloring of all measurements in the six bases}\label{app:five-coloring}
+
+\begin{proposition}\label{prop:physical-upper}
+Let $n\ge3$. Assign arbitrary labels in $\{1,\ldots,n\}$ to the four rays of each of the six bases, identify equal projective measurements, and join two measurements $M,N$ when $M_aN_a=0$ for every label $a$. This graph has a proper coloring with $2n-1$ colors. Consequently $\chi(S_\lambda(H))\le2\chi(H)-1$ for every $\lambda\ge0$ and every graph $H$ with $\chi(H)\ge3$. In particular, $\chi(S^j_\lambda(K_3))\le2^{j+1}+1$ for all $j\ge0$ and $\lambda\ge0$.
+\end{proposition}
+\begin{proof}
+Let $p_i$ denote the position-$0$ vector of basis $i$ in the table of Section~\ref{sec:square} for $1\le i\le5$:
+\[
+ p_1=(1,1,1,1),\quad p_2=(1,0,0,0),\quad p_3=(1,1,1,-1),\quad p_4=(1,0,1,0),\quad p_5=(1,1,0,0),
+\]
+and let $u=(1,0,0,1)$, $v=(1,0,0,-1)$, $w=(0,1,1,0)$, $z=(0,1,-1,0)$ be the four vectors of basis $6$ in order. Direct inspection shows that $p_1,\ldots,p_5$ are pairwise nonorthogonal (every inner product $\langle p_i,p_j\rangle$ lies in $\{1,2\}$), that
+\[
+ p_1=u+w,\qquad 2p_2=u+v,\qquad p_3=v+w,
+\]
+that $u$ is nonorthogonal to $p_1,p_2,p_4,p_5$ (with inner products $2,1,1,1$), and that $\langle v,p_3\rangle=2\ne0$. For any measurement $M$ and label $a$, call the range of $M_a$ the \emph{outcome space} of $a$ in $M$. We color the graph using $n$ ordinary colors $1,\ldots,n$ and $n-1$ primed colors $a'$ for $1\le a<n$.
+
+\emph{Class 1: measurements containing some $p_i$ in an outcome space.} For any measurement $M$ such that some outcome space contains at least one of $p_1,\ldots,p_5$, let $i$ be the smallest index with $p_i$ in an outcome space of $M$, and let $a$ be the unique label whose outcome space contains $p_i$. Assign $M$ the ordinary color $a$, except when $i=3$ and $a<n$, in which case assign it the primed color $a'$. This rule depends solely on the measurement $M$. Every measurement arising from any of the first five bases lies in Class 1, because $p_i$ is a ray of basis $i$.
+
+Two Class 1 measurements that receive the same color cannot be adjacent, because their outcome spaces for a common label contain nonorthogonal vectors. There are three cases.
+\begin{itemize}
+\item For an ordinary color $a<n$, both outcome spaces of $a$ contain one of $p_1,p_2,p_4,p_5$.
+\item For the color $n$, both outcome spaces of $n$ contain one of $p_1,\ldots,p_5$.
+\item For a primed color $a'$, both outcome spaces of $a$ contain $p_3$.
+\end{itemize}
+
+\emph{Class 2: remaining measurements.} Every measurement $M$ outside Class 1 arises from basis $6$, and its labels on $u,v,w$ must be pairwise distinct: equal labels on $(u,w)$, $(u,v)$, or $(v,w)$ would place $p_1=u+w$, $2p_2=u+v$, or $p_3=v+w$ inside an outcome space. Let $a$ and $b$ be the labels of $M$ on $u$ and $v$, respectively.
+\begin{itemize}
+\item If $a<n$, assign $M$ the ordinary color $a$. Among Class 2 measurements, equal ordinary colors share label $a$ at $u$, so they are nonadjacent. Every Class 1 measurement with ordinary color $a<n$ has one of $p_1,p_2,p_4,p_5$ in its outcome space for $a$, and each of these four vectors is nonorthogonal to $u$, so no Class 1--Class 2 edge shares color $a$.
+\item If $a=n$, then $b<n$ (since $a\ne b$); assign $M$ the primed color $b'$. Among Class 2 measurements, equal primed colors share label $b$ at $v$, so they are nonadjacent. Every Class 1 measurement with color $b'$ has $p_3$ in its outcome space for $b$, and $\langle v,p_3\rangle\ne0$, so no Class 1--Class 2 edge shares color $b'$.
+\end{itemize}
+Thus the $2n-1$ colors properly color the physical graph of the proposition.
+
+\emph{Bound on $\chi(S_\lambda(H))$.} Let $c:V(H)\to\{1,\ldots,n\}$ be a proper coloring with $n=\chi(H)\ge3$. Applying $c$ entrywise to every basis word and wire vertex yields a graph homomorphism $S_\lambda(H)\to S_\lambda(K_n)$. Next, map each basis word $(i,g)$ of $S_\lambda(K_n)$ to the measurement assigning label $g_s$ to ray $Q^i_s$, and each wire vertex $(e,\ell,x,y)$ to the measurement assigning $x$ to $P_e$ and $y$ to $I-P_e$ (which coincides with the measurements of its two endpoint words by~\eqref{eq:planes}). On every edge of $S_\lambda(K_n)$---whether inside a basis chart or along a wire---the two mapped measurements are orthogonal at every label and are therefore distinct and adjacent in the physical graph. Composing these homomorphisms with the $(2n-1)$-coloring above gives $\chi(S_\lambda(H))\le2\chi(H)-1$.
+
+\emph{Iterates of the triangle.} Put $c_j=\chi(S^j_\lambda(K_3))$, so that $c_0=3$. Every iterate contains a triangle (proof of Theorem~\ref{thm:gap}), so $c_j\ge3$, and the bound just proved gives $c_{j+1}-1\le2(c_j-1)$. By induction, $c_j-1\le2^j(c_0-1)=2^{j+1}$.
+\end{proof}

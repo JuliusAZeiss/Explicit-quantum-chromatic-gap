@@ -1,0 +1,58 @@
+\section{Rounding to large outcomes}\label{app:rounding}
+
+This appendix gives the analytical proof of Theorem~\ref{thm:rank-rounding} (Section~\ref{sec:rounding}).
+
+\begin{proof}[Proof of Theorem~\ref{thm:rank-rounding}]
+Set $s=\lceil d/3\rceil$ and $\theta=3/2^{5/3}$. Our goal is to construct, for every $d\ge8$, a finite set of unit vectors $z_1,\ldots,z_m\in\C^d$ with
+\begin{equation}\label{eq:hitting-number}
+ m\le 1+768\,d\,\bigl(1+d^2\log(1+2d)\bigr)\,\theta^{-d}
+\end{equation}
+such that every orthogonal projection $Q$ on $\C^d$ of rank $s$ is hit by at least one $z_i$ (that is, $\langle z_i,Qz_i\rangle>1/2$). We do this in four steps: cover all rank-$s$ projections by an operator-norm net, lower-bound the hitting margin probability for a single random unit vector via the beta distribution, apply a union bound over the net, and convert the resulting hitting set into a proper coloring of $G$.
+
+\emph{Step 1: An operator-norm net.} Every orthogonal projection $Q$ of rank $s$ lies in the closed unit ball of the operator norm on the real vector space of $d\times d$ Hermitian matrices, which has real dimension $d^2$. Let $\mathcal N$ be a maximal subset of rank-$s$ projections with pairwise operator-norm distances strictly greater than $1/d$. The open operator-norm balls of radius $1/(2d)$ centered at the points of $\mathcal N$ are pairwise disjoint and contained in the ball of radius $1+1/(2d)$ centered at $0$. Comparing $d^2$-dimensional volumes yields
+\[
+ |\mathcal N|\le \left(\frac{1+1/(2d)}{1/(2d)}\right)^{d^2}=(1+2d)^{d^2}.
+\]
+By maximality of $\mathcal N$, every rank-$s$ projection $Q$ satisfies $\|Q-Q'\|\le1/d$ for some $Q'\in\mathcal N$.
+
+\emph{Step 2: Tail bound for one random unit vector.} Let $z\in\C^d$ be uniformly random on the unit sphere and fix a rank-$s$ projection $Q$. Writing $z=g/\|g\|$ for a standard complex Gaussian vector $g\sim\mathcal{CN}(0,I_d)$ in an eigenbasis of $Q$ expresses $Y=\langle z,Qz\rangle$ as the ratio of the sum of $s$ independent standard exponential variables to the sum of all $d$ independent standard exponential variables. Hence $Y$ follows the $\operatorname{Beta}(s,d-s)$ distribution, with probability density
+\[
+ f_Y(y)=\frac{(d-1)!}{(s-1)!(d-s-1)!}\,y^{s-1}(1-y)^{d-s-1}
+ =(d-1)\binom{d-2}{s-1}y^{s-1}(1-y)^{d-s-1}
+\]
+on $[0,1]$. Restrict $y$ to the interval $\bigl[\tfrac12+\tfrac1d,\tfrac12+\tfrac2d\bigr]$ of length $1/d$ (which lies inside $(0,1)$ since $d\ge8$). On this interval we have $y^{s-1}\ge2^{-(s-1)}$ and $1-y\ge\tfrac12-\tfrac2d=\tfrac12(1-4/d)$. Because $x\mapsto x\log(1-4/x)$ has derivative $\log(1-4/x)+4/(x-4)>0$ for $x>4$, the sequence $(1-4/d)^d$ increases with $d\ge8$; since $0<1-4/d<1$ and $d-s-1<d$, for all $d\ge8$ we obtain
+\begin{align*}
+ (1-y)^{d-s-1}&\ge 2^{-(d-s-1)}\left(1-\frac4d\right)^{d-s-1}\\
+ &\ge 2^{-(d-s-1)}\left(1-\frac4d\right)^d\ge 2^{-(d-s-1)}\left(\frac12\right)^8=\frac{2^{-(d-s-1)}}{256}.
+\end{align*}
+Integrating $f_Y$ over $\bigl[\tfrac12+\tfrac1d,\tfrac12+\tfrac2d\bigr]$ yields
+\[
+ p:=\Pr\!\left[Y>\frac12+\frac1d\right]
+ \ge \frac{d-1}{d}\binom{d-2}{s-1}\frac{2^{-(d-2)}}{256}.
+\]
+
+To bound the binomial coefficient, recall that the $\operatorname{Binomial}(n,k/n)$ probability mass function attains its maximum at $k$, so $1\le(n+1)\binom{n}{k}(k/n)^k(1-k/n)^{n-k}$, i.e., $\binom{n}{k}\ge e^{nH(k/n)}/(n+1)$, where $H(y)=-y\log y-(1-y)\log(1-y)$ is the binary entropy function. Set $n=d-2$ and $k=s-1$. Since $3s-d\in\{0,1,2\}$, we have
+\[
+ \left|\frac{k}{n}-\frac13\right|=\frac{|3s-d-1|}{3(d-2)}\le\frac{1}{3n},
+\]
+and for all $d\ge8$ we also have $k/n\in[1/4,1/2]$. On $[1/4,1/2]$, the ratio $(1-y)/y$ lies in $[1,3]$, so $|H'(y)|=|\log((1-y)/y)|\le\log3$. By the mean value theorem, $nH(k/n)\ge nH(1/3)-\tfrac13\log3\ge nH(1/3)-\log3$. Since $e^{H(1/3)}=3/2^{2/3}=2\theta$ and $\theta=3/2^{5/3}<1$, we obtain
+\[
+ p\ge \frac{d-1}{d}\cdot\frac{(2\theta)^{d-2}}{3(d-1)}\cdot\frac{2^{-(d-2)}}{256}
+ =\frac{\theta^{\,d-2}}{768\,d}
+ \ge\frac{\theta^{\,d}}{768\,d}.
+\]
+
+\emph{Step 3: Union bound over the net.} Draw $m=\bigl\lceil\bigl(1+d^2\log(1+2d)\bigr)/p\bigr\rceil$ independent uniformly random unit vectors $z_1,\ldots,z_m\in\C^d$. By Step 2, $m$ satisfies~\eqref{eq:hitting-number}. The probability that some net point $Q'\in\mathcal N$ fails to satisfy $\langle z_i,Q'z_i\rangle>\tfrac12+\tfrac1d$ for every $i\in\{1,\ldots,m\}$ is at most
+\[
+ |\mathcal N|(1-p)^m\le (1+2d)^{d^2}e^{-pm}=\exp\!\bigl(d^2\log(1+2d)-pm\bigr)<1.
+\]
+Hence there exists a deterministic choice of $z_1,\ldots,z_m$ such that every $Q'\in\mathcal N$ satisfies $\langle z_i,Q'z_i\rangle>\tfrac12+\tfrac1d$ for some $i$. Now let $Q$ be any rank-$s$ projection on $\C^d$. Pick $Q'\in\mathcal N$ with $\|Q-Q'\|\le1/d$ and an index $i$ with $\langle z_i,Q'z_i\rangle>\tfrac12+\tfrac1d$. Then
+\[
+ \langle z_i,Qz_i\rangle\ge \langle z_i,Q'z_i\rangle-\|Q-Q'\|>\frac12,
+\]
+so $z_i$ hits $Q$. This establishes~\eqref{eq:hitting-number}.
+
+\emph{Step 4: Coloring the graph.} Let $(P_{v,a})_{a=1}^3$ be any quantum $3$-coloring of $G$ on $\C^d$ ($d\ge8$). At each vertex $v$, the ranks of $P_{v,1},P_{v,2},P_{v,3}$ sum to $d$, so some outcome $a(v)\in\{1,2,3\}$ satisfies $\rank P_{v,a(v)}\ge s$. Choose a rank-$s$ subprojection $Q_v\le P_{v,a(v)}$ and an index $i(v)\in\{1,\ldots,m\}$ such that $z_{i(v)}$ hits $Q_v$ (and hence hits $P_{v,a(v)}$). Color $v$ by the pair $(a(v),i(v))$. If two adjacent vertices $u,v$ received the same pair $(a,i)$, then the single unit vector $z_i$ would hit both of the orthogonal projections $P_{u,a}$ and $P_{v,a}$, contradicting $P_{u,a}+P_{v,a}\le I$. Thus this coloring is proper and uses at most $3m\le C\,d^3\log(d+1)\,\theta^{-d}\le C\,d^4\theta^{-d}$ colors for $d\ge8$.
+
+For each small local dimension $1\le d<8$, the space of rank-$s$ projections on $\C^d$ is compact; each projection is hit by any unit vector in its range, which also hits an open neighborhood of nearby projections, so compactness yields a finite hitting set of unit vectors. Adjusting the absolute constant $C$ to cover $1\le d<8$ completes the proof.
+\end{proof}

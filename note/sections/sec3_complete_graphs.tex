@@ -1,0 +1,200 @@
+\section{Complete graphs and maps from spheres}\label{sec:complete}
+
+\subsection{Colorings of powers of \texorpdfstring{$K_n$}{Kn} with \texorpdfstring{$2n-2$}{2n-2} colors}\label{sec:dictator}
+
+The categorical power $K_n^{\times L}$ has vertex set $[n]^L$, and two tuples are adjacent when they differ in every coordinate. We import the following lemma. In~\cite{BG} it is stated, with $t$ in place of $n$, for functions that satisfy the ``$[2,t,2t-2]$-colorability gadget'', which by~\cite[Proposition~2.4]{BG} are the proper colorings of $K_t^{\times L}$ with $2t-2$ colors.
+
+\begin{lemma}[Brakensiek and Guruswami {\cite[Lemma~3.7]{BG}}]\label{lem:bg}
+Let $n\ge3$ and $L\ge1$, and let $f$ be a proper coloring of $K_n^{\times L}$ with $2n-2$ colors. Then there are a coordinate $i\in[L]$, a set $S$ of $n-2$ colors and a function $\gamma$ on $[n]$ such that $f(x)=\gamma(x_i)$ for every $x$ with $f(x)\notin S$.
+\end{lemma}
+
+Following the term ``dictator'' of~\cite{BG}, we call a coordinate $i$ as in Lemma~\ref{lem:bg} a \emph{dictator coordinate} of $f$. For $L=2$ we use the terms of~\cite[Section~2.4]{Z}. The vertices of $K_n^{\times2}$ are \emph{cells}, the cells with a fixed first coordinate form a \emph{row}, and those with a fixed second coordinate form a \emph{column}. Two cells of the same color agree in a coordinate. A color class that contains two cells of one row lies in that row, because a further cell of the class agrees with each of the two in a coordinate; it is called a \emph{row class}. \emph{Column classes} are defined in the same way. No class is of both kinds, and a class of neither kind is a single cell. A proper coloring of $K_n^{\times2}$ \emph{reads the first coordinate} if some column consists of cells of row classes, and \emph{reads the second coordinate} if some row consists of cells of column classes.
+
+\begin{lemma}\label{lem:dictator}
+Let $n\ge3$, and let $f,g$ be proper colorings of $K_n^{\times L}$ with colors from one set of $2n-2$ colors.
+\begin{enumerate}
+\item[(a)] The coloring $f$ has exactly one dictator coordinate, denoted $\delta(f)$. For $L=2$ it reads exactly one coordinate, namely the coordinate $\delta(f)$.
+\item[(b)] Let $\sigma:[L]\to[L']$ be a map and put $f_\sigma(x)=f(x_{\sigma(1)},\ldots,x_{\sigma(L)})$ for $x\in[n]^{L'}$. Then $f_\sigma$ is a proper coloring of $K_n^{\times L'}$ and $\delta(f_\sigma)=\sigma(\delta(f))$.
+\item[(c)] If $f(x)\ne g(y)$ whenever $x$ and $y$ differ in every coordinate, then $\delta(f)=\delta(g)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\emph{Identifying coordinates.} In the situation of~(b), tuples $x,y\in[n]^{L'}$ that differ in every coordinate give tuples $(x_{\sigma(k)})_k$ and $(y_{\sigma(k)})_k$ that differ in every coordinate, so $f_\sigma$ is proper. If $i$ is a dictator coordinate of $f$ with $S$ and $\gamma$, then $f_\sigma(x)\notin S$ implies $f_\sigma(x)=\gamma(x_{\sigma(i)})$, so $\sigma(i)$ is a dictator coordinate of $f_\sigma$.
+
+\emph{Two coordinates: exactly one coordinate is read.} Let $L=2$. If $f$ reads the first coordinate, the $n$ cells of some column lie in row classes, which are distinct because they lie in distinct rows; so $f$ has at least $n$ row classes. If it reads the second coordinate it has at least $n$ column classes. It cannot read both, since this would need $2n$ colors. Suppose that it reads neither. Then every column contains a cell outside the row classes, whose class is a column class or a single cell and lies in that column; likewise every row contains a row class or a class that is a single cell. Let $p$ be the number of rows that contain no row class and $q$ the number of columns that contain no column class. If $p=0$, there are at least $n$ row classes and at least one further class inside each column, hence at least $2n$ classes; the case $q=0$ is symmetric. If $p,q\ge1$, each of the $pq$ cells in these rows and columns is a class by itself, and there are at least $n-p$ row classes and $n-q$ column classes, hence at least
+\[
+ pq+(n-p)+(n-q)=2n-1+(p-1)(q-1)\ \ge\ 2n-1
+\]
+classes. Each case contradicts the number $2n-2$ of colors.
+
+\emph{Two coordinates: the dictator coordinate.} Let $L=2$ and let the first coordinate be a dictator coordinate of $f$, with $S$ and $\gamma$. In the row with first coordinate $a$ every cell has its color in $S\cup\{\gamma(a)\}$, so a row has at most $n-1$ colors. A row that consists of cells of column classes has $n$ colors, because these classes lie in distinct columns. Hence $f$ does not read the second coordinate, and by the preceding paragraph it reads the first. In the same way, if the second coordinate is a dictator coordinate, $f$ reads the second coordinate. Since $f$ reads only one coordinate and has a dictator coordinate by Lemma~\ref{lem:bg}, it has exactly one, which is the coordinate that it reads.
+
+\emph{Proof of~\textup{(a)} and~\textup{(b)}.} Suppose that $i\ne i'$ are dictator coordinates of a coloring $f$ of $K_n^{\times L}$. Let $\sigma:[L]\to[2]$ map $i$ to $1$ and every other coordinate to $2$. By the first paragraph both coordinates of $f_\sigma$ are dictator coordinates, which we have excluded. With Lemma~\ref{lem:bg} this proves~(a). Part~(b) follows from~(a) and the first paragraph.
+
+\emph{Proof of~\textup{(c)}.} Suppose that $\delta(f)\ne\delta(g)$, and let $\sigma:[L]\to[2]$ map $\delta(f)$ to $1$ and every other coordinate to $2$. By~(b), $\delta(f_\sigma)=1$ and $\delta(g_\sigma)=2$, so $f_\sigma$ reads the first coordinate and $g_\sigma$ the second, and $f_\sigma(u)\ne g_\sigma(v)$ whenever the cells $u,v$ differ in both coordinates. Choose a column whose cells lie in row classes of $f_\sigma$, and let $t_a$ be the color of its cell in row $a$; these $n$ colors are distinct. If $g_\sigma(v)=t_a$ for a cell $v$ outside row $a$, then one of the at least two cells of the row class $f_\sigma^{-1}(t_a)$ differs from $v$ in both coordinates, which is excluded. So $g_\sigma$ uses $t_a$ only in row $a$, and no $t_a$ is the color of a column class of $g_\sigma$. As $g_\sigma$ has at least $n$ column classes, the two colorings together use at least $2n$ colors, a contradiction.
+\end{proof}
+
+\subsection{One substitution over a complete graph}\label{sec:kn-one}
+
+Let $S'_\lambda(K_n)$ be the spanning subgraph of $S_\lambda(K_n)$ obtained by deleting every edge between two words of one basis chart that are not both constant on a common set $A_r$, $r\in\{1,2,3\}$. Edges at interior vertices of wires are kept, and so are, for $\lambda=0$, the edges between the two end grids of a wire. Two words of one end grid are constant on a common set $A_r$, so the end grids keep all their edges. Recall the physical graph $\mathcal P_n$ of~(Z1).
+
+\begin{theorem}[One substitution over a complete graph]\label{thm:complete}
+Let $n\ge3$ and $\lambda\ge0$. Then
+\[
+ \chi(S_\lambda(K_n))=2n-1\qquad\text{and}\qquad\cq(S_\lambda(K_n))=n .
+\]
+More generally, $\chi(G)=2n-1$ and $\cq(G)=n$ for every graph $G$ that admits graph homomorphisms $S'_\lambda(K_n)\to G\to\mathcal P_n$. This applies to $S'_\lambda(K_n)$, to $S_\lambda(K_n)$ and to $\mathcal P_n$.
+\end{theorem}
+\begin{proof}
+Sending a vertex of $S_\lambda(K_n)$ to its measurement is a homomorphism $S_\lambda(K_n)\to\mathcal P_n$, because adjacent vertices carry measurements that are orthogonal at every label, hence distinct and adjacent. So the three named graphs are of the stated kind.
+
+\emph{Upper bounds.} Let $S'_\lambda(K_n)\to G\to\mathcal P_n$. Then $\chi(G)\le\chi(\mathcal P_n)\le2n-1$ by~(Z1). The measurements that are the vertices of $\mathcal P_n$ form a quantum $n$-coloring of $\mathcal P_n$ in local dimension four, which pulls back to $G$; so $\cq(G)\le n$. The $n$ constant words of one basis chart are constant on every $A_r$ and form a clique of $S'_\lambda(K_n)$, whose image in $G$ is a clique on $n$ vertices; so $\cq(G)\ge n$ by~(Q4).
+
+\emph{Lower bound.} It suffices to show that $S'_\lambda(K_n)$ has no proper coloring with $2n-2$ colors. Suppose that $f$ is one. For a basis $i$ and a set $D$ among $A_1,A_2,A_3,\{1\},\{2\},\{3\}$, let $f^i_D(x,y)$ be the color of the word of chart $i$ that takes $x$ on $D$ and $y$ on $D^c$. For fixed $i$ and $D$ these $n^2$ words are constant on a common set $A_r$: on $A_r$ if $D=A_r$, and on $A_r$ for either $r\ne s$ if $D=\{s\}$. Hence $f^i_D$ is a proper coloring of $K_n^{\times2}$ with $2n-2$ colors. Put $b^i_D=1$ if $\delta(f^i_D)=1$ and $b^i_D=0$ otherwise.
+
+Fix a ternary template $\{A_r,\{s\},\{t\}\}$ at a basis $i$. The $n^3$ words of chart $i$ that are constant on $A_r$, indexed by their values on the three parts, induce a copy of $K_n^{\times3}$ in $S'_\lambda(K_n)$. Let $F$ be the restriction of $f$ to it. If $D$ is the $k$th part and $\sigma:[3]\to[2]$ maps $k$ to $1$ and the other two coordinates to $2$, then $f^i_D=F_\sigma$, so $\delta(f^i_D)=\sigma(\delta(F))$ by Lemma~\ref{lem:dictator}(b). Thus $b^i_D=1$ exactly for the part $D$ that is the coordinate $\delta(F)$, and
+\[
+ b^i_{A_r}+b^i_{\{s\}}+b^i_{\{t\}}=1 .
+\]
+Add the three equations of the three ternary templates at basis $i$ modulo two. Each singleton occurs in two of them, which leaves
+\begin{equation}\label{eq:odd-bits}
+ b^i_{A_1}+b^i_{A_2}+b^i_{A_3}\equiv1\pmod2\qquad(1\le i\le6).
+\end{equation}
+
+Now fix an edge $e=ik$ of $K_{3,3}$ and let $h_\ell(x,y)$ be the color of the vertex $(x,y)$ of layer $\ell$ of its wire. Each $h_\ell$ is a proper coloring of $K_n^{\times2}$, and $h_\ell(x,y)\ne h_{\ell+1}(x',y')$ whenever $x\ne x'$ and $y\ne y'$. By Lemma~\ref{lem:dictator}(c), $\delta(h_0)=\delta(h_{\lambda+1})$. By the identifications at the ends, $h_0=f^i_{A_{i,e}}$, and $h_{\lambda+1}=f^k_{A_{k,e}}$ if $e\ne36$, whereas $h_{\lambda+1}(x,y)=f^6_{A_3}(y,x)$ if $e=36$. Hence
+\[
+ b^i_{A_{i,e}}=b^k_{A_{k,e}}\quad(e\ne36),\qquad b^3_{A_3}=1-b^6_{A_3} .
+\]
+Each of the eighteen projections $P^i_r$ occurs once in~\eqref{eq:planes}, so these nine relations match the eighteen bits $b^i_{A_r}$ in pairs, eight pairs of equal bits and one pair of unequal bits. The sum of all eighteen bits is therefore odd. By~\eqref{eq:odd-bits} it is a sum of six odd numbers, hence even. This contradiction proves $\chi(S'_\lambda(K_n))\ge2n-1$, and $\chi(G)\ge2n-1$ follows for every $G$ as in the statement.
+\end{proof}
+
+\begin{remark}\label{rem:complete}
+(i) For $n=3$ the equality $\chi(S_\lambda(K_3))=5$ is~\cite[Theorem~2.4]{Z}, whose proof uses~\cite[Lemma~2.3]{Z} in place of Lemma~\ref{lem:dictator} and no imported result. The proof above uses Lemma~\ref{lem:dictator} only for $L\le3$. For odd $n$ there is a second proof of the lower bound that does not use Lemma~\ref{lem:bg}: Theorem~\ref{thm:spheres} with $j=1$ gives $w^{2n-3}\ne0$ on $\B(S_\lambda(K_n))$, and also on $\B(S'_\lambda(K_n))$, because the map of~(T3) that its proof uses takes values there for every $n$, as the first step of the proof of Proposition~\ref{prop:even} shows.
+
+(ii) Theorem~\ref{thm:complete} shows that the bound $\chi(S_\lambda(H))\le2\chi(H)-1$ of~(Z1) is attained by all complete graphs. It is also attained by every nonbipartite graph $H$ with $\chi(H)=3$: an odd cycle of $H$ gives a tower of length zero over $H$~\cite[proof of Theorem~7.1]{Z}, so $\chi(S_\lambda(H))\ge5$ by~(T4) and~(T1).
+
+(iii) Ciardo proved that for every $n\ge3$ there are graphs with a quantum $n$-coloring in local dimension three and chromatic number at least $2n-1$~\cite[Corollary~35 and Example~36]{Ciardo24}. The graphs of Theorem~\ref{thm:complete} are explicit, have local dimension four, and their chromatic number is determined.
+\end{remark}
+
+\subsection{Substituting over a sphere}\label{sec:spheres}
+
+The lower bound of~\cite{Z} starts from the circle $\B(K_3)$, which carries a tower of length zero. A sphere $S^{2h+1}$ with its standard circle action carries a tower of length $h$, so (T4) gives a tower of length $h+j$ after $j$ substitutions. We show that the first substitution does better: it produces a tower of length $2h+1$.
+
+\paragraph{Presentations over a space.}
+Let $Y$ be a compact polyhedron and put $X_0=Y$ and $X_g=S(X_{g-1})$ for $g\ge1$. The \emph{leaf points} of $X_g$ form the subspace $L_g$, where $L_0=Y$ and $L_g$ consists of the constant tuples $(z,z,z,z)$ in the block of basis $6$ with $z\in L_{g-1}$; thus $L_g$ is a copy of $Y$. A \emph{continuous presentation} of a point of $X_g$ is a tree as in Section~\ref{sec:substitution} with the following changes. A leaf carries a point of $Y$ and evaluates at level $g$ to the corresponding point of $L_g$. A basis node at level $g\ge1$ evaluates to the image of the values of its children under its template map. A wire node at level $g\ge1$ carries an edge $e$ of $K_{3,3}$ and a parameter $t\in[0,1]$ and evaluates to the point $(x,y,t)$ of the cylinder of $e$, where $x\in X_{g-1}$ is the value of its first child and $y\in L_{g-1}$ the value of its background, which is a leaf. Let $Z_{g,0}(Y)=L_g$, and for $m\ge1$ let $Z_{g,m}(Y)\subseteq X_g$ be the set of points that have a continuous presentation with at most $2m-1$ internal nodes and at most $m$ wire nodes. Each $Z_{g,m}(Y)$ is a finite union of images of products of copies of $Y$ and of intervals under piecewise linear maps, hence a compact polyhedron. A map $Y\to Y'$ induces maps $Z_{g,m}(Y)\to Z_{g,m}(Y')$. If $Y$ is a circle space, each $Z_{g,m}(Y)$ is invariant under the circle action and is a circle space. For $Y=S^1$ these are the spaces $Z_{g,m}$ of~\cite[Appendix~B.1]{Z}. Every point of $X_1=S(Y)$ has a presentation with one internal node, a basis node with three leaves or a wire node with two leaves, so
+\begin{equation}\label{eq:first-level}
+ Z_{1,m}(Y)=S(Y)\qquad(m\ge1).
+\end{equation}
+
+\begin{lemma}[Supports]\label{lem:supports}
+Let $Y$ be a circle space and $g\ge1$. Let $x_0,\ldots,x_k$ be a tower on $X_g$ such that $x_0$ is a point of $L_g$ and $x_m\in C_{2m}(Z_{g,m}(Y);\Ftwo)$ for $1\le m\le k$. Then $X_{g+1}$ carries a tower $y_0,\ldots,y_{k+1}$ such that $y_0$ is a point of $L_{g+1}$ and $y_m\in C_{2m}(Z_{g+1,m}(Y);\Ftwo)$ for $1\le m\le k+1$.
+\end{lemma}
+\begin{proof}
+Take the tower of~(T2). For $Y=S^1$ and $k=g$ this is the induction step in the proof of~\cite[Lemma~B.1(b)]{Z}, namely Step~4 of that proof. The argument uses neither assumption, and we recall it. Put $b=x_0$. In~\cite{Z} the chain $y_m$ is the coefficient of $u^m$ in a series $L+Jx$ in a formal variable $u$, where $x=\sum_mu^mx_m$. The series $L$ is the sum, over the nineteen templates, of the images under the template maps of \emph{corrected products} of copies of $x$, one for each part. A corrected product is a sum of terms, each obtained from a product of chains $x_{i_1},x_{i_2}$ and, for a ternary template, $x_{i_3}$ by letting chains of rotations act on the factors; a term has a \emph{correction order} $r\ge0$, where $r=0$ means that nothing is rotated, and contributes to the coefficient of $u^m$ with $m=r+\sum_\nu i_\nu$. Further, $Jx=Ex+u(BK+KB)x$, where $E$ inserts a chain on the positions $A_{b',e}$ at an end $b'$ of a wire with the point $b$ on the other positions, summed over the eighteen ends, and $K$ sends a chain $c$ to the chain swept by the points $(z,b,t)$, $z$ in $c$ and $t\in[0,1]$, in the nine cylinders. Rotations map $L_g$ and every $Z_{g,i}(Y)$ to themselves.
+
+Fix $m$ with $1\le m\le k+1$. The terms of $L$ of correction order zero with exactly one factor of positive index sum to $Ex_m$ and cancel the term $Ex_m$ of $Jx$; for $m=k+1$ both are absent. Every other term of $y_m$ is of one of three kinds.
+\begin{itemize}
+\item A term of $L$ of correction order zero with at least two factors of positive indices $i_\nu$, which sum to $m$; its other factors are the point $b$. Each of its points has a presentation consisting of a basis node over presentations with at most $2i_\nu-1$ internal nodes and $i_\nu$ wire nodes and over leaves. As there are at least two indices $i_\nu$, it has at most $1+\sum_\nu(2i_\nu-1)\le2m-1$ internal nodes and at most $m$ wire nodes.
+\item A term of $L$ of correction order $r\ge1$. The indices of its factors sum to $m-r$, a factor of index $i\ge1$ has its points in $Z_{g,i}(Y)$, and a factor of index zero is a point of $L_g$. Each of its points has a presentation with at most $1+2(m-r)\le2m-1$ internal nodes and at most $m-r$ wire nodes.
+\item The terms $BKx_{m-1}$ and $KBx_{m-1}$. Their points are of the form $(z,y,t)$ with $z\in Z_{g,m-1}(Y)$ and $y$ in the orbit of $b$, which lies in $L_g$. Such a point is presented by a wire node over a presentation of $z$ and a leaf. For $m=1$ this is one internal node, which is a wire node; for $m\ge2$ there are at most $2(m-1)-1+1\le2m-1$ internal nodes and at most $m$ wire nodes.
+\end{itemize}
+Finally $y_0$ is the constant tuple on $b$ in the block of basis $6$, a point of $L_{g+1}$.
+\end{proof}
+
+\begin{theorem}[Maps from spheres]\label{thm:spheres}
+Let $H$ be a graph, $h\ge0$ and $\varepsilon\in\{0,1\}$, and suppose that there is an equivariant map from the sphere $S^{2h+1+\varepsilon}$ with the antipodal involution to $\B(H)$. Let $j\ge1$ and $\lambda\ge0$, put $s=2h+j$, and let $G$ be $S^j_\lambda(H)$ or its induced subgraph $G^{(s)}_{j,\lambda}(H)$. Then
+\[
+ w^{2s+1+\varepsilon}\ne0\ \text{ on }\B(G)\qquad\text{and}\qquad\chi(G)\ \ge\ 2s+3+\varepsilon\;=\;4h+2j+3+\varepsilon .
+\]
+The graph $G^{(s)}_{j,\lambda}(H)$ contains a copy of $H$, has a $(\lambda+2)$-compatible quantum homomorphism to $H$ in local dimension $4^j$, and satisfies
+\[
+ |V|+|E|\ \le\ C^{\,s}\,(1+\lambda)^{\min\{s,\,3^{j-1}\}}
+\]
+with a constant $C$ that depends only on $|V(H)|$.
+\end{theorem}
+
+For comparison, (T4) alone gives $\chi(S^j_\lambda(H))\ge2(h+j)+3$ under the same hypothesis with $\varepsilon=0$.
+
+\begin{proof}
+Put $N=2h+1$ and let $Y=S^N$ be the unit sphere of $\C^{h+1}$ with the action of $S^1$ by scalar multiplication. It is a circle space whose half-turn is the antipodal map. Put $W=S(Y)$ and let $d:Y\to W$ send $x$ to the constant tuple $(x,x,x,x)$ in the block of basis $6$. Homology and cohomology have coefficients in $\Ftwo$.
+
+\emph{Step 1: $d$ induces the zero map on $H_N$.} For a template with parts $D_1,\ldots,D_p$ and template map $f:Y^p\to W$, the composition of $f$ with the diagonal $Y\to Y^p$ is the map $d_i$ that sends $x$ to the constant tuple in the block of the basis $i$ of the template. By the K\"unneth formula, the diagonal $Y\to Y^p$ induces on $H_N$ the sum of the maps induced by the $p$ inclusions that put the argument into one factor and a fixed point $b$ into the others. Hence $(d_i)_*=\sum_D(a_D)_*$ on $H_N$, where $a_D:Y\to W$ inserts its argument on the part $D$ and $b$ on the other positions. All $d_i$ are homotopic to $d=d_6$: for an edge $e=ik$ of $K_{3,3}$ the points $(x,x,t)$ of the cylinder of $e$ give a homotopy from $d_i$ to $d_k$, and $K_{3,3}$ is connected. Summing over the nineteen templates therefore gives $19\,d_*=d_*$ on the left. On the right, every singleton part occurs in two ternary templates of its basis and cancels, and the parts $A_3$ of basis $6$ occur twice, in a ternary template and in the binary one. What remains are the insertions on $A_1,A_2,A_3$ at the bases $1,\ldots,5$ and on $A_1,A_2,A_3^c$ at basis $6$, that is, on $A_{b,e}$ for the eighteen ends $(b,e)$ of the nine wires. The two insertions at the ends of a wire $e$ are homotopic, through the points $(x,b,t)$ of its cylinder, so they cancel in pairs. Hence $d_*=0$ on $H_N(Y)$.
+
+\emph{Step 2: if $N\ge3$, then $H_i(W)=0$ for $N+1<i<2N$.} A basis block is the space $\mathrm{Bl}(Y)$ of tuples in $Y^4$ with $x_0=x_r$ for some $r\ge1$. The projection $\mathrm{Bl}(Y)\to Y$ to $x_0$ is a fiber bundle: over an open set of $Y$ on which there is a continuous choice of rotations $\rho(x_0)\in SO(N+1)$ with $\rho(x_0)b=x_0$, the map $(x_0,x_1,x_2,x_3)\mapsto(x_0,\rho(x_0)^{-1}x_1,\rho(x_0)^{-1}x_2,\rho(x_0)^{-1}x_3)$ is a trivialization. The fiber is the set of triples in $Y^3$ with at least one entry equal to $b$. It is the union of the cells of dimensions $0$, $N$ and $2N$ in the product of the cell structures of $S^N$ with one vertex and one $N$-cell, so its homology is concentrated in the degrees $0,N,2N$. The base $S^N$ is simply connected, so the Serre spectral sequence~\cite{Serre} shows that $H_i(\mathrm{Bl}(Y))\ne0$ only for $i\in\{0,N,2N,3N\}$. Let $U\subset W$ be the union of the six blocks. By excision, $H_i(W,U)$ is the sum over the nine wires of $H_i(Y^2\times[0,1],Y^2\times\{0,1\})\cong H_{i-1}(Y^2)$, which is nonzero only for $i\in\{1,N+1,2N+1\}$. The exact sequence $H_i(U)\to H_i(W)\to H_i(W,U)$ gives the claim.
+
+\emph{Step 3: a tower of length $2h+1$ on $W$.} Let $x_0$ be a point $b$ of $Y$. For $m=1,\ldots,h$ choose chains $x_m$ on $Y$ with $\partial x_m=Bx_{m-1}$. This is possible: $Bx_{m-1}$ is a cycle, since $\partial Bx_{m-1}=B\partial x_{m-1}$ vanishes for $m=1$ and equals $B^2x_{m-2}=0$ for $m\ge2$, and its dimension $2m-1$ satisfies $0<2m-1<N$. Put $x'_m=d_*x_m$ for $0\le m\le h$. As $d$ commutes with the circle actions, $d_*$ commutes with $B$, and $x'_0,\ldots,x'_h$ is a tower on $W$. The cycle $Bx'_h=d_*(Bx_h)$ has dimension $N$ and is a boundary by Step~1; choose $x'_{h+1}$ with $\partial x'_{h+1}=Bx'_h$. For $h+2\le m\le2h+1$, which occurs only if $N\ge3$, the cycle $Bx'_{m-1}$ has dimension $2m-1$ with $N+1<2m-1<2N$ and is a boundary by Step~2; choose $x'_m$ accordingly. This gives a tower $x'_0,\ldots,x'_{2h+1}$ on $W=X_1$ whose point $x'_0=d(b)$ lies in $L_1$.
+
+\emph{Step 4: iteration.} By~\eqref{eq:first-level} the tower of Step~3 satisfies the hypothesis of Lemma~\ref{lem:supports} at level $g=1$ with $k=2h+1$. Applying that lemma $j-1$ times gives a tower $x_0,\ldots,x_s$ on $X_j=S^j(Y)$ with $x_0\in L_j$ and $x_m\in C_{2m}(Z_{j,m}(Y);\Ftwo)$. Since $L_j$ and $Z_{j,m}(Y)$, $m\le s$, lie in $Z_{j,s}(Y)$, it is a tower on the circle space $Z_{j,s}(Y)$ as well. In the rest of the proof $F$ stands for one of the two constructions $F(Y')=S^j(Y')$ and $F(Y')=Z_{j,s}(Y')$, applied to compact polyhedra $Y'$. By~(T1),
+\begin{equation}\label{eq:odd-power}
+ w_{F(Y)}^{\,2s+1}\ne0 .
+\end{equation}
+
+\emph{Step 5: one more power over the sphere of dimension $N+1$.} Let $\Sigma$ be the suspension of $Y$, the quotient of $Y\times[-1,1]$ in which $Y\times\{1\}$ and $Y\times\{-1\}$ are collapsed to two points. With the involution $[y,t]\mapsto[-y,-t]$ it is the sphere $S^{N+1}$ with the antipodal involution. For $t\in[-1,1]$ let $\varphi_t:Y\to\Sigma$ be the map $y\mapsto[y,t]$; the maps $\varphi_{\pm1}$ are constant. Put $M=F(Y)$ and $F_{\rm pt}=F(\mathrm{pt})$, let $p:M\to F_{\rm pt}$ be induced by $Y\to\mathrm{pt}$, and let $T$ be the half-turn of $M$; then $p\circ T=p$. Put $q=2s+1$. By~\eqref{eq:odd-power} there is a connected component $B_0$ of $M/T$ on which $w_M^q$ is nonzero. Let $M_0$ be its preimage in $M$. Let $P$ be the space obtained from $M_0\times[-1,1]$ and two copies $F_{\rm pt}^+,F_{\rm pt}^-$ of $F_{\rm pt}$ by identifying $(m,1)$ with $p(m)\in F_{\rm pt}^+$ and $(m,-1)$ with $p(m)\in F_{\rm pt}^-$. It is a compact polyhedron, and the involution $(m,t)\mapsto(Tm,-t)$, which exchanges $F_{\rm pt}^+$ and $F_{\rm pt}^-$, is free. Define
+\[
+ \Psi:P\to F(\Sigma),\qquad\Psi(m,t)=F(\varphi_t)(m)\ \text{ on }M_0\times[-1,1],
+\]
+and let $\Psi$ be induced on $F_{\rm pt}^+$ and $F_{\rm pt}^-$ by the inclusions of the two poles into $\Sigma$. This is well defined and continuous, because $\varphi_{\pm1}$ factors through a point, so that $F(\varphi_{\pm1})$ factors through $p$, and it is equivariant, because $\varphi_{-t}(-y)=-\varphi_t(y)$. It remains to show $w_P^{q+1}\ne0$.
+
+The quotient $P/T$ contains a copy of $F_{\rm pt}$, the image of $F_{\rm pt}^+\cup F_{\rm pt}^-$, and $[m,t]\mapsto p(m)$ is a retraction of $P/T$ onto it. Hence $H^*(P/T)\to H^*(F_{\rm pt})$ is onto, and by the exact sequence of the pair the map $H^*(P/T,F_{\rm pt})\to H^*(P/T)$ is injective. Let $E_0$ be the quotient of $M_0\times[-1,1]$ by the relation $(m,t)\sim(Tm,-t)$. It is the unit disk bundle of the real line bundle over $B_0$ that belongs to the double cover $M_0\to B_0$, and its boundary $\partial E_0$, the image of $M_0\times\{\pm1\}$, is a copy of $M_0$. The space $P/T$ arises from $E_0$ and $F_{\rm pt}$ by attaching $\partial E_0$ to $F_{\rm pt}$ along the map induced by $p$. Hence collapsing $F_{\rm pt}$ in $P/T$ gives the same space as collapsing $\partial E_0$ in $E_0$. Both are pairs of a polyhedron and a subpolyhedron, so the map of pairs $(E_0,\partial E_0)\to(P/T,F_{\rm pt})$ induces an isomorphism $H^*(P/T,F_{\rm pt})\cong H^*(E_0,\partial E_0)$. Let $u\in H^1(E_0,\partial E_0)$ be the Thom class and $\pi:E_0\to B_0$ the projection. By the Thom isomorphism~\cite[\S\S8, 10]{MS}, $x\mapsto\pi^*x\cup u$ is an isomorphism $H^k(B_0)\to H^{k+1}(E_0,\partial E_0)$; in particular $H^1(E_0,\partial E_0)=\{0,u\}$, as $B_0$ is connected. The double cover $P\to P/T$ is trivial over $F_{\rm pt}$, so $w_P$ restricts to zero on $F_{\rm pt}$ and is the image of a class $\tilde u\in H^1(P/T,F_{\rm pt})$. Over the zero section $B_0\subset E_0$ the cover is $M_0\to B_0$, so $w_P$ restricts to $w_M|_{B_0}$ there, which is nonzero since its $q$th power is. Hence $\tilde u\ne0$, so $\tilde u$ corresponds to $u$, and the pullback of $w_P$ to $E_0$ is $\pi^*(w_M|_{B_0})$ because $\pi$ is a homotopy equivalence. Therefore $\tilde u\cup w_P^q\in H^{q+1}(P/T,F_{\rm pt})$ corresponds to $u\cup\pi^*(w_M^q|_{B_0})$, which is nonzero by the Thom isomorphism. Its image in $H^{q+1}(P/T)$ is $w_P^{q+1}$, which is nonzero by injectivity. As $\Psi$ pulls $w_{F(\Sigma)}$ back to $w_P$,
+\begin{equation}\label{eq:even-power}
+ w_{F(S^{N+1})}^{\,2s+2}\ne0 .
+\end{equation}
+
+\emph{Step 6: the graphs.} Let $\phi:S^{N+\varepsilon}\to\B(H)$ be the given equivariant map. Applying~(T3) $j$ times gives an equivariant map $S^j(S^{N+\varepsilon})\to\B(S^j_\lambda(H))$. We claim that it maps $Z_{j,s}(S^{N+\varepsilon})$ into $\B(G^{(s)}_{j,\lambda}(H))$. By the property stated in~(T3) and induction on the level, every vertex in a shore of the image of a point with a given continuous presentation has a presentation with the same tree: at a leaf carrying $y$ the vertex is a padded vertex of a shore of $\phi(y)$; at a basis node it is a word whose entries come from the shores of the children and are equal on each part; and at a wire node it is a pair in one of the at most two layers nearest to $(\lambda+1)t$ whose second entry comes from a leaf. So both shores consist of vertices of $G^{(s)}_{j,\lambda}(H)$. They are completely adjacent in $S^j_\lambda(H)$, hence in the induced subgraph. Thus $F(S^{N+\varepsilon})$ maps equivariantly to $\B(G)$ for both graphs $G$ of the statement, and~\eqref{eq:odd-power}, \eqref{eq:even-power} and~\eqref{eq:obstruction} give the two displayed assertions.
+
+\emph{Step 7: the homomorphism and the order.} The padded vertices of $H$ are presented by single leaves, lie in $G^{(s)}_{j,\lambda}(H)$ and induce a copy of $H$. The $(\lambda+2)$-compatible quantum homomorphism $S^j_\lambda(H)\qto H$ of Section~\ref{sec:substitution} restricts to the induced subgraph, in which distances are not smaller. For the order we use the counting argument in the proof of~\cite[Theorem~3.6]{Z}, with the bounds $2s-1$ and $s$ for the numbers of internal nodes and of wire nodes and with the set $V(H)$ of labels at the leaves. A tree with at most $2s-1$ internal nodes with at most three children each has at most $6s-2$ nodes, so there are at most $C_0^{\,s}$ presentations in which the layers of the wire nodes are recorded only as $0$, $\lambda+1$ or interior, where $C_0$ depends only on $|V(H)|$. A presentation at level $j$ has at most $3^{j-1}$ wire nodes: at level one it has at most one, and if presentations at level $g-1\ge1$ have at most $c\ge1$ wire nodes, then a basis node at level $g$ has at most $3c$ below it and a wire node, whose background is a leaf, at most $1+c\le3c$ including itself. So the interior layers can be chosen in at most $(1+\lambda)^{\min\{s,3^{j-1}\}}$ ways, which bounds the number of vertices. For the edges, if $\lambda\le1$ there is at most one interior layer and nothing to choose. If $\lambda\ge2$, the argument of~\cite{Z} shows that once the layers of the presentation of one end of an edge are fixed, each interior layer in the presentation of the other end has at most three possible values. In both cases there are at most $C_0^{\,2s}3^s(1+\lambda)^{\min\{s,3^{j-1}\}}$ edges.
+\end{proof}
+
+\begin{corollary}[Iterated substitutions over complete graphs]\label{cor:kn}
+Let $n\ge3$, $j\ge1$ and $\lambda\ge0$. Then
+\[
+ \chi(S^j_\lambda(K_n))\ \ge\
+ \begin{cases}
+ 2n-3+2j,& n\text{ odd},\\
+ 2n-4+2j,& n\text{ even}.
+ \end{cases}
+\]
+The same bound holds for the induced subgraph $G^{(s)}_{j,\lambda}(K_n)$ with $s=n-3+j$ for odd $n$ and $s=n-4+j$ for even $n$. This graph has quantum chromatic number $n$, a $(\lambda+2)$-compatible quantum $n$-coloring in local dimension $4^j$, and at most $C_n^{\,s}(1+\lambda)^s$ vertices and edges.
+\end{corollary}
+\begin{proof}
+The box complex $\B(K_n)$ is the sphere $S^{n-2}$ with the antipodal involution. Apply Theorem~\ref{thm:spheres} to the identity map, with $2h+1=n-2$ and $\varepsilon=0$ for odd $n$, and with $2h+2=n-2$ and $\varepsilon=1$ for even $n$. Then $s=n-3+j$ and $2s+3=2n-3+2j$ in the first case, and $s=n-4+j$ and $2s+4=2n-4+2j$ in the second. The graph $G^{(s)}_{j,\lambda}(K_n)$ contains a copy of $K_n$ and has a quantum homomorphism to $K_n$, so its quantum chromatic number is $n$ by~(Q4).
+\end{proof}
+
+For $n=3$ the corollary is the bound $2j+3$ of~\cite{Z}. For odd $n$ and $j=1$ it gives $\chi(S_\lambda(K_n))\ge2n-1$, the exact value by Theorem~\ref{thm:complete}. For even $n$ and $j=1$ it gives $2n-2$, one less than the exact value. The next subsection shows that for $\lambda\ge2$ the method cannot give more.
+
+\subsection{The height for even \texorpdfstring{$n$}{n}}\label{sec:even}
+
+\begin{proposition}\label{prop:even}
+Let $n\ge4$ be even and $\lambda\ge2$. On the box complexes of $S_\lambda(K_n)$ and of $S'_\lambda(K_n)$ the height of $w$ is $2n-4$. Thus~\eqref{eq:obstruction} certifies $2n-2$ colors for these graphs and no more, whereas their chromatic number is $2n-1$.
+\end{proposition}
+\begin{proof}
+Put $N=n-2$, an even number, and identify $\B(K_n)$ with $S^N$ equivariantly. Here $N$ is the dimension of the sphere $\B(K_n)$, whereas in the proof of Theorem~\ref{thm:spheres} the letter stood for $2h+1$. Cohomology has coefficients in $\Ftwo$.
+
+\emph{Lower bound.} Theorem~\ref{thm:spheres} with $H=K_n$, $2h+2=N$, $\varepsilon=1$ and $j=1$, so that $s=N-1$, gives $w^{2N}\ne0$ on $\B(S_\lambda(K_n))$. Its proof uses the map $S(S^N)\to\B(S_\lambda(K_n))$ of~(T3), and this map takes values in $\B(S'_\lambda(K_n))$, for even and for odd $n$: at a point $(x_0,x_1,x_2,x_3)$ of a basis block with $x_0=x_r$, all words in both shores are constant on $A_r$ by the property stated in~(T3), so opposite words are adjacent in $S'_\lambda(K_n)$, and at a point of a cylinder the adjacencies between the shores are among the edges that $S'_\lambda(K_n)$ keeps. Hence $w^{2N}\ne0$ on $\B(S'_\lambda(K_n))$ as well.
+
+\emph{An auxiliary space.} Let $\mathcal W$ be the space formed by six \emph{full charts}, copies of $(S^N)^4$ indexed by the bases, and nine cylinders $(S^N)^2\times[0,1]$, attached as in $S(S^N)$: for $e=ik$ the point $(x,y,0)$ is the tuple of chart $i$ with $x$ on $A_{i,e}$ and $y$ on $A_{i,e}^c$, and $(x,y,1)$ is the tuple of chart $k$ with $x$ on $A_{k,e}$ and $y$ on $A_{k,e}^c$. The antipodal map in all coordinates is a free involution $T$ of $\mathcal W$. We construct an equivariant map $\Theta:\B(S_\lambda(K_n))\to\mathcal W$ and show $w^{2N+1}=0$ on $\mathcal W/T$. This proves $w^{2N+1}=0$ on $\B(S_\lambda(K_n))$, and on $\B(S'_\lambda(K_n))$ by restriction.
+
+\emph{The map $\Theta$.} Assign to every vertex of $S_\lambda(K_n)$ a \emph{side}, which is a basis: a word of chart $b$ has side $b$, and an interior vertex of the wire of $e=ik$ has side $i$ if it lies in layer $1$ and side $k$ if it lies in a layer $\ell\ge2$. A vertex with side $b$ has four \emph{labels}: the entries of the word, or, for an interior vertex $(e,\ell,x,y)$, the label $x$ at the positions of $A_{b,e}$ and $y$ at the other two. Since $\lambda\ge2$, layers $1$ and $2$ are interior, and the definition of the edges shows two facts. If two adjacent vertices have the same side, their labels differ at all four positions. If they have different sides, they are interior vertices of one wire in layers $1$ and $2$.
+
+Let $(\mu,\nu)\in\B(S_\lambda(K_n))$. If all vertices of both shores have the same side $b$, let $\mu_s$ and $\nu_s$ be the distributions of the label at position $s$ under $\mu$ and $\nu$. By the first fact $(\mu_s,\nu_s)\in\B(K_n)=S^N$, and we let $\Theta(\mu,\nu)$ be the point $((\mu_s,\nu_s))_{0\le s\le3}$ of the full chart of $b$. Otherwise some vertex $u$ of one shore and some vertex $v$ of the other have different sides, because two vertices of one shore with different sides cannot both have the side of a vertex of the other shore. By the second fact $u$ and $v$ lie in layers $1$ and $2$ of a wire $e$. Every vertex of the shore of $u$ is adjacent to the interior vertex $v$ and every vertex of the shore of $v$ is adjacent to $u$, so all vertices of both shores are pairs $(x,y)$ in layers of the wire of $e$. Let $(\mu_x,\nu_x)$ and $(\mu_y,\nu_y)$ be the distributions of the two entries, which are points of $\B(K_n)$, and let $t$ be the mean of the masses that $\mu$ and $\nu$ give to the layers $\ell\ge2$. We let $\Theta(\mu,\nu)$ be the point $((\mu_x,\nu_x),(\mu_y,\nu_y),t)$ of the cylinder of $e$; here $0<t<1$.
+
+The map $\Theta$ commutes with the involutions. It is continuous on each cell of $\B(S_\lambda(K_n))$, hence continuous: on a cell all of whose vertices have one side this is clear, and on a cell with vertices of two sides, which lie on one wire $e$, the formula $((\mu_x,\nu_x),(\mu_y,\nu_y),t)$ is continuous on the whole cell and agrees with $\Theta$, because $t\in\{0,1\}$ exactly at the points whose shores have a single side, and there the point $(\cdot,\cdot,t)$ of the cylinder is the tuple of the chart at that end that repeats the two entries on $A_{b,e}$ and $A_{b,e}^c$.
+
+\emph{The class $w^{2N+1}$ vanishes on $\mathcal W/T$.} Let $\mathcal A=(S^N)^4/T$ and $\mathcal E=(S^N)^2/T$, closed manifolds of dimensions $4N$ and $2N$; $\mathcal E$ is connected. The image $\mathcal R\subset\mathcal E$ of the antidiagonal $\{(x,-x)\}$ is a submanifold diffeomorphic to $\RP^N$ and disjoint from the image of the diagonal. The normal bundle of the antidiagonal in $(S^N)^2$ is the tangent bundle of $S^N$, by $v\mapsto(v,v)$, and $T$ acts on it as the differential of the antipodal map; so the normal bundle of $\mathcal R$ is isomorphic to the tangent bundle of $\RP^N$. Let $u\in H^N(\mathcal E)$ be the class dual to $\mathcal R$. Its restriction to $\mathcal R$ is the top Stiefel--Whitney class of the normal bundle~\cite[\S11]{MS}, so
+\[
+ \langle u^2,[\mathcal E]\rangle=\langle w_N(\RP^N),[\RP^N]\rangle\equiv\chi(\RP^N)=1\pmod2 ,
+\]
+as $N$ is even. Thus $u^2$ generates $H^{2N}(\mathcal E)=\Ftwo$. Moreover $u$ restricts to zero on the complement of $\mathcal R$, so $\beta^*u=0$ for the map $\beta:\mathcal E\to\mathcal E$, $[x,y]\mapsto[x,x]$, and $\tau^*u=u$ for the exchange $\tau[x,y]=[y,x]$, which maps $\mathcal R$ to itself.
+
+Let $\mathcal A_b$ be the quotient of the full chart of $b$, let $p_{kl}:\mathcal A_b\to\mathcal E$ be the projection to the coordinates $k,l$, and for $\{r,a,c\}=\{1,2,3\}$ put
+\[
+ \kappa^b_r=p_{0a}^*u\cup p_{0c}^*u\in H^{2N}(\mathcal A_b).
+\]
+For an end $(b,e)$ of a wire let $\iota_{b,e}:\mathcal E\to\mathcal A_b$ be the attaching map, which puts $x$ on $A_{b,e}$ and $y$ on $A_{b,e}^c$. If $A_{b,e}=A_r$, then $p_{0a}\circ\iota_{b,e}$ and $p_{0c}\circ\iota_{b,e}$ are the identity and $\iota_{b,e}^*\kappa^b_r=u^2$. If $A_{b,e}=A_{r'}$ with $r'\ne r$, then one of the two compositions is $\beta$, because $r'\in\{a,c\}$, and $\iota_{b,e}^*\kappa^b_r=0$. At the end $(6,36)$, where $A_{6,36}=A_3^c$, both compositions are $\tau$ for $r=3$, so $\iota_{6,36}^*\kappa^6_3=u^2$, and for $r\in\{1,2\}$ the composition $p_{03}\circ\iota_{6,36}$ is $\beta\circ\tau$, so $\iota_{6,36}^*\kappa^6_r=0$. Consequently, for every end $(b,e)$ there is a class on $\mathcal A_b$ that restricts to the generator $u^2$ at this end and to zero at the other two ends at $b$.
+
+Let $\mathcal U$ be the union of the six quotients $\mathcal A_b$ in $\mathcal W/T$. By excision, $H^{2N+1}(\mathcal W/T,\mathcal U)$ is the sum over the nine wires of $H^{2N+1}(\mathcal E\times[0,1],\mathcal E\times\{0,1\})\cong H^{2N}(\mathcal E)$, and the connecting map $H^{2N}(\mathcal U)\to H^{2N+1}(\mathcal W/T,\mathcal U)$ sends a class to the family of the sums of its restrictions to the two ends of each wire. By the preceding paragraph it is onto. The exact sequence of the pair then shows that the restriction $H^{2N+1}(\mathcal W/T)\to H^{2N+1}(\mathcal U)$ is injective. On $\mathcal A_b$ the class $w$ is pulled back from $\RP^N$ by the projection to the first coordinate, so $w^{N+1}$ vanishes there. Hence $w^{2N+1}$ restricts to zero on $\mathcal U$ and vanishes on $\mathcal W/T$.
+\end{proof}
+
+\begin{remark}\label{rem:short-wires}
+The proof of the upper bound uses $\lambda\ge2$: the two layers on either side of the cut must be interior. Sending layer $\ell\ge1$ of every wire to layer $\ell-1$ and every word to itself is a homomorphism $S_{\lambda+1}(K_n)\to S_\lambda(K_n)$, so the height of $w$ does not increase with $\lambda$. For even $n$ and $\lambda\in\{0,1\}$ we only know that the height is $2n-4$ or $2n-3$: it is at least $2n-4$ by Theorem~\ref{thm:spheres} and at most $2n-3$ by~\eqref{eq:obstruction}, because the chromatic number is $2n-1$.
+\end{remark}

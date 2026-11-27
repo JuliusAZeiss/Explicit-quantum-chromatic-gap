@@ -1,0 +1,72 @@
+== check_note.py
+dictator coordinates (n = 3): unique for all 1056 proper 4-colorings of K_3 x K_3 and all 373104 of K_3 x K_3 x K_3; preserved by identifying coordinates; equal for all 12288 pairs satisfying the cross condition
+dictator coordinates (n = 4): unique, and equal to the coordinate read, for all 2754000 proper 6-colorings of K_4 x K_4; equal for all 1053585360 pairs satisfying the cross condition
+S'_0(K_3): 342 vertices, 1962 of the 2394 edges of S_0(K_3); chromatic number 5 by exhaustive search
+two-edge identity: holds on all 360 walks u, v, w of the 22-vertex graph
+stretched graph, l = 1: 91 vertices, 157 edges, chromatic number 4; the coloring is valid and all measurements at distance <= 3 commute (required: 3)
+stretched graph, l = 2: 160 vertices, 272 edges, chromatic number 4; the coloring is valid and all measurements at distance <= 5 commute (required: 5)
+filling: 21 triangles, 36 edges, mod 2 boundary = the three loops O, alpha_i, beta_i
+165 measurements: F_phys 843 edges, F_triangle 732 edges (147 in each chart), F_* 678 edges; all end grids complete
+links: the table of Section 5.2 is confirmed; all 54 deletions have contractible links in 20 orders of deletion
+chi(F_*) >= 5 and chi(F_phys) <= 5 by exhaustive search; hence chi = 5 for F_*, F_triangle, F_phys
+F_2: 234 vertices, 1206 edges; the coloring is valid, all measurements at distance <= 2 commute and some at distance 3 do not; the graph maps homomorphically to F_triangle and is 5-colorable
+F_3: 288 vertices, 1368 edges; the coloring is valid, all measurements at distance <= 3 commute and some at distance 4 do not; the graph maps homomorphically to F_triangle and is 5-colorable
+F_4: 342 vertices, 1584 edges; the coloring is valid, all measurements at distance <= 4 commute and some at distance 5 do not; the graph maps homomorphically to F_triangle and is 5-colorable
+level two: enumeration with 5, 6, 7 and 8 first-level labels agrees with the count of Section 5.4; for 165 labels the count is 4,330,533
+check_note: all checks passed
+== computed/edges_678/check_678.py
+Chart edges: 138. W-grid colorings: 1056. Normalized plane colorings: 44.
+Possible plane-type triples: [(0, 0, 1), (0, 1, 0), (1, 0, 0), (1, 1, 1)]
+Identified graph edges: 678
+All 678 edges are necessary even in the 732-edge triangular host.
+843-edge host: 678 disjoint nonempty monochromatic edge sets, occupying 735 edges.
+Every five-chromatic subgraph of the full host has at least 678 edges.
+== computed/radius_two_three/verify_square_radius_two_207.py --check-deletions square_radius_two_207.json
+Four-color obstruction: 42592 wrong-parity grid triples excluded.
+Bridge: all 512 compatible pairs among 44 x 1056 have aligned types.
+Graph: 207 vertices, 1071 edges, 165 distinct measurements.
+Radius two: checked all 6282 unordered pairs at distances one or two.
+A scalar triangle and a proper five-coloring were verified.
+Vertex criticality: checked all 207 deletion four-colorings.
+== computed/radius_two_three/verify_square_radius_three_replacements.py --order 279
+Four-color obstruction: 42592 wrong-parity grid triples excluded.
+Bridge: all 512 compatible pairs among 44 x 1056 have aligned types.
+Four-color obstruction: 42592 wrong-parity grid triples excluded.
+Bridge: all 512 compatible pairs among 44 x 1056 have aligned types.
+Four-color obstruction: 42592 wrong-parity grid triples excluded.
+Bridge: all 512 compatible pairs among 44 x 1056 have aligned types.
+279 vertices, 1449 edges, 165 physical measurements, 18 replacements.
+Commuting pairs at distances 1, 2, 3: [1449, 6033, 7701]
+== computed/radius_two_three/verify_replacement_deletions.py
+Four-color obstruction: 42592 wrong-parity grid triples excluded.
+Bridge: all 512 compatible pairs among 44 x 1056 have aligned types.
+Four-color obstruction: 42592 wrong-parity grid triples excluded.
+Bridge: all 512 compatible pairs among 44 x 1056 have aligned types.
+Four-color obstruction: 42592 wrong-parity grid triples excluded.
+Bridge: all 512 compatible pairs among 44 x 1056 have aligned types.
+279 vertices, 1449 edges, 165 physical measurements, 18 replacements.
+Commuting pairs at distances 1, 2, 3: [1449, 6033, 7701]
+All 279 deletions have proper classical four-colorings.
+Four-color obstruction: 42592 wrong-parity grid triples excluded.
+Bridge: all 512 compatible pairs among 44 x 1056 have aligned types.
+Four-color obstruction: 42592 wrong-parity grid triples excluded.
+Bridge: all 512 compatible pairs among 44 x 1056 have aligned types.
+Four-color obstruction: 42592 wrong-parity grid triples excluded.
+Bridge: all 512 compatible pairs among 44 x 1056 have aligned types.
+Four-color obstruction: 42592 wrong-parity grid triples excluded.
+Bridge: all 512 compatible pairs among 44 x 1056 have aligned types.
+287 vertices, 1466 edges, 165 physical measurements, 2 replacements.
+Commuting pairs at distances 1, 2, 3: [1466, 6276, 8017]
+All 287 deletions have proper classical four-colorings.
+== computed/level_two/family.py
+Class sizes for colors 0 to 8: [912883, 575124, 852007, 307464, 814913, 275863, 208956, 264067, 119256]
+Order at threshold 7: 4330533
+Order at threshold 6: 2922907
+== computed/level_two/count_physical_edges.py
+Direct-enumeration cross-check (3 labels): (273, 2154)
+Direct-enumeration cross-check (7 labels): (265, 2213)
+Full physical graph: 4,330,533 vertices, 2,116,320,480 undirected edges.
+== computed/level_two/count_remaining_edges.py
+Independent vertices removed: 1,407,626; incident edges: 1,383,710,444.
+Retained graph: 2,922,907 vertices, 732,610,036 undirected edges.
+all programs of the note passed

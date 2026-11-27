@@ -1,0 +1,112 @@
+\section{Random descents: the upper bound on the sparse family}\label{app:readings}
+
+This appendix proves the two propositions behind Corollary~\ref{cor:linear-growth}. Both color the sparse graphs with few colors by composing random maps that send each level of the iteration to the preceding one. Such a map exists once one edge of $K_{3,3}$ is exempted from the parity condition of Lemma~\ref{lem:parity}; the price is that a few vertices near the exempted edge must be left out.
+
+\subsection{Choices of positions with one defective edge}\label{app:defect}
+
+A \emph{choice of positions} is a map $\sigma:\{1,\ldots,6\}\to\{0,1,2,3\}$, as in Lemma~\ref{lem:parity}. Let $e=ik$ be an edge of $K_{3,3}$ and let $b\in\{i,k\}$ be one of its ends. A pair $(x,y)$ in the endpoint layer of the wire along $e$ at $b$ is the word of basis chart $b$ that takes $x$ on $A_{b,e}$ and $y$ on $A_{b,e}^c$, so its entry at position $\sigma(b)$ is $x$ if $\sigma(b)\in A_{b,e}$ and $y$ otherwise. Accordingly, we say that $\sigma$ \emph{points to the first entry} at the end $b$ of $e$ if $\sigma(b)\in A_{b,e}$, and that it \emph{points to the second entry} there otherwise. The edge $e$ is \emph{consistent} for $\sigma$ if $\sigma$ points to the same entry at both ends of $e$, and \emph{defective} otherwise. In these terms, Lemma~\ref{lem:parity} says that every choice of positions has a defective edge.
+
+\begin{lemma}\label{lem:one-defect}
+For every edge $e_0$ of $K_{3,3}$ there are exactly sixteen choices of positions whose only defective edge is $e_0$. If $\sigma$ is drawn uniformly from these sixteen, then for every edge $e$ of $K_{3,3}$ and each end $b$ of $e$, it points to the first entry at the end $b$ of $e$ with probability $1/2$.
+\end{lemma}
+\begin{proof}
+For a basis $b$ and $r\in\{1,2,3\}$, let $\beta_r(b)\in\Ftwo$ be $1$ if $\sigma(b)\in A_r$ and $0$ otherwise. The triple $(\beta_1(b),\beta_2(b),\beta_3(b))$ equals $(1,1,1)$ if $\sigma(b)=0$ and has its single $1$ in place $\sigma(b)$ otherwise. Thus the four positions correspond bijectively to the four triples with $\beta_1(b)+\beta_2(b)+\beta_3(b)=1$.
+
+By Table~\ref{tab:edges}, each of the eighteen pairs $(b,r)$ belongs to exactly one edge: for $e=ik$ with $i\le3<k$ there are unique $r,r'$ with $A_{i,e}=A_r$ and $A_{k,e}\in\{A_{r'},A_{r'}^c\}$, and the complement occurs only for $e=36$. Write $z_e=\beta_r(i)$ and $z'_e=\beta_{r'}(k)$, and put $c_e=0$ for $e\ne36$ and $c_{36}=1$. Then $\sigma$ points to the first entry at the row end of $e$ exactly when $z_e=1$, and at the column end exactly when $z'_e+c_e=1$. Hence $e$ is consistent when $z'_e=z_e+c_e$ and defective when $z'_e=z_e+c_e+1$.
+
+Fix $e_0$, and put $\hat c_e=c_e$ for $e\ne e_0$ and $\hat c_{e_0}=c_{e_0}+1$. A choice of positions whose only defective edge is $e_0$ is the same as a vector $(z_e)\in\Ftwo^9$, with $z'_e=z_e+\hat c_e$, such that the three bits at every basis sum to $1$:
+\[
+ \sum_{e\ni i}z_e=1\quad(i\le3),\qquad
+ \sum_{e\ni k}z_e=1+\sum_{e\ni k}\hat c_e\quad(k\ge4).
+\]
+The left-hand sides are given by the vertex--edge incidence matrix of $K_{3,3}$. Because $K_{3,3}$ is connected, the only linear relation among the six rows of this matrix over $\Ftwo$ is that they sum to zero. The six right-hand sides sum to $6+\sum_e\hat c_e=c_{36}+1=0$, so the system is solvable, and its solutions form a coset of the kernel, which has dimension $9-5=4$. This gives sixteen choices.
+
+Let $C$ be a four-cycle of $K_{3,3}$. Adding $1$ to $z_e$ for the four edges $e$ of $C$ changes every left-hand side by $0$ or $2$, so it maps solutions to solutions, and it changes $z_e$ and $z'_e$ for every $e\in C$. Every edge of $K_{3,3}$ lies on a four-cycle. Hence, for a uniformly random solution, each bit $z_e$ and each bit $z'_e$ is uniformly distributed. The entry to which $\sigma$ points at an end of $e$ is determined by $z_e$ or by $z'_e$, which proves the last assertion.
+\end{proof}
+
+\subsection{Descents when the wires have interior layers}\label{app:descent-interior}
+
+Let $\lambda\ge1$ and let $H$ be a finite graph. A \emph{cut} $(e_0,\sigma,\ell_0)$ consists of an edge $e_0$ of $K_{3,3}$, a choice of positions $\sigma$ whose only defective edge is $e_0$, and an interior layer $\ell_0\in\{1,\ldots,\lambda\}$. Its \emph{descent map} $\rho$ is defined on all vertices of $S_\lambda(H)$ outside layer $\ell_0$ of the wire along $e_0$ and takes values in $V(H)$:
+\begin{itemize}
+\item a word $g$ of basis chart $b$ is sent to its entry $g_{\sigma(b)}$;
+\item an interior vertex $(e,\ell,x,y)$ with $e=ik$ is sent to $x$ if $\sigma$ points to the first entry at the end of $e$ assigned to the layer $\ell$, and to $y$ otherwise. The end assigned to $\ell$ is $i$ if $e=e_0$ and $\ell<\ell_0$, and $k$ if $e=e_0$ and $\ell>\ell_0$; if $e\ne e_0$, either end may be taken, since $\sigma$ points to the same entry at both.
+\end{itemize}
+By the definition of pointing to an entry, the first rule sends a pair $(x,y)$ in an endpoint layer of the wire along $e$ at $b$ to $x$ if $\sigma$ points to the first entry at the end $b$ of $e$, and to $y$ otherwise. In this sense the second rule extends to the endpoint layers, with the end $b$ assigned to the endpoint layer at $b$.
+
+A cut is \emph{uniformly random} if $e_0$ is uniform among the nine edges, $\sigma$ is uniform among the sixteen choices of Lemma~\ref{lem:one-defect} for $e_0$, and $\ell_0$ is uniform among the $\lambda$ interior layers and independent of $\sigma$.
+
+\begin{lemma}\label{lem:reading-hom}
+The descent map of a cut is a graph homomorphism from the subgraph of $S_\lambda(H)$ induced on its domain to $H$. For a uniformly random cut, an interior vertex $(e,\ell,x,y)$ lies outside the domain with probability $\delta=1/(9\lambda)$ and, conditionally on lying inside, is sent to $x$ with probability $1/2$ and to $y$ with probability $1/2$. Words of basis charts always lie in the domain.
+\end{lemma}
+\begin{proof}
+Let $u,v$ be adjacent vertices in the domain. If they are words of the same basis chart $b$, their entries at $\sigma(b)$ are adjacent in $H$. Otherwise they are pairs $(x,y)$ and $(x',y')$ in equal or consecutive layers $\ell,\ell'$ of one wire, with $x\sim_Hx'$ and $y\sim_Hy'$. If this wire is not the one along $e_0$, then $u$ and $v$ are both sent to their first entries or both to their second entries. If it is the wire along $e_0$, the layers $\ell$ and $\ell'$ are different from $\ell_0$ and differ from each other by at most one, so they lie on the same side of $\ell_0$ and are assigned the same end; again $u$ and $v$ are both sent to their first entries or both to their second entries. In each case the images are adjacent in $H$.
+
+The vertex $(e,\ell,x,y)$ lies outside the domain exactly when $e_0=e$ and $\ell_0=\ell$, which has probability $1/(9\lambda)$. Once $e_0$ and $\ell_0$ are given, the end assigned to the layer $\ell$ is determined, and by Lemma~\ref{lem:one-defect} the random $\sigma$ points to the first entry there with probability $1/2$.
+\end{proof}
+
+Now apply this at every level of the iteration. For $h\ge1$ choose a uniformly random cut for $S_\lambda(H)$ with $H=S^{m-1}_\lambda(K_3)$ at each level $m=1,\ldots,h$, independently, and let $\kappa_h$ be the composition of the $h$ descent maps; put $\kappa_0=\mathrm{id}$. Thus $\kappa_h$ is a random map from a subset of $V(S^h_\lambda(K_3))$, its \emph{domain}, to the three colors, and by Lemma~\ref{lem:reading-hom} it is a proper $3$-coloring of the subgraph induced on its domain.
+
+\begin{lemma}\label{lem:reading-failure}
+Let $\lambda\ge1$ and $p_*=2/(9\lambda+1)$. Every vertex of $S^h_\lambda(K_3)$ that admits a presentation lies outside the domain of $\kappa_h$ with probability at most $p_*$. A padded scalar always lies in the domain.
+\end{lemma}
+\begin{proof}
+We argue by induction on $h$; for $h=0$ there is nothing to prove. Let $h\ge1$. A padded scalar at level $h$ is the constant word of basis $6$ on the same scalar padded to level $h-1$. It is a word of a basis chart, so it lies in the domain of the descent map at level $h$, which sends it to that padded scalar; by induction it lies in the domain of $\kappa_h$.
+
+Let $v$ be a vertex with a presentation whose root is an internal node. If the root is a basis node, or a wire node whose layer is $0$ or $\lambda+1$, then $v$ is a word of a basis chart, and its entries are the values of the children of the root. The descent map at level $h$ sends $v$ to one of these entries, chosen by the cut at level $h$. Each entry admits a presentation, namely a subtree, and the cuts at lower levels are independent of the cut at level $h$. By induction, $v$ lies outside the domain of $\kappa_h$ with probability at most $p_*$.
+
+If the root is a wire node with an interior layer, its children have values $x$ and $y$, where the background $y$ is a padded scalar. By Lemma~\ref{lem:reading-hom}, $v$ lies outside the domain of the descent map at level $h$ with probability $\delta$, and otherwise it is sent to $x$ or to $y$ with probability $1/2$ each, independently of the lower levels. The padded scalar $y$ always lies in the domain of $\kappa_{h-1}$, and $x$ lies outside it with probability at most $p_*$ by induction. Hence $v$ lies outside the domain of $\kappa_h$ with probability at most
+\[
+ \delta+(1-\delta)\,\frac{p_*}{2}
+ =\frac{1}{9\lambda}+\frac{9\lambda-1}{9\lambda}\cdot\frac{1}{9\lambda+1}
+ =\frac{2}{9\lambda+1}=p_* .\qedhere
+\]
+\end{proof}
+
+\begin{proposition}\label{prop:readings}
+Let $\lambda\ge1$ and $h\ge0$, and let $F$ be a subgraph of $S^h_\lambda(K_3)$ each of whose vertices admits a presentation. If $\chi(F)\ge t$, then
+\[
+ |V(F)|\ge\Bigl(\frac{9\lambda+1}{2}\Bigr)^{\lfloor(t-1)/3\rfloor}.
+\]
+\end{proposition}
+\begin{proof}
+Put $q=\lfloor(t-1)/3\rfloor$ and take $q$ independent copies $\kappa^{(1)},\ldots,\kappa^{(q)}$ of $\kappa_h$. By Lemma~\ref{lem:reading-failure}, the expected number of vertices of $F$ that lie in none of the $q$ domains is at most $|V(F)|\,p_*^q$. If this number were less than $1$, some outcome would have every vertex of $F$ in at least one domain. Color each vertex $v$ of $F$ by the pair $(m,\kappa^{(m)}(v))$, where $m$ is the least index with $v$ in the domain of $\kappa^{(m)}$. Two adjacent vertices with the same index $m$ receive different colors, because $\kappa^{(m)}$ is a proper coloring of the subgraph of $S^h_\lambda(K_3)$ induced on its domain. This would be a proper coloring of $F$ with $3q\le t-1$ colors. Hence $|V(F)|\ge p_*^{-q}$.
+\end{proof}
+
+\subsection{Descents without interior layers}\label{app:descent-zero}
+
+Let $\lambda=0$. Then every vertex of $S_0(H)$ is a word of a basis chart, and the edges along the wire of $e=ik$ join the pairs $(x,y)$ at the end $i$ to the pairs $(x',y')$ at the end $k$ with $x\sim_Hx'$ and $y\sim_Hy'$. A word of basis chart $b$ is \emph{two-valued along $e$}, for an edge $e$ at $b$, if it takes one value on $A_{b,e}$ and a different value on $A_{b,e}^c$. A word that takes exactly two values, each at two positions, takes one value on $A_r$ and the other on $A_r^c$ for the unique $r$ with $g_r=g_0$; by Table~\ref{tab:edges} it is therefore two-valued along exactly one edge at its basis.
+
+A \emph{cut} $(e_0,\sigma,b_0)$ now consists of an edge $e_0$ of $K_{3,3}$, a choice of positions $\sigma$ whose only defective edge is $e_0$, and an end $b_0$ of $e_0$. Its \emph{descent map} $\rho$ sends a word $g$ of basis chart $b$ to its entry $g_{\sigma(b)}$ and is defined on all words except those of basis chart $b_0$ that are two-valued along $e_0$. The cut is \emph{uniformly random} if $e_0$ is uniform among the nine edges, $\sigma$ is uniform among the sixteen choices of Lemma~\ref{lem:one-defect} for $e_0$, and $b_0$ is uniform among the two ends of $e_0$ and independent of $\sigma$.
+
+\begin{lemma}\label{lem:zero-reading}
+For $\lambda=0$, the descent map of a cut is a graph homomorphism from the subgraph of $S_0(H)$ induced on its domain to $H$. For a uniformly random cut, a word that takes exactly two values, each at two positions, lies outside the domain with probability $1/18$ and, conditionally on lying inside, is sent to each of its two values with probability $1/2$. All other words always lie in the domain.
+\end{lemma}
+\begin{proof}
+Let $u,v$ be adjacent words in the domain. If they belong to the same basis chart $b$, their entries at $\sigma(b)$ are adjacent in $H$. Otherwise they are pairs $(x,y)$ and $(x',y')$ at the two ends of one wire, along an edge $e$, with $x\sim_Hx'$ and $y\sim_Hy'$. If $e\ne e_0$, then $\sigma$ points to the same entry at both ends, so the images are $x,x'$ or $y,y'$. If $e=e_0$, say with $u$ at the end $b_0$, then $u$ is not two-valued along $e_0$, so $x=y$; its image $x$ is adjacent to both $x'$ and $y'$, one of which is the image of $v$.
+
+A word that takes exactly two values, each at two positions, is two-valued along exactly one edge $e$ at its basis $b$. It lies outside the domain exactly when $(e_0,b_0)=(e,b)$, which has probability $1/18$. Once $e_0$ and $b_0$ are given, whether it lies in the domain is determined, and by Lemma~\ref{lem:one-defect} the random $\sigma$ points to the first entry at the end $b$ of $e$ with probability $1/2$. A word of any other kind is not two-valued along any edge.
+\end{proof}
+
+As before, compose the descent maps of independent uniformly random cuts at the levels $1,\ldots,h$ to obtain a random map $\kappa_h$ from a subset of $V(S^h_0(K_3))$ to the three colors. It is a proper $3$-coloring of the subgraph induced on its domain.
+
+\begin{lemma}\label{lem:zero-success}
+Let $\lambda=0$ and $\beta=\log_2(18/17)$. A vertex of $S^h_0(K_3)$ that has a presentation with $L$ leaves lies in the domain of $\kappa_h$ with probability at least $L^{-\beta}$.
+\end{lemma}
+\begin{proof}
+We argue by induction on $h$; for $h=0$ the probability is $1$. Let $h\ge1$ and fix a presentation of $v$ with $L$ leaves. Because $\lambda=0$, every wire node has layer $0$ or $1$, so $v$ is a word of a basis chart. If the presentation is a single leaf, $v$ is a constant word whose entries are the same scalar padded to level $h-1$; otherwise the entries of $v$ are the values of the children of the root.
+
+Suppose first that $v$ takes exactly two values $x\ne y$, each at two positions. By Lemma~\ref{lem:zero-reading}, $v$ lies in the domain of the descent map at level $h$ with probability $17/18$ and is then sent to $x$ or to $y$ with probability $1/2$ each, independently of the lower levels. The values $x$ and $y$ are the values of two different children of the root; let $L_x$ and $L_y$ be the numbers of leaves of their subtrees, so that $L_x+L_y\le L$. By induction, by the convexity of $s\mapsto s^{-\beta}$, and because $2^\beta=18/17$, the vertex $v$ lies in the domain of $\kappa_h$ with probability at least
+\[
+ \frac{17}{18}\cdot\frac{L_x^{-\beta}+L_y^{-\beta}}{2}
+ \ \ge\ \frac{17}{18}\Bigl(\frac{L_x+L_y}{2}\Bigr)^{-\beta}
+ \ \ge\ \frac{17}{18}\,2^\beta L^{-\beta}=L^{-\beta}.
+\]
+In every other case $v$ lies in the domain of the descent map at level $h$, which sends it to one of its entries. That entry has a presentation with at most $L$ leaves, so by induction it lies in the domain of $\kappa_{h-1}$ with probability at least $L^{-\beta}$.
+\end{proof}
+
+\begin{proposition}\label{prop:zero-layer}
+Let $\beta=\log_2(18/17)$. For every $j\ge1$, the graphs $G_{j,1}$ and $G_{j,2}$ coincide and satisfy $\chi(G_{j,1})=O(j^{1+\beta})$, with an absolute implicit constant.
+\end{proposition}
+\begin{proof}
+Both graphs are defined with $\lambda=0$, so they coincide and are induced subgraphs of $S^j_0(K_3)$. Every vertex has a presentation with at most $2j-1$ internal nodes, each with at most three children, hence with at most $1+2(2j-1)=4j-1$ leaves. By Lemma~\ref{lem:zero-success} it lies in the domain of $\kappa_j$ with probability at least $p=(4j-1)^{-\beta}$. Write $n=|V(G_{j,1})|$ and take $k=\lceil(1+\log n)/p\rceil$ independent copies of $\kappa_j$. The expected number of vertices that lie in none of the $k$ domains is at most $n(1-p)^k\le n\,e^{-pk}<1$, so some outcome has every vertex in at least one domain. Coloring each vertex by the least index of a domain containing it and by its color there is a proper coloring with $3k$ colors, as in the proof of Proposition~\ref{prop:readings}. Theorem~\ref{thm:sparse} gives $\log n=O(j)$, so $3k=O(j^{1+\beta})$.
+\end{proof}

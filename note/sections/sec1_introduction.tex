@@ -1,0 +1,45 @@
+\section{Introduction}\label{sec:intro}
+
+The article~\cite{Z} constructs explicit graphs with quantum chromatic number three and arbitrarily large chromatic number by iterating one graph operation, the \emph{square substitution} $S_\lambda$, on the triangle. This note collects results of the same project that are not contained in~\cite{Z}. It is a supplement to that article and is not meant to be read without it: it uses the definitions of~\cite{Z} and several of its statements, all of which Section~\ref{sec:background} restates. Numbers of statements of~\cite{Z} refer to the version of 26 November 2026.
+
+\paragraph{Complete graphs and maps from spheres (Section~\ref{sec:complete}).}
+For the triangle, one substitution has chromatic number five~\cite[Theorem~2.4]{Z}, and for every graph $H$ with $\chi(H)\ge3$ one has $\chi(S_\lambda(H))\le2\chi(H)-1$~\cite[Proposition~A.1]{Z}. Theorem~\ref{thm:complete} shows that this bound is attained by every complete graph: $\chi(S_\lambda(K_n))=2n-1$ and $\cq(S_\lambda(K_n))=n$ for all $n\ge3$. The lower bound uses a lemma of Brakensiek and Guruswami on colorings of powers of $K_n$ with $2n-2$ colors~\cite{BG}.
+
+The lower bounds of~\cite{Z} for iterated substitutions rest on towers of chains: a tower of length $h$ over a graph certifies $2h+3$ colors, and each substitution lengthens a tower by one. A sphere $S^{2h+1}$ with its standard circle action carries a tower of length $h$. Theorem~\ref{thm:spheres} shows that after the first substitution over this sphere the tower has length $2h+1$, not $h+1$. Consequently, if the box complex of $H$ receives an equivariant map from $S^{2h+1}$, then $\chi(S^j_\lambda(H))\ge4h+2j+3$, with one more color if the sphere has dimension $2h+2$. For complete graphs this gives $\chi(S^j_\lambda(K_n))\ge2n-3+2j$ for odd $n$ and $\ge2n-4+2j$ for even $n$ (Corollary~\ref{cor:kn}), on sparse induced subgraphs as in~\cite{Z}. For odd $n$ and $j=1$ this is the exact value $2n-1$. For even $n$ it is one less, and Proposition~\ref{prop:even} shows that this is not a defect of the proof: on $S_\lambda(K_n)$ with $\lambda\ge2$ the powers of the Stiefel--Whitney class of the box complex certify exactly $2n-2$ colors.
+
+\paragraph{Maps from the two-sphere (Section~\ref{sec:coindex}).}
+For a graph $G$ with a quantum $3$-coloring, the box complex can admit no equivariant map to a low-dimensional sphere, which is how~\cite{Z} proves that $\chi(G)$ is large. In the other direction it is restricted: Proposition~\ref{prop:coindex} shows that no sphere of dimension two maps equivariantly into the box complex of $G$. The proof combines a unitary representation built from the coloring with a theorem of Simons, Tardif and Wehlau on signatures of odd closed walks~\cite{STW}.
+
+\paragraph{Small graphs (Section~\ref{sec:small}).}
+The article exhibits a graph $F_{22}$ on $22$ vertices with $(\cq,\chi)=(3,4)$ and a graph $F_{\rm phys}$ on $165$ measurements with $(\cq,\chi)=(3,5)$. We add four constructions. Table~\ref{tab:small} lists them.
+\begin{itemize}
+\item Proposition~\ref{prop:stretch}: for every $R\ge2$, a graph with $\chi=4$ on $22+69\lceil(R-1)/2\rceil$ vertices with an $R$-compatible quantum $3$-coloring in local dimension four. Every quantum $3$-coloring of it has local dimension divisible by four.
+\item Theorem~\ref{thm:star}: spanning subgraphs $F_\triangle\supset F_*$ of $F_{\rm phys}$ with $732$ and $678$ edges that still carry a tower of length one, hence still have $\chi=5$.
+\item Theorem~\ref{thm:FR}: for every $R\ge2$, a graph $F_R$ with $\chi=5$ on $234+54(R-2)$ vertices and a quantum $3$-coloring in local dimension four whose compatibility radius is exactly $R$. For comparison, $S_{R-2}(K_3)$ has $342+81(R-2)$ vertices.
+\item Theorem~\ref{thm:Hj}: a family of physical graphs $H_j$ with $H_1=F_{\rm phys}$, $\cq(H_j)=3$, $\chi(H_j)\ge2j+3$ and singly exponential order. Every quantum $3$-coloring of $H_j$ has local dimension divisible by $2\cdot4^{j-1}$ and at least $4^j$. The graph $H_2$ has $4{,}330{,}533$ vertices and $7\le\chi(H_2)\le9$.
+\end{itemize}
+
+\begin{table}[t]
+\centering
+\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Graph & Vertices & $\chi$ & Radius & Source\\
+\midrule
+$F_{22}$ & $22$ & $4$ & $1$ & \cite[Prop.~6.1]{Z}\\
+stretched $F_{22}$ & $22+69\lceil(R-1)/2\rceil$ & $4$ & $R\ge2$ & Prop.~\ref{prop:stretch}\\
+$F_{\rm phys}$, $F_\triangle$, $F_*$ & $165$ & $5$ & $1$ & \cite[Thm.~6.2]{Z}, Thm.~\ref{thm:star}\\
+$F_R$ & $234+54(R-2)$ & $5$ & $R\ge2$ & Thm.~\ref{thm:FR}\\
+$S_\lambda(K_3)$, $\lambda=\max\{R-2,0\}$ & $342+81\lambda$ & $5$ & $R\ge1$ & \cite[Thm.~2.4]{Z}\\
+$H_2$ & $4{,}330{,}533$ & $7$, $8$ or $9$ & $1$ & Thm.~\ref{thm:Hj}\\
+\bottomrule
+\end{tabular}
+\caption{Graphs with quantum chromatic number three and a quantum $3$-coloring in local dimension four ($16$ for $H_2$). The column ``Radius'' gives the values of $R$ for which an $R$-compatible quantum $3$-coloring is exhibited. All entries have analytical proofs. Section~\ref{sec:computed} adds graphs with $\chi=5$ on $207$ and $279$ vertices for $R=2$ and $R=3$ whose lower bound $\chi\ge5$ is computer-assisted.}
+\label{tab:small}
+\end{table}
+
+\paragraph{Facts known only by computation (Section~\ref{sec:computed}).}
+The last section lists statements that were verified by programs and have no analytical proof here, among them the criticality of $F_{22}$, the minimality of the $678$ edges of $F_*$, and the edge number of $H_2$.
+
+\paragraph{Proofs, imports and computations.}
+Every numbered statement of Sections~\ref{sec:complete}--\ref{sec:small} has an analytical proof from the definitions, from statements of~\cite{Z}, and from two published results that we import and state in full: Lemma~3.7 of~\cite{BG} (as Lemma~\ref{lem:bg}), used for Theorem~\ref{thm:complete}, and Theorem~1 of~\cite{STW} with its Lemma~4 (in Section~\ref{sec:coindex}), used for Proposition~\ref{prop:coindex}. Beyond these we use standard algebraic topology: the Serre spectral sequence, the Thom isomorphism and Poincar\'e duality with coefficients in $\Ftwo$. The program \texttt{check\_note.py} that accompanies this note replays finite facts from these sections independently; none of the proofs refers to it. The facts of Section~\ref{sec:computed} are set apart because they rest on computation alone.

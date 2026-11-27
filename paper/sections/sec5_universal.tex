@@ -1,0 +1,238 @@
+\section{Universal trade-offs: order, compatibility radius, and local dimension}\label{sec:universal}
+
+Sections~\ref{sec:construction}--\ref{sec:rigidity} focused on our explicit family. We now step back and ask what \emph{every} graph with an $R$-compatible quantum $3$-coloring and $\chi(G)\ge t$ must pay in graph order, edge count, and local dimension. We obtain four main results. At fixed $t$, the lower bound on the order that holds for all graphs has the same exponent in $R$ as the order of $G_{j,R}$. Every graph with a quantum $3$-coloring in local dimension three is classically $5$-colorable, and this bound is attained at every compatibility radius. The general exponential upper bound on $\chi(G)$ for quantum $3$-colorings in local dimension $d$ becomes tighter. Finally, lower bounds that are certified by the box complex meet structural barriers.
+
+\subsection{Local classicality and neighborhood rounding}\label{sec:compatibility}
+
+Compatibility is a locality condition. Commuting projective measurements can be performed jointly, and $R$-compatibility requires joint measurability for all pairs of vertices within graph distance $R$~\cite[Section~2.1]{C26}. Whenever a subset $U\subseteq V(G)$ has diameter at most $R$ in $G$, the measurements of an $R$-compatible quantum $3$-coloring on $U$ commute pairwise and therefore admit a common orthonormal eigenbasis. Each vector in this basis selects one color at every vertex of $U$, and the edge rule guarantees that this assignment is a proper classical $3$-coloring of $G[U]$. On every set of diameter at most $R$, an $R$-compatible strategy thus reduces to a probability distribution over proper classical colorings; Ciardo and Mottet accordingly describe highly compatible strategies as locally classical~\cite[Section~3]{CM}. Larger compatibility radii force the quantum advantage to be increasingly global.
+
+Simultaneous diagonalization immediately implies that every set of diameter at most $R$---in particular every ball of radius $\lfloor R/2\rfloor$---induces a classically $3$-colorable subgraph. The next lemma extends classical $3$-colorability outward by one additional layer of neighbors, using only the edge rule.
+
+\begin{lemma}[Rounding a commuting set and its neighbors]\label{lem:rounding-neighbors}
+Let $(P_{v,a})$ be a quantum $3$-coloring of a graph $G$, and let $S$ be a nonempty set of vertices whose measurements commute pairwise. Then the subgraph induced by $S$ together with all neighbors of vertices of $S$ is classically $3$-colorable. In particular, if the coloring is $R$-compatible, every ball of radius $\lfloor R/2\rfloor+1$ induces a classically $3$-colorable subgraph.
+\end{lemma}
+\begin{proof}
+Because the measurements on $S$ commute pairwise, they share a common unit eigenvector $\xi\in\C^d$. Set $p_{v,a}=\|P_{v,a}\xi\|^2$ for every $v\in V(G)$ and $a\in\{1,2,3\}$, and write $N[S]$ for the closed neighborhood of $S$ (all vertices of $S$ together with all neighbors of vertices of $S$).
+
+Every $s\in S$ has a unique color $a_s$ with $P_{s,a_s}\xi=\xi$ (so $p_{s,a_s}=1$). For any neighbor $v$ of $s$, the edge rule gives $P_{v,a_s}\xi=P_{v,a_s}P_{s,a_s}\xi=0$. Consequently, every vertex $v\in N[S]$ has at most two outcomes of positive probability under $\xi$. Since these probabilities sum to $1$, at least one outcome at $v$ satisfies $p_{v,a}\ge1/2$.
+
+Whenever $v\in N[S]$ and $a\in\{1,2,3\}$ satisfy $p_{v,a}=1/2$, call $P_{v,a}\xi-\xi/2$ a \emph{tie vector}. Each tie vector is nonzero: expanding its squared norm using $P_{v,a}^2=P_{v,a}$ gives
+\[
+ \|P_{v,a}\xi-\xi/2\|^2=\|P_{v,a}\xi\|^2-\|P_{v,a}\xi\|^2+\frac14=\frac14\ne0.
+\]
+Choose a real-linear functional $L:\C^d\to\R$ that is nonzero on each of the finitely many tie vectors. Color each vertex $v\in N[S]$ as follows. If a unique outcome $a$ satisfies $p_{v,a}>1/2$, assign $v$ the color $a$. Otherwise two outcomes $a,b$ satisfy $p_{v,a}=p_{v,b}=1/2$. In that case $P_{v,a}\xi+P_{v,b}\xi=\xi$, so the two tie vectors satisfy $(P_{v,a}\xi-\xi/2)+(P_{v,b}\xi-\xi/2)=0$, and $L$ is positive on exactly one of them. Assign $v$ the color among $\{a,b\}$ whose tie vector satisfies $L>0$.
+
+To verify that this coloring of $G[N[S]]$ is proper, suppose adjacent vertices $u,v\in N[S]$ both receive color $a$. By the edge rule, $P_{u,a}$ and $P_{v,a}$ are orthogonal projections, so $p_{u,a}+p_{v,a}=\|(P_{u,a}+P_{v,a})\xi\|^2\le1$. Since both probabilities are at least $1/2$, we must have $p_{u,a}=p_{v,a}=1/2$ and $\|(P_{u,a}+P_{v,a})\xi\|^2=1$, which forces $(P_{u,a}+P_{v,a})\xi=\xi$. The two tie vectors $P_{u,a}\xi-\xi/2$ and $P_{v,a}\xi-\xi/2$ are therefore opposite, so $L$ cannot be positive on both, a contradiction.
+
+For the final assertion, let $S$ be any ball of radius $\lfloor R/2\rfloor$ in $G$. Any two vertices of $S$ lie at distance at most $2\lfloor R/2\rfloor\le R$, so their measurements commute by $R$-compatibility, and $N[S]$ is the concentric ball of radius $\lfloor R/2\rfloor+1$.
+\end{proof}
+
+\subsection{Graph order versus compatibility radius}\label{sec:order}
+
+For integers $t\ge4$ and $R\ge1$, define $N_3(t,R)$ to be the minimum number of vertices of a finite graph $H$ satisfying $\chi(H)\ge t$ that admits an $R$-compatible quantum $3$-coloring (minimized over all graphs, not only those from our construction, and over all finite local dimensions). We first determine the exact asymptotic growth of $N_3(t,R)$ for fixed $t$ as $R\to\infty$.
+
+\begin{corollary}\label{cor:radius}
+Put $j=\lceil(t-3)/2\rceil$. For an absolute constant $C$,
+\[
+ \left\lfloor\frac{R+2}{4j}\right\rfloor^j
+ < N_3(t,R) \le [C(1+R)]^j.
+\]
+In particular, for each fixed $t\ge4$, as $R\to\infty$, $N_3(t,R)=\Theta_t((1+R)^{\lceil(t-3)/2\rceil})$.
+\end{corollary}
+\begin{proof}
+For the upper bound, Theorem~\ref{thm:sparse} produces the graph $G_{j,R}$ with an $R$-compatible quantum $3$-coloring, $\chi(G_{j,R})\ge2j+3\ge t$, and $|V(G_{j,R})|\le[C(1+R)]^j$.
+
+For the lower bound, let $H$ be any $n$-vertex graph with $\chi(H)\ge t$ and an $R$-compatible quantum $3$-coloring, and put $q=\lfloor R/2\rfloor+1$. By Lemma~\ref{lem:rounding-neighbors}, every ball of radius $q$ in $H$ is classically $3$-colorable. The local coloring theorem of Kierstead, Szemer{\'e}di, and Trotter~\cite[Theorem~1]{KST}, in the formulation stated by Bogdanov~\cite[Equation~(1.1)]{BogOrder}, asserts that any graph on at most $\lfloor q/(2j)\rfloor^j$ vertices in which every ball of radius $q$ is $3$-colorable has chromatic number at most $j(3-1)+1=2j+1$. Since $j=\lceil(t-3)/2\rceil$, we have $t\in\{2j+2,2j+3\}$, so $\chi(H)\ge t>2j+1$. Therefore
+\[
+ n>\left\lfloor\frac{q}{2j}\right\rfloor^j
+ =\left\lfloor\frac{\lfloor R/2\rfloor+1}{2j}\right\rfloor^j
+ =\left\lfloor\frac{R+2}{4j}\right\rfloor^j
+\]
+(when the floor is zero, this reduces to $n>0$). Taking the minimum over $H$ proves the displayed inequality, and fixing $t\ge4$ while letting $R\to\infty$ gives $N_3(t,R)=\Theta_t((1+R)^{\lceil(t-3)/2\rceil})$.
+\end{proof}
+
+We now turn to the opposite regime: growing classical target $t\to\infty$ at fixed compatibility radius ($R=1$) or at compatibility radius proportional to $t$ ($R\ge\alpha t$). Here we convert any quantum $3$-coloring into a \emph{strict vector $3$-coloring} in the sense of Karger, Motwani, and Sudan~\cite{KMS}. Endow the real vector space of triples $A=(A_1,A_2,A_3)$ of $d\times d$ Hermitian matrices with the inner product $\langle A,B\rangle=\frac1d\sum_{a=1}^3\operatorname{Tr}(A_aB_a)$. For each vertex $v\in V(G)$, define the traceless triple
+\begin{equation}\label{eq:strict-vectors}
+ x_v=\sqrt{\frac32}\,\bigl(P_{v,a}-\tfrac13 I\bigr)_{a=1}^3.
+\end{equation}
+Because $P_{v,a}^2=P_{v,a}$ and $\sum_{a=1}^3 P_{v,a}=I$, direct expansion gives
+\[
+ \|x_v\|^2=\frac{3}{2d}\sum_{a=1}^3\operatorname{Tr}\!\left(P_{v,a}-\frac23 P_{v,a}+\frac19 I\right)
+ =\frac{3}{2d}\left(\frac13 d+\frac13 d\right)=1.
+\]
+On any edge $uv\in E(G)$, the edge rule $P_{u,a}P_{v,a}=0$ gives
+\[
+ \langle x_u,x_v\rangle=\frac{3}{2d}\sum_{a=1}^3\operatorname{Tr}\!\left(-\frac13 P_{u,a}-\frac13 P_{v,a}+\frac19 I\right)
+ =\frac{3}{2d}\left(-\frac13 d\right)=-\frac12.
+\]
+Thus $(x_v)_{v\in V(G)}$ is a strict vector $3$-coloring of $G$~\cite{KMS}.
+
+\begin{proposition}\label{prop:unrestricted-order}
+As $t\to\infty$, one has $N_3(t,1)\ge t^{3+\sqrt6-o(1)}$. For every fixed $\alpha>0$ and $R\ge\alpha t$, one has $N_3(t,R)\ge\exp(\Omega_\alpha(t))$.
+\end{proposition}
+\begin{proof}
+\emph{Fixed radius $R=1$.} Let $G$ be any $n$-vertex graph admitting the strict vector $3$-coloring~\eqref{eq:strict-vectors}, and set $\beta=\sqrt{2/3}$. We lower-bound the independence number of $G$ by splitting on its maximum degree $\Delta(G)$:
+\begin{itemize}
+\item If $\Delta(G)\le n^\beta$, the vector-coloring theorem of Deguchi, Kawarabayashi, H.~Yoneda, and M.~Yoneda~\cite[Theorem~2]{DKYY} (in its branch $\beta>1/3$) guarantees an independent set of size at least $n^{(2+2\beta)/(2+3\beta)-o(1)}$.
+\item If some vertex $v$ has degree greater than $n^\beta$, consider the vectors $y_u=(2x_u+x_v)/\sqrt3$ for all neighbors $u$ of $v$. Using $\|x_u\|=\|x_v\|=1$ and $\langle x_u,x_v\rangle=-1/2$, we compute $\|y_u\|^2=(4-2+1)/3=1$. For any two adjacent neighbors $u,u'$ of $v$, we have $\langle x_u,x_{u'}\rangle=-1/2$ as well, giving $\langle y_u,y_{u'}\rangle=(-2-1-1+1)/3=-1$, so $y_u=-y_{u'}$. Every connected component of the neighborhood of $v$ is therefore bipartite, yielding an independent set of size at least $\deg(v)/2>n^\beta/2$.
+\end{itemize}
+Because $\beta=\sqrt{2/3}$ solves $(2+2\beta)/(2+3\beta)=\beta$, both branches produce an independent set of size at least $n^{\beta-o(1)}$ as $n\to\infty$.
+
+Since every induced subgraph inherits~\eqref{eq:strict-vectors}, we color $G$ greedily by repeatedly extracting a maximum independent set. Fix any $\varepsilon>0$; there is $m_0(\varepsilon)$ such that every induced subgraph of order $m\ge m_0(\varepsilon)$ has an independent set of size at least $m^{\beta-\varepsilon}$. While the remaining number of vertices lies in $(m/2,m]$ with $m\ge 2m_0(\varepsilon)$, each extracted independent set uses $1$ color and removes at least $(m/2)^{\beta-\varepsilon}$ vertices, so at most $(m/2)/(m/2)^{\beta-\varepsilon}=(m/2)^{1-\beta+\varepsilon}$ colors suffice to halve the graph. Summing this geometric series over dyadic scales $m=n,n/2,n/4,\ldots$ down to $2m_0(\varepsilon)$ and coloring the leftover vertices individually yields $\chi(G)\le O_\varepsilon(n^{1-\beta+\varepsilon})$. Since $\varepsilon>0$ is arbitrary, $\chi(G)\le n^{1-\beta+o(1)}$ as $n\to\infty$. Inverting this bound for $\chi(G)\ge t$ and noting $1/(1-\sqrt{2/3})=3+\sqrt6$ gives $N_3(t,1)\ge t^{3+\sqrt6-o(1)}$ as $t\to\infty$.
+
+\emph{Linear radius $R\ge\alpha t$.} Fix $\alpha>0$ and let $G$ be a graph with $\chi(G)\ge t$ and an $R$-compatible quantum $3$-coloring. Set $r=\min\{\lfloor R/2\rfloor,\lfloor(t-1)/12\rfloor\}$. Since $r\le\lfloor R/2\rfloor+1$, Lemma~\ref{lem:rounding-neighbors} ensures that every ball of radius $r$ in $G$ is classically $3$-colorable. Bogdanov's local coloring theorem~\cite[Theorem~1.1]{BogOrder} applied with $c=3$ and $n=t-1$ implies that $|V(G)|$ is at least a product of $r+1$ rising-factorial terms, each bounded below by $(t-1)/(3(r+1))$, yielding
+\[
+ |V(G)|\ge \left(\frac{t-1}{3(r+1)}\right)^{r+1}.
+\]
+Because $r\le(t-1)/12$, for all sufficiently large $t$ the base satisfies $(t-1)/(3(r+1))\ge2$, while $r$ grows at least linearly with $t$ for fixed $\alpha$. Hence $N_3(t,R)\ge 2^{r+1}=\exp(\Omega_\alpha(t))$.
+\end{proof}
+
+Combining Theorem~\ref{thm:sparse} (with $j=\lceil(t-3)/2\rceil$) and Proposition~\ref{prop:unrestricted-order} gives
+\[
+ t^{\,3+\sqrt6-o(1)}\ \le\ N_3(t,1)\ \le\ \exp(O(t))\qquad (t\to\infty),
+\]
+and for $R$ proportional to $t$ (fixed $\alpha>0$) it gives $\Omega_\alpha(t)\le\log N_3(t,R)\le O_\alpha(t\log t)$. Whether $N_3(t,R)$ can be subexponential in $t$ at a fixed compatibility radius $R$ remains open (Problem~\ref{prob:fixed-radius}). However, the next proposition shows that no graph family whose classical chromatic lower bound is certified by the box complex can have subexponential size.
+
+\begin{proposition}\label{prop:box-barrier}
+Let $G$ admit a quantum $3$-coloring. If the box complex $\B(G)$ admits no equivariant map to $S^{t-3}$, where $t\ge3$, then
+\[
+ |E(G)|\ge(2/\sqrt3)^{t-2},\qquad |V(G)|\ge\sqrt2\,(4/3)^{(t-2)/4}.
+\]
+\end{proposition}
+\begin{proof}
+Let $(x_v)_{v\in V(G)}$ be the strict vector $3$-coloring~\eqref{eq:strict-vectors}, and let $W=\operatorname{span}\{x_v:v\in V(G)\}$. Put $m=t-2\ge1$ and form a random linear map $A:W\to\R^m$ whose $m$ rows are independent standard Gaussian vectors in $W$.
+
+Fix one row $g$ of $A$ and one edge $uv\in E(G)$. The Gaussian random variables $X=\langle g,x_u\rangle$ and $Y=\langle g,x_v\rangle$ each have mean $0$, variance $1$, and covariance $\langle x_u,x_v\rangle=-1/2$. Consequently $X+Y$ and $X-Y$ are uncorrelated---hence independent---centered Gaussians with variances $\operatorname{Var}(X+Y)=1+1-1=1$ and $\operatorname{Var}(X-Y)=1+1+1=3$. Using $4XY=(X+Y)^2-(X-Y)^2$ and the standard chi-squared moment generating function $\mathbb E[e^{sZ^2}]=(1-2s)^{-1/2}$ ($s<1/2$, $Z\sim\mathcal N(0,1)$), we compute
+\[
+ \mathbb E\!\left[e^{2XY/3}\right]
+ =\mathbb E\!\left[e^{(X+Y)^2/6}\right]\mathbb E\!\left[e^{-(X-Y)^2/6}\right]
+ =\left(1-\frac13\right)^{-1/2}\bigl(1+1\bigr)^{-1/2}=\frac{\sqrt3}{2}.
+\]
+Since the $m$ rows of $A$ are independent, Markov's inequality bounds the probability of a nonnegative inner product on edge $uv$:
+\[
+ \Pr\bigl[\langle Ax_u,Ax_v\rangle\ge0\bigr]
+ =\Pr\!\left[\exp\!\left(\frac23\langle Ax_u,Ax_v\rangle\right)\ge1\right]
+ \le \left(\frac{\sqrt3}{2}\right)^m.
+\]
+
+Suppose $|E(G)|(\sqrt3/2)^m<1$. By a union bound over all edges, there exists a realization of $A$ with $\langle Ax_u,Ax_v\rangle<0$ for every edge $uv\in E(G)$. For any point $(\mu,\nu)\in\B(G)$, set $y_\mu=\sum_v \mu(v)Ax_v$ and $y_\nu=\sum_v \nu(v)Ax_v$. Because every $u\in\operatorname{supp}\mu$ is adjacent to every $v\in\operatorname{supp}\nu$, bilinearity gives $\langle y_\mu,y_\nu\rangle=\sum_{u,v}\mu(u)\nu(v)\langle Ax_u,Ax_v\rangle<0$. In particular $\|y_\mu-y_\nu\|^2=\|y_\mu\|^2+\|y_\nu\|^2-2\langle y_\mu,y_\nu\rangle>0$, so $y_\mu\ne y_\nu$. The map
+\[
+ (\mu,\nu)\longmapsto \frac{y_\mu-y_\nu}{\|y_\mu-y_\nu\|}
+\]
+is therefore a continuous equivariant map from $\B(G)$ to $S^{m-1}=S^{t-3}$. Contraposition yields $|E(G)|\ge(2/\sqrt3)^{t-2}$. Finally, $2|E(G)|\le|V(G)|(|V(G)|-1)<|V(G)|^2$ gives $|V(G)|\ge\sqrt2\,(4/3)^{(t-2)/4}$.
+\end{proof}
+
+In particular, any graph $G$ with a quantum $3$-coloring whose lower bound $\chi(G)\ge t$ is certified by the height of $w$ (or by any obstruction to an equivariant map $\B(G)\to S^{t-3}$) must have exponentially many edges in $t$.
+
+\subsection{Local dimensions up to four}\label{sec:alldim}
+
+For integers $t\ge4$ and $R\ge1$, define $D_3(t,R)$ to be the minimum local dimension of an $R$-compatible quantum $3$-coloring of a graph with $\chi\ge t$, minimized over all graphs and all colorings. Theorem~\ref{thm:sparse} (with $j=\lceil(t-3)/2\rceil$) yields the upper bound $D_3(t,R)\le 4^{\lceil(t-3)/2\rceil}$.
+
+We first pin down quantum $3$-colorings in local dimensions $1,2,3$ completely, at every compatibility radius $R\ge1$.
+
+\begin{theorem}\label{thm:qutrit}
+\leavevmode
+\begin{enumerate}
+\item[(a)] Every graph with a quantum $3$-coloring in local dimension three is classically $5$-colorable. Every graph with a quantum $3$-coloring in local dimension one or two is classically $3$-colorable.
+\item[(b)] For every $R\ge1$ there is an explicit graph $Q_R$ on $1080+567\max\{R-2,0\}$ vertices with $\cq(Q_R)=3$, $\chi(Q_R)=5$, and an $R$-compatible quantum $3$-coloring in local dimension three whose compatibility radius is exactly $\max\{R,2\}$.
+\end{enumerate}
+Consequently $D_3(4,R)=D_3(5,R)=3$ and $D_3(6,R)\ge4$ for every $R\ge1$.
+\end{theorem}
+\begin{proof}
+\emph{Proof of~(a).} First suppose $d\in\{1,2\}$. For each unordered pair of orthogonal $1$-dimensional subspaces (lines) of $\C^d$ that appear as ranges of outcome projectors in the coloring, choose one line from the pair. Call a projector \emph{selected} if it is the identity $I$ or projects onto a chosen line. Because the three projectors at each vertex are orthogonal and sum to $I$ on $\C^d$ ($d\le2$), every vertex has a unique selected projector, and two selected projectors are never orthogonal. Coloring each vertex by the outcome of its selected projector therefore defines a proper $3$-coloring.
+
+Now suppose $(P_{v,a})_{a=1}^3$ is a quantum $3$-coloring of $G$ on $\C^3$. The proof has three steps. Two independent sets $V_1$ and $V_2$ receive the colors $4$ and $5$. In a third independent set $V_3$, a vertex $v$ with $\rank P_{v,3}=2$ receives a mark in $\{1,2\}$ that belongs to the line $\ker P_{v,3}$, and a vertex with $P_{v,3}=I$ receives the color $3$. The remaining vertices, whose three projectors all have rank one, are colored with $1,2,3$ in such a way that each of them avoids the colors of its neighbors in $V_3$ and of its neighbors among the remaining vertices.
+
+Because no two subspaces of $\C^3$ of dimension at least $2$ are orthogonal, the set $V_1=\{v\in V(G):\rank P_{v,1}\ge2\}$ is an independent set, and so is $V_2=\{v\in V(G)\setminus V_1:\rank P_{v,2}\ge2\}$. Assign colors $4$ and $5$ to $V_1$ and $V_2$, respectively. Every remaining vertex $v\in V(G)\setminus(V_1\cup V_2)$ either has $\rank P_{v,3}\ge2$---forming an independent set $V_3$---or is \emph{balanced}, meaning $\rank P_{v,1}=\rank P_{v,2}=\rank P_{v,3}=1$. We color $V_3$ and the balanced vertices using colors $1,2,3$.
+
+Let $\mathcal L$ be the finite set of lines in $\C^3$ occurring either as the range of an outcome projector of a balanced vertex or as $\ker P_{v,3}$ for a vertex $v\in V_3$ with $\rank P_{v,3}=2$. Write $P_\ell$ for the rank-one projection onto $\ell\in\mathcal L$. For each $\ell\in\mathcal L$, the set $\{z\in\C^3:\|z\|=1,\;\|P_\ell z\|^2=1/3\}$ is nowhere dense in the unit sphere of $\C^3$, so we can choose a unit vector $z\in\C^3$ with $\|P_\ell z\|^2\ne1/3$ for every $\ell\in\mathcal L$. Mark each line $\ell\in\mathcal L$ by $f(\ell)=1$ if $\|P_\ell z\|^2<1/3$ and $f(\ell)=2$ if $\|P_\ell z\|^2>1/3$. For any orthonormal basis $\{\ell_1,\ell_2,\ell_3\}\subseteq\mathcal L$, the three weights $\|P_{\ell_r}z\|^2$ sum to $1$ and none equals $1/3$, so not all three can lie on the same side of $1/3$; hence every orthonormal basis in $\mathcal L$ carries both marks $1$ and $2$.
+
+Color every vertex $v\in V_3$ by $f(\ker P_{v,3})$ if $\rank P_{v,3}=2$, and by color $3$ if $P_{v,3}=I$. Note that if a balanced vertex $u$ is adjacent to $v\in V_3$, the edge rule $P_{u,3}P_{v,3}=0$ places the line of $P_{u,3}$ inside $\ker P_{v,3}$; this is impossible when $P_{v,3}=I$, so necessarily $\rank P_{v,3}=2$ and $\ker P_{v,3}$ equals the third line $\operatorname{ran} P_{u,3}$ of $u$.
+
+Consider now the balanced vertices. By~\cite[Lemma~2]{Ji}, any two adjacent balanced vertices $u,u'$ have commuting measurements, so their three rank-one projectors must share the same orthonormal basis $\{m_1,m_2,m_3\}$ of $\C^3$, assigned to outcomes $1,2,3$ by two bijections that disagree at every outcome. Fix an orthonormal basis $\{m_1,m_2,m_3\}\subseteq\mathcal L$. Two bijections $\{1,2,3\}\to\{m_1,m_2,m_3\}$ that disagree at every outcome differ by a $3$-cycle (even permutation), so the six bijections partition into two classes of three, and edges between balanced vertices occur only between distinct bijections inside the same class. Within each class of three bijections, the three third lines (images of outcome $3$) are $m_1,m_2,m_3$, which carry both marks $1$ and $2$:
+\begin{itemize}
+\item If one of the three bijections has third line of mark $2$ and the other two have third lines of mark $1$, color the first bijection $1$ and the other two bijections $2$ and $3$.
+\item If one bijection has third line of mark $1$ and the other two have third lines of mark $2$, color the first bijection $2$ and the other two bijections $1$ and $3$.
+\end{itemize}
+Assign every balanced vertex the color of its bijection. Inside each class of three bijections, distinct bijections receive distinct colors, so adjacent balanced vertices have different colors. Furthermore, by construction, every balanced vertex receives a color strictly different from the mark $f(\operatorname{ran} P_{u,3})$ of its third line, which is the color of every neighbor of $u$ in $V_3$. Since $V_3$ itself is independent, colors $1,2,3$ properly color $V_3$ together with all balanced vertices, completing a proper $5$-coloring of $G$.
+
+\emph{Proof of~(b).} We apply Proposition~\ref{prop:one-in-three} to Peres' Kochen--Specker configuration in $\R^3$~\cite{Peres91}. Peres' $33$ rays are the lines spanned by all coordinate permutations and sign changes of $(0,0,1)$, $(0,1,1)$, $(0,1,\sqrt2)$, and $(1,1,\sqrt2)$. Among these $33$ rays lie $16$ orthogonal triples (triads) and $24$ additional orthogonal pairs not contained in any of those $16$ triads. Adjoining the common perpendicular of each of these $24$ pairs produces $24$ new lines, yielding $33+24=57$ lines organized into $16+24=40$ orthogonal triads. Let $\mathcal D$ be the set of $40$ triads of rank-one projections onto these lines in $\C^3$, and define
+\[
+ Q_R=W_\lambda(\mathcal D),\qquad \lambda=\max\{R-2,0\},
+\]
+fixing arbitrary orderings of the triads containing each line in the definition of $W_\lambda(\mathcal D)$ (Section~\ref{sec:one-in-three}).
+
+Because no two rank-one projections in $\C^3$ are complementary, two parts of different triads in $\mathcal D$ are never complementary, and they are equal precisely when they project onto the same line. A one-in-three selection for $\mathcal D$ would therefore be a subset of the $57$ lines meeting each of the $40$ triads in exactly one line; its restriction to Peres' $33$ rays would meet every one of the $16$ ray triads in exactly one ray and every one of the $24$ orthogonal pairs in at most one ray. Peres proved that no such selection exists~\cite{Peres91}. Hence $\mathcal D$ admits no one-in-three selection.
+
+By Proposition~\ref{prop:one-in-three}, $Q_R$ has a $(\lambda+2)$-compatible, hence $R$-compatible, quantum $3$-coloring in local dimension three, $\cq(Q_R)=3$, and $\chi(Q_R)\ge5$. Part~(a) gives $\chi(Q_R)\le5$, so $\chi(Q_R)=5$. Finally, $Q_R$ has $40$ triad charts of $27$ words each ($40\cdot27=1080$ chart vertices). Across all $40$ triads there are $3\cdot40=120$ part incidences distributed among $57$ distinct lines; connecting the first triad on each line to every other triad sharing that line creates $120-57=63$ wires, each contributing $9\lambda$ interior vertices ($63\cdot9=567$). Thus $|V(Q_R)|=1080+567\max\{R-2,0\}$.
+
+\emph{Compatibility radius of this coloring.} The coloring is $(\lambda+2)$-compatible by Proposition~\ref{prop:one-in-three}. We exhibit two vertices at distance at most $\lambda+3$ whose measurements do not commute. Since $120>57$, some line lies in at least two triads. Let $T_1=\{P,A,B\}$ be the first triad containing it and $T=\{P,A',B'\}$ another one, with $P$ the projection onto that line, so that a wire joins the charts of $T_1$ and $T$. Two distinct triads of rank-one projections on $\C^3$ share at most one part, because two of the three lines determine the third. Hence $A'$ is a rank-one projection below $I-P=A+B$ that differs from both $A$ and $B$. It is therefore neither equal nor orthogonal to $A$, and $AA'\ne A'A$.
+
+With the colors in $\mathbb Z/3$, let $w_1$ be the word of $T_1$ with colors $0,1,2$ on $P,A,B$, and let $w_2$ be the word of $T$ with colors $\lambda+1,\lambda+2,\lambda$ on $P,A',B'$. For $0\le\ell\le\lambda+1$, let $u_\ell$ be the pair $(\ell+1,\ell)$ in layer $\ell$ of the wire. The vertex $u_0$ is the word of $T_1$ with color $1$ on $P$ and $0$ on $A$ and $B$, which differs from $w_1$ on all three parts. Consecutive pairs $u_\ell,u_{\ell+1}$ differ in both entries. The vertex $u_{\lambda+1}$ is the word of $T$ with color $\lambda+2$ on $P$ and $\lambda+1$ on $A'$ and $B'$, which differs from $w_2$ on all three parts. Thus $w_1,u_0,\ldots,u_{\lambda+1},w_2$ is a walk with $\lambda+3$ edges. The measurement of $w_1$ contains the projector $A$ and that of $w_2$ contains $A'$, so the coloring is not $(\lambda+3)$-compatible.
+
+\emph{Derivation of the consequence.} By part~(a), no graph with $\chi\ge4$ admits a quantum $3$-coloring in local dimension $1$ or $2$, so $D_3(4,R)\ge3$, and no graph with $\chi\ge6$ admits one in local dimension at most $3$, so $D_3(6,R)\ge4$. Conversely, for every $R\ge1$, the graph $Q_R$ of part~(b) witnesses $D_3(5,R)\le3$, and $D_3(4,R)\le D_3(5,R)$ directly from the definition of $D_3$. Hence $D_3(4,R)=D_3(5,R)=3$ and $D_3(6,R)\ge4$.
+\end{proof}
+
+Ciardo previously proved existentially that graphs admitting a quantum $3$-coloring in local dimension three can satisfy $\chi\ge5$~\cite[Corollary~35 and Example~36]{Ciardo24}; Theorem~\ref{thm:qutrit} provides explicit graphs $Q_R$ at every compatibility radius $R$ and proves that five classical colors is sharp for quantum $3$-colorings in local dimension three.
+For graphs admitting a quantum $3$-coloring in local dimension four, a short complementary-plane argument caps the classical chromatic number at six.
+
+\begin{proposition}\label{prop:dim-four}
+Every graph with a quantum $3$-coloring in local dimension four is classically $6$-colorable. Hence $D_3(7,R)\ge5$ for every $R$.
+\end{proposition}
+\begin{proof}
+At every vertex $v$, the ranks of the three outcome projectors sum to $4$, so at least one outcome $a(v)\in\{1,2,3\}$ satisfies $\rank P_{v,a(v)}\ge2$; fix one such outcome $a(v)$. Partition the $2$-dimensional subspaces (planes) of $\C^4$ that appear as $\operatorname{ran} P_{v,a(v)}$ into orthogonal complementary pairs $\{W,W^\perp\}$, and assign opposite bits $0$ and $1$ to the two members of each pair. Color $v$ by the pair $(a(v),b(v))\in\{1,2,3\}\times\{0,1\}$, where $b(v)$ is the assigned bit if $\rank P_{v,a(v)}=2$ and $b(v)=0$ if $\rank P_{v,a(v)}\ge3$. If adjacent vertices $u,v$ received the same outcome $a(u)=a(v)$, then $\operatorname{ran} P_{u,a(u)}$ and $\operatorname{ran} P_{v,a(v)}$ would be orthogonal subspaces of $\C^4$ of dimension at least $2$; they must therefore be complementary planes and hence carry opposite bits $b(u)\ne b(v)$. Thus these six colors properly color the graph.
+\end{proof}
+
+\subsection{A chromatic bound in every local dimension}\label{sec:rounding}
+
+In any quantum $3$-coloring in local dimension $d$, every vertex still has an outcome projector of rank at least $s=\lceil d/3\rceil$. To convert that large-rank outcome into a classical color, say that a unit vector $z\in\C^d$ \emph{hits} a subspace (or its orthogonal projection $Q$) if $\langle z,Qz\rangle>1/2$, meaning that more than half of its squared norm lies in the subspace. Because $\langle z,Qz\rangle+\langle z,Q'z\rangle\le\|z\|^2=1$ for orthogonal projections $Q,Q'$, a single unit vector cannot hit two orthogonal subspaces.
+
+\begin{theorem}\label{thm:rank-rounding}
+There is an absolute constant $C$ such that every graph $G$ with a quantum $3$-coloring in local dimension $d$ satisfies
+\[
+ \chi(G)\le C\,d^4\left(\frac{2^{5/3}}{3}\right)^d,\qquad \frac{2^{5/3}}{3}=1.0583\ldots
+\]
+No compatibility is assumed beyond the edge rule.
+\end{theorem}
+
+The analytical proof of Theorem~\ref{thm:rank-rounding} constructs a finite hitting set of unit vectors via an operator-norm net and a beta-tail bound, and is given in Appendix~\ref{app:rounding}.
+
+Banakh, Ciardo, Kozik, and Tu{\l}owiecki proved $\chi(G)\le 3(2+o(1))^{d-1}$ for every graph $G$ admitting a quantum $3$-coloring in local dimension $d$~\cite[Theorem~29]{BCKT} (their theorem assumes commutation on edges, which is automatic for three colors by~\cite[Lemma~2]{Ji}). Theorem~\ref{thm:rank-rounding} reduces the exponential base from $2$ to $2^{5/3}/3\approx1.0583$. Inverting~\cite[Theorem~29]{BCKT} gives $D_3(t,R)\ge(1-o(1))\log_2 t$, whereas inverting Theorem~\ref{thm:rank-rounding} gives
+\begin{equation}\label{eq:dimension-lower}
+ D_3(t,R)\ \ge\ \frac{\log t-O(\log\log t)}{\log(2^{5/3}/3)}
+ \ =\ (12.23\ldots-o(1))\,\log_2 t\qquad (t\to\infty),
+\end{equation}
+uniformly in $R\ge1$. To verify~\eqref{eq:dimension-lower}, put $\theta=3/2^{5/3}$ and suppose a graph with $\chi\ge t$ has a quantum $3$-coloring in local dimension $d$. Taking logarithms in Theorem~\ref{thm:rank-rounding} gives $\log t\le \log C+4\log d+d\log(1/\theta)$. If $d\le\log t/\log(1/\theta)$, then $\log d\le\log\log t+O(1)$, so $d\log(1/\theta)\ge\log t-4\log\log t-O(1)$; larger values of $d$ satisfy this inequality automatically.
+
+\subsection{Box-complex certificates need even local dimension}\label{sec:coexist}
+
+Finally, the local dimension of a quantum $3$-coloring directly constrains the height of the Stiefel--Whitney class $w$ on the box complex $\B(G)$.
+
+\begin{proposition}\label{prop:height-dimension}
+Let $G$ have a quantum $3$-coloring in local dimension $d=2^\nu m$ with $m$ odd. Then $w^{2^{\nu+1}}=0$ on the box complex of $G$. In particular, a quantum $3$-coloring in odd local dimension forces $w^2=0$, and $w^2\ne0$ forces every quantum $3$-coloring of $G$ to have even local dimension. If $d$ is odd, there is moreover an equivariant map from $\B(G)$ to the circle $S^1$ with the antipodal involution.
+\end{proposition}
+\begin{proof}
+Let $(P_{v,a})_{a\in\mathbb Z/3}$ be the quantum $3$-coloring, let $\omega=e^{2\pi i/3}$, and define the unitary operator $U_v=\sum_{a\in\mathbb Z/3}\omega^a P_{v,a}$ at each vertex $v\in V(G)$. On any edge $vv'\in E(G)$, the measurements at $v$ and $v'$ commute by~\cite[Lemma~2]{Ji} and equal outcomes are orthogonal. Every joint eigenvalue of $U_v^*U_{v'}$ is therefore $\omega$ or $\omega^2$; since $\omega+\omega^2=-1$, we have $U_v^*U_{v'}+U_{v'}^*U_v=-I$.
+
+For any point $(\mu,\nu)\in\B(G)$, set $A=\sum_v \mu(v)U_v$ and $D=\sum_v \nu(v)U_v$. Because every $v\in\operatorname{supp}\mu$ is adjacent to every $v'\in\operatorname{supp}\nu$ and $\sum_v \mu(v)=\sum_{v'}\nu(v')=1$, we compute
+\[
+ (A-D)^*(A-D)=A^*A+D^*D-\sum_{v,v'}\mu(v)\nu(v')\bigl(U_v^*U_{v'}+U_{v'}^*U_v\bigr)=A^*A+D^*D+I.
+\]
+The right-hand side is strictly positive definite, so $\Theta(\mu,\nu)=A-D$ is an invertible $d\times d$ complex matrix depending continuously on $(\mu,\nu)$ and satisfying $\Theta(\nu,\mu)=-\Theta(\mu,\nu)$.
+
+When $d$ is odd, $\det(-\Theta)=-\det\Theta$, so $(\mu,\nu)\mapsto\det\Theta(\mu,\nu)/|\det\Theta(\mu,\nu)|$ is an equivariant continuous map from $\B(G)$ to $S^1$ with the antipodal involution. Pulling back from $\mathbb{RP}^1$ gives $w^2=0$ because $H^2(\mathbb{RP}^1;\Ftwo)=0$.
+
+For general $d=2^\nu m$, let $\ell$ be the real line bundle over the quotient $\B(G)/\{1,T\}$ associated with the double cover, so $w=w_1(\ell)$~\cite{MS}. Any continuous odd map $\B(G)\to W$ into a real vector space $W$ defines a section of $\ell\otimes W$. Viewing $\C^d$ as $\R^{2d}$, the $d$ columns of $\Theta(\mu,\nu)$ together with their multiples by $i$ form $2d$ continuous odd maps to $\R^{2d}$ that are $\R$-linearly independent at every point (because $\Theta(\mu,\nu)$ is invertible over $\C$). They therefore yield a global trivialization of the direct sum $\ell^{\oplus 2d}$, so its total Stiefel--Whitney class equals $1$. By the Whitney product formula~\cite{MS}, working in mod-$2$ cohomology where $(1+w)^{2^{\nu+1}}=1+w^{2^{\nu+1}}$, we obtain
+\[
+ 1=(1+w)^{2d}=(1+w^2)^d=(1+w^{2^{\nu+1}})^m.
+\]
+The degree-$2^{\nu+1}$ term on the right is $m\,w^{2^{\nu+1}}$, and since $m$ is odd this forces $w^{2^{\nu+1}}=0$. Setting $\nu=0$ gives the two special cases.
+\end{proof}
+
+Proposition~\ref{prop:height-dimension} separates two mechanisms for chromatic gaps. The $165$-vertex graph $F_{\rm phys}$ of Section~\ref{sec:165} satisfies $w^3\ne0$ (Theorem~\ref{thm:finite-square}), so Proposition~\ref{prop:height-dimension} forces every quantum $3$-coloring of $F_{\rm phys}$ to have even local dimension, and Theorem~\ref{thm:qutrit}(a) rules out local dimension two, pinning its minimum local dimension at four. Conversely, the qutrit graphs $Q_R$ of Theorem~\ref{thm:qutrit}(b) have quantum $3$-colorings in local dimension three, so, by Proposition~\ref{prop:height-dimension}, $w^2=0$ on $\B(Q_R)$ and $\B(Q_R)$ maps equivariantly to $S^1$. Their fifth color comes from the Kochen--Specker obstruction of Peres' rays and is invisible to the box complex, and they carry no tower of length one (cf.\ Section~\ref{sec:no-seed}). In the opposite direction, whenever $G$ admits a quantum $3$-coloring in local dimension $d$ and its bound $\chi(G)\ge k+2$ is certified by $w^k\ne0$, Proposition~\ref{prop:height-dimension} forces the largest power of two dividing $d$ to satisfy $2^\nu>k/2$.
+
+Summarizing our bounds on $D_3(t,R)$, for every compatibility parameter $R\ge1$:
+\[
+ D_3(4,R)=D_3(5,R)=3,\qquad 4\le D_3(6,R)\le D_3(7,R)\le16,\qquad D_3(7,R)\ge5,
+\]
+while for general $t\ge4$, $D_3(t,R)$ lies between~\eqref{eq:dimension-lower} and $4^{\lceil(t-3)/2\rceil}$.

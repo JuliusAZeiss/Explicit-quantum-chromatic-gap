@@ -1,0 +1,19 @@
+# LaTeX build artifacts (keep paper/main.pdf tracked)
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+!checks/logs/*.log
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# OS metadata
+.DS_Store
+!note/checks/logs/*.log

@@ -1,0 +1,34 @@
+\section{Other target graphs}\label{sec:targets}
+
+A quantum $c$-coloring of $G$ is a quantum homomorphism from $G$ to $K_c$. More generally, for any finite loopless target graph $H$, a \emph{quantum homomorphism} $G\qto H$ in local dimension $d$ assigns to each vertex $v\in V(G)$ a projective measurement $(P_{v,a})_{a\in V(H)}$ on $\C^d$ such that $P_{u,a}P_{v,b}=0$ whenever $u\sim_G v$ and $a\not\sim_H b$~\cite[Corollary~2.2]{MR}. As before, $G\qto H$ is \emph{$R$-compatible} if $[P_{u,a},P_{v,b}]=0$ for all $a,b\in V(H)$ whenever $\dist_G(u,v)\le R$. Replacing the three scalars $a\in\{0,1,2\}$ at the leaves in Definition~\ref{def:sparse-graph} by arbitrary vertices $a\in V(H)$ extends the sparse square construction directly from $K_3$ to any target graph $H$.
+
+\begin{theorem}[Fixed targets]\label{thm:fixed-target}
+Fix $R\ge1$. The classical chromatic numbers of graphs admitting an $R$-compatible quantum homomorphism to $H$ are unbounded if and only if $H$ is nonbipartite. For each nonbipartite $H$ and $j\ge1$, there is an explicit such graph $G$ with
+\[
+ \chi(G)\ge2j+3,\qquad |V(G)|+|E(G)|\le[C_H(1+R)]^j.
+\]
+The homomorphism acts in local dimension $4^j$. The graph $G$ contains a copy of $H$, has $\cq(G)=\cq(H)$, and has the same odd girth as $H$.
+\end{theorem}
+\begin{proof}
+\emph{Necessity.} Suppose $H$ is bipartite, and let $G$ admit a quantum homomorphism $G\qto H$. If $G$ contained an odd cycle $C_k$, restricting $G\qto H$ would give $C_k\qto H$. By Man{\v c}inska and Roberson~\cite[Theorem~4.12 of arXiv~v2]{MR}, $C_k\qto H$ implies a classical homomorphism $C_k\to H$, which maps $C_k$ to an odd closed walk in $H$ and therefore forces $H$ to contain an odd cycle, contradicting that $H$ is bipartite. Thus $G$ must be bipartite ($\chi(G)\le2$), so classical chromatic numbers are bounded whenever $H$ is bipartite.
+
+\emph{Sufficiency and explicit construction.} Suppose now that $H$ is nonbipartite, let $j\ge1$, and put $\lambda=\max\{R-2,0\}$. Presentations of the vertices of $S^j_\lambda(H)$ are defined as in Section~\ref{sec:sparse}, with one change: a leaf carries a vertex of $H$ in place of a scalar in $\{0,1,2\}$. As before, a leaf at a level $h\ge1$ is padded to the constant word in basis $6$, and the background of a wire node must be a leaf. Let
+\[
+ G_{j,R}(H)\subseteq S^j_\lambda(H)
+\]
+be the subgraph induced by the vertices that admit a presentation with at most $2j-1$ internal nodes and at most $j$ wire nodes, as in Definition~\ref{def:sparse-graph}. For $H=K_3$ this is the graph $G_{j,R}$. We show that $G=G_{j,R}(H)$ has the properties stated in the theorem.
+
+We verify each property of $G$ by adapting the proof of Theorem~\ref{thm:sparse}:
+\begin{itemize}
+\item \emph{Classical lower bound $\chi(G)\ge2j+3$.} Let $C_g$ be a shortest odd cycle in $H$, with vertices $0,1,\ldots,g-1\pmod g$. In the box complex $\B(C_g)$, the maximal cells are intervals in which one shore is a single vertex and the opposite shore is supported on its two neighbors; traversing their endpoints in cyclic order
+\[
+ (0,1),\;(2,1),\;(2,3),\;(4,3),\;\ldots\pmod g
+\]
+visits all $2g$ ordered edges of $C_g$ (since $g$ is odd), forming an embedded circle on which shore exchange acts as the half-turn. Composing with the inclusion $\B(C_g)\hookrightarrow\B(H)$ gives an equivariant map $S^1\to\B(H)$, so any point of $S^1$ forms a tower of length $0$ over $H$. Applying Lemma~\ref{lem:square-tower}(b) produces a tower of length $j$ inside the continuous-presentation space $Z_{j,j}\subset X_j$. Because the quantile coupling of Lemma~\ref{lem:box-realization} works verbatim over any finite graph $H$ and maps padded points of the distinguished orbit $O_h$ to distributions supported on padded vertices of $H$, its $j$-fold iterate maps $Z_{j,j}$ equivariantly into $\B(G)$. Proposition~\ref{prop:tower-bound} then gives $\chi(G)\ge2j+3$.
+\item \emph{Quantum homomorphism $G\qto H$ and $R$-compatibility.} Start at level $0$ with the deterministic scalar measurements $P_{v,a}=\mathbf 1_{v=a}$ on $\C^1$ for $v,a\in V(H)$, which commute at every distance. Equation~\eqref{eq:strategy} preserves orthogonality $P'_{u,a}P'_{v,b}=0$ for every forbidden pair $a\not\sim_H b$, and the path argument of Lemma~\ref{lem:radius-lift} applies verbatim to all pairs of outputs $a,b\in V(H)$. Applying~\eqref{eq:strategy} $j$ times and restricting to $G$ therefore yields a $(\lambda+2)$-compatible, hence $R$-compatible, quantum homomorphism $G\qto H$ in local dimension $4^j$.
+\item \emph{Order and edge count.} The counting proof of Theorem~\ref{thm:sparse} changes only by replacing the $3$-element leaf alphabet $\{0,1,2\}$ with the finite alphabet $V(H)$, yielding $|V(G)|+|E(G)|\le[C_H(1+R)]^j$ for a constant $C_H$ depending only on $H$.
+\item \emph{Copy of $H$, quantum chromatic number, and odd girth.} Diagonal padding of each vertex $a\in V(H)$ through basis $6$ embeds an isomorphic copy of $H$ as an induced subgraph of $G$. Hence $\cq(G)\ge\cq(H)$, and the odd girth of $G$ is at most that of $H$. Conversely, quantum homomorphisms compose by tensoring projectors and summing over intermediate outcomes~\cite{MR}: composing $G\qto H$ with an optimal quantum coloring $H\qto K_{\cq(H)}$ yields $\cq(G)\le\cq(H)$, so $\cq(G)=\cq(H)$. Finally, if $G$ contains an odd cycle $C_k$, restricting $G\qto H$ gives $C_k\qto H$, which by~\cite[Theorem~4.12 of arXiv~v2]{MR} implies $C_k\to H$ and thus an odd closed walk of length $k$ in $H$ (containing an odd cycle of length at most $k$). Therefore $G$ and $H$ have the same odd girth. \qedhere
+\end{itemize}
+\end{proof}
+
+Taking $H=K_n$ ($n\ge3$) in Theorem~\ref{thm:fixed-target} yields explicit graphs with $\cq(G)=n$ and arbitrarily large classical chromatic number at any prescribed compatibility parameter $R$. At level one, $S_\lambda(K_n)$ admits a quantum $n$-coloring in local dimension four and satisfies $\chi(S_\lambda(K_n))\le2n-1$ by Proposition~\ref{prop:physical-upper} in Appendix~\ref{app:five-coloring} (for comparison, Ciardo~\cite[Corollary~35]{Ciardo24} showed existentially that $\chi\ge2n-1$ is already achievable by graphs admitting a quantum $n$-coloring in local dimension three).

@@ -1,0 +1,53 @@
+== check_first_level.py
+Pauli square: six common eigenbases, P_e = (I + O_e)/2 at all nine edges of K_3,3, products I, I, I and I, I, -I
+parity lemma: none of the 4^6 = 4096 choices of positions is consistent on all nine wires
+lemma (a): all 1056 proper 4-colorings of K_3 x K_3 read exactly one coordinate (528 the first, 528 the second)
+lemma (b): all 12288 pairs of colorings on consecutive layers read the same coordinate
+lemma (c): in all 373104 proper 4-colorings of K_3 x K_3 x K_3 exactly one of the three restrictions reads the first coordinate
+coloring: n = 3: 417 measurements, 4386 orthogonal pairs, properly colored with 5 <= 5 colors
+coloring: n = 4: 1408 measurements, 104928 orthogonal pairs, properly colored with 7 <= 7 colors
+W_0 for the 18 triads of the square: 486 vertices, 2916 edges, 27 wires (one between complementary parts); strategy valid and compatible exactly up to distance 2; no one-in-three selection
+W_1 for the 18 triads of the square: 729 vertices, 4374 edges, 27 wires (one between complementary parts); strategy valid and compatible exactly up to distance 3; no one-in-three selection
+check_first_level: all checks passed
+== check_square_graphs.py
+square: six orthogonal bases and the nine plane identities hold
+S_1(K_3): 423 vertices; strategy valid and compatible exactly up to distance 3
+S_2(K_3): 504 vertices; strategy valid and compatible exactly up to distance 4
+S_0(K_3): 342 vertices, 273 distinct measurements, 2394 edges; strategy valid, 2-compatible and not 3-compatible; worked example confirmed
+filling: 21 triangles, 36 edges, mod 2 boundary = the three loops O, alpha_i, beta_i
+165 measurements (3 scalar, 54 on planes, 108 with a rank-one outcome): F_phys has 843 edges and contains the 732 edges used by the sampling map
+chi(F_phys) = 5 by exhaustive search (165 vertices)
+chi(S_0(K_3)) = 5 by exhaustive search (342 vertices)
+check_square_graphs: all checks passed
+== check_descents.py
+choices of positions: every choice has a defective edge; 16 choices for each single defective edge; each end of each edge points to its first entry in 8 of them
+lambda = 1: 144 cuts; every descent map is a proper partial 3-coloring of S_1(K_3) (423 vertices, 2880 edges); each interior vertex is cut with frequency 1/9 and otherwise sent to either entry equally often
+lambda = 2: 288 cuts; every descent map is a proper partial 3-coloring of S_2(K_3) (504 vertices, 3366 edges); each interior vertex is cut with frequency 1/18 and otherwise sent to either entry equally often
+lambda = 0: 288 cuts; every descent map is a proper partial 3-coloring of S_0(K_3) on its domain; the 108 words with two values at two positions each are removed with frequency 1/18 and otherwise sent to either value equally often
+identities: delta + (1 - delta) p/2 = p for lambda = 1, ..., 50; beta = 0.08246
+check_descents: all checks passed
+== check_small_graph_22.py
+22 vertices, 42 edges, chromatic number 4
+deleting any edge or any vertex leaves a 3-colorable graph
+two-qubit strategy: a quantum 3-coloring in dimension four; o, A, A' is a triangle
+the twelve 4-cycles all pass through o; no shores colored {1,3} against {2,4}
+cellular computation: w^2 = 0 on the box complex (controls: K_4 nonzero, C_5 zero)
+check_small_graph_22: all checks passed
+== check_dimension_three.py
+Peres: 33 rays, 57 lines, 40 triads, 63 wires, no one-in-three selection
+ceiling: the proof's 5-coloring is proper on all 585 coarse-grainings of the 40 triads (3258 orthogonal pairs, every rank pattern)
+Q_1: 1080 vertices, 6588 edges, 585 distinct measurements; compatible exactly up to distance 2; the proof's 5-coloring is proper
+Q_2: 1080 vertices, 6588 edges, 585 distinct measurements; compatible exactly up to distance 2; the proof's 5-coloring is proper
+Q_3: 1647 vertices, 9990 edges, 585 distinct measurements; compatible exactly up to distance 3; the proof's 5-coloring is proper
+Q_4: 2214 vertices, 13392 edges, 585 distinct measurements; compatible exactly up to distance 4; the proof's 5-coloring is proper
+check_dimension_three: all checks passed
+== check_rounding.py
+d =   8: p^(1/d) = 0.72225   log(p / bound) = 6.57
+d =  50: p^(1/d) = 0.89913   log(p / bound) = 8.07
+d = 100: p^(1/d) = 0.92179   log(p / bound) = 8.77
+d = 200: p^(1/d) = 0.93074   log(p / bound) = 8.91
+d = 400: p^(1/d) = 0.93763   log(p / bound) = 9.53
+theta = 0.94494; p >= theta^d/(768 d) for 8 <= d <= 400 (smallest log-margin 6.21)
+1/log2(2^(5/3)/3) = 12.2393
+check_rounding: all checks passed
+all replay programs passed

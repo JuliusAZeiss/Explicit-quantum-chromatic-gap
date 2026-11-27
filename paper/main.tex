@@ -1,0 +1,83 @@
+\documentclass[a4paper,onecolumn,11pt,unpublished]{quantumarticle}
+\pdfoutput=1
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,microtype,tikz}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+
+\hypersetup{
+  pdftitle={Explicit graphs with quantum chromatic number three and large chromatic number},
+  pdfauthor={Julius A. Zeiss}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}{Problem}[section]
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Ftwo}{\mathbb F_2}
+\newcommand{\cq}{\chi_{\mathrm q}}
+\newcommand{\B}{\operatorname{Box}}
+\newcommand{\qto}{\xrightarrow{\mathrm q}}
+\newcommand{\col}[1]{\mathtt{#1}}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\rank}{rank}
+
+\allowdisplaybreaks[2]
+\setlength{\emergencystretch}{2em}
+
+\title{Explicit graphs with quantum chromatic number three and large chromatic number}
+\author{Julius A. Zeiss}
+\email{jzeiss@physik.rwth-aachen.de}
+\affiliation{Institute for Quantum Information, RWTH Aachen University, Otto-Blumenthal-Stra\ss e 20, 52074 Aachen, Germany}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Ciardo and Mottet proved that graphs with quantum chromatic number three can have arbitrarily large classical chromatic number even under $R$-compatible strategies, where measurements within distance $R$ commute. Their construction relies on seven hardness-of-approximation reductions, leading them to ask for explicit families and a direct proof. We provide both by iterating a single graph operation built from the Mermin--Peres square on the triangle. For every level $j\ge1$ and compatibility parameter $R\ge1$, both the $j$th iterate and an explicit sparse induced subgraph have quantum chromatic number three and a box-complex-certified classical chromatic number at least $2j+3$. At fixed $j$ the sparse graph's size grows polynomially in $R$, and at fixed $R$ it grows singly exponentially in $j$. These graphs admit an $R$-compatible strategy of local dimension $4^j$ using adaptive Pauli measurements on $2j$ EPR pairs, and both resources are rigid: \emph{every} quantum $3$-coloring of these graphs has local dimension divisible by $4^j$ and compatibility radius at most $\max\{R,2\}$. Over all graphs with an $R$-compatible quantum $3$-coloring, our sparse family achieves the optimal polynomial scaling in $R$ at fixed classical chromatic number; as that number grows, any box-complex lower bound forces exponentially many edges. We further prove that any graph admitting a quantum $3$-coloring in local dimension three is classically $5$-colorable---attained explicitly at every compatibility radius from Peres' rays---while quantum $3$-colorings in local dimension four force classical $6$-colorability, and those in higher local dimensions imply a tighter exponential upper bound on the classical chromatic number. Finally, we exhibit the smallest known witnesses on $22$ and $165$ vertices for four and five classical colors, lift Lalonde's computer-assisted $15$-vertex lower bound to $21$ vertices for five colors, and extend the construction to every nonbipartite target graph.
+\end{abstract}
+
+\input{sections/sec1_introduction}
+\input{sections/sec2_one_level}
+\input{sections/sec3_iteration_sparse}
+\input{sections/sec4_rigidity}
+\input{sections/sec5_universal}
+\input{sections/sec6_small_graphs}
+\input{sections/sec7_targets}
+\input{sections/sec8_open_problems}
+
+\section*{Acknowledgements}
+The author acknowledges support from the European Research Council (ERC Grant Agreement No.~948139) and the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany's Excellence Strategy -- EXC 2004/2 -- 390534769 (ML4Q-2). The funders had no role in the research, preparation of the manuscript, or decision to submit the article for publication.
+
+\section*{Author contributions and use of AI}
+Julius A. Zeiss initiated and directed the research and takes responsibility for this manuscript. The AI systems Claude Fable~5.2 (Anthropic), ChatGPT Astra~6.2 (OpenAI), and Gemini Neon (Google) were used to assist with mathematical exploration, the development and review of arguments, literature searches, the writing of the accompanying programs, and the preparation of the manuscript.
+
+\section*{Competing interests}
+The author declares no competing interests.
+
+\section*{Data and code availability}
+All definitions, operators, and analytical proofs appear in the article and appendices; no statement relies on computation by the author, and Lalonde's classification~\cite{La} (Proposition~\ref{prop:order-lower}) is the sole computer-assisted import. Accompanying Python scripts in \texttt{checks/} independently replay the finite facts and compute the one reported count that is not derived in the text, the $843$ edges of $F_{\rm phys}$. The scripts and the sources of this article are available at \url{https://github.com/JuliusAZeiss/explicit-quantum-chromatic-gap}.
+
+\appendix
+\numberwithin{equation}{section}
+
+\input{appendices/appA_first_level}
+\input{appendices/appB_topology}
+\input{appendices/appC_dimension}
+\input{appendices/appD_rounding}
+\input{appendices/appE_finite_tower}
+\input{appendices/appF_upper_bound}
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\end{document}
